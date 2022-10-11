@@ -1,0 +1,29 @@
+inherited FrmConsultaEstados: TFrmConsultaEstados
+  Caption = 'Consulta Estados'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited btnPesquisar: TButton
+    Left = 474
+    OnClick = btnPesquisarClick
+    ExplicitLeft = 474
+  end
+  inherited ListView1: TListView
+    Columns = <
+      item
+        Caption = 'CODIGO'
+      end
+      item
+        Caption = 'PAIS'
+      end
+      item
+        Caption = 'SIGLA'
+      end
+      item
+        Caption = 'DDI'
+      end
+      item
+        Caption = 'MOEDA'
+      end>
+    ViewStyle = vsReport
+  end
+end

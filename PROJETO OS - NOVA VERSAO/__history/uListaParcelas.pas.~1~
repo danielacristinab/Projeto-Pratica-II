@@ -1,0 +1,49 @@
+unit uListaParcelas;
+
+interface
+uses Classes, uParcelas;
+Type TListaCParcelas = class
+  private
+    ListaParcelas : TList;
+  protected
+  public
+    constructor CrieObj;
+    procedure Adicionar(pParcela: Parcelas);
+    procedure Remover(Index: Integer);
+    function Count: Integer;
+	destructor Destrua_se;
+end;
+
+implementation
+
+{ TListaCParcelas }
+
+procedure TListaCParcelas.Adicionar(pParcela: Parcelas);
+begin
+  ListaParcelas.Add(pParcela);
+end;
+
+function TListaCParcelas.Count: Integer;
+begin
+  Result := ListaParcelas.Count;
+end;
+
+constructor TListaCParcelas.CrieObj;
+begin
+  ListaParcelas := TList.Create;
+end;
+
+destructor TListaCParcelas.Destrua_se;
+begin
+
+end;
+
+procedure TListaCParcelas.Remover(Index: Integer);
+begin
+{  if Index < Count then
+     ListaParcelas.Delete(Index)
+  else
+    ShowMessage('Item não encontrado!');}
+end;
+
+end.

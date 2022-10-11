@@ -1,0 +1,119 @@
+unit uFornecedor;
+
+interface
+uses uPai, uPessoa;
+type Fonecedores = class (Pessoa)
+  private
+  protected
+    RazaoSocial : string[50];
+	  ApelidoNomeFantasia : string[50];
+	  cnpj : string[15];
+	  RG_IE : string[15];
+	  site : string;
+    Telefone : string[13];
+    Email : string[50];
+ public
+   constructor CrieObj;
+   procedure SetRazaoSocial(pRazaoSocial : string);
+	 procedure SetApelidoNomeFantasia(pApelidoNomeFantasia : string);
+	 procedure SetCnpj(pcnpj : string);
+	 procedure SetRG_IE(pRG_IE : string);
+	 procedure SetSite(psite : string);
+   procedure SetTelefone(pTelefone : string);
+   procedure SetEmail(pEmail : string);
+   function GetRazaoSocial : string;
+	 function GetApelidoNomeFantasia : string;
+	 function GetCnpj : string;
+	 function GetRG_IE : string;
+	 function GetSite : string;
+   function GetTelefone : string;
+   function GetEmail : string;
+   destructor Destrua_se;
+end;
+implementation
+
+
+{ Fonecedor }
+
+constructor Fonecedor.CrieObj;
+begin
+
+end;
+
+destructor Fonecedor.Destrua_se;
+begin
+
+end;
+
+function Fonecedor.GetApelidoNomeFantasia: string;
+begin
+
+end;
+
+function Fonecedor.GetCnpj: string;
+begin
+
+end;
+
+function Fonecedor.GetEmail: string;
+begin
+
+end;
+
+function Fonecedor.GetRazaoSocial: string;
+begin
+
+end;
+
+function Fonecedor.GetRG_IE: string;
+begin
+
+end;
+
+function Fonecedor.GetSite: string;
+begin
+
+end;
+
+function Fonecedor.GetTelefone: string;
+begin
+
+end;
+
+procedure Fonecedor.SetApelidoNomeFantasia(pApelidoNomeFantasia: string);
+begin
+
+end;
+
+procedure Fonecedor.SetCnpj(pcnpj: string);
+begin
+
+end;
+
+procedure Fonecedor.SetEmail(pEmail: string);
+begin
+
+end;
+
+procedure Fonecedor.SetRazaoSocial(pRazaoSocial: string);
+begin
+
+end;
+
+procedure Fonecedor.SetRG_IE(pRG_IE: string);
+begin
+
+end;
+
+procedure Fonecedor.SetSite(psite: string);
+begin
+
+end;
+
+procedure Fonecedor.SetTelefone(pTelefone: string);
+begin
+
+end;
+
+end.
+

@@ -1,0 +1,93 @@
+unit uFrmConsultaMarcas;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmConsultaPai, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, uMarcas, uCtrlMarcas, uFrmCadastroMarcas;
+
+type
+  TFrmConsultaMarcas = class(TFrmConsultaPai)
+    procedure btnPesquisarClick(Sender: TObject);
+  private
+    { Private declarations }
+    umCadastroMarcas : TFrmCadastroMarcas;
+    aMarca : Marcas;
+    aCtrlMarca : CtrlMarcas;
+  public
+    { Public declarations }
+    procedure ConhecaObj(pObj: TObject;  pCtrl: TObject); override;
+    procedure Incluir;                                    override;
+    procedure Alterar;                                    override;
+    procedure Excluir;                                    override;
+    procedure Pesquisar;                                  override;
+    procedure Sair;                                       override;
+    procedure SetCadastro(pObj: TObject);                 override;
+  end;
+
+var
+  FrmConsultaMarcas: TFrmConsultaMarcas;
+
+implementation
+
+{$R *.dfm}
+
+{ TFrmConsultaMarcas }
+
+procedure TFrmConsultaMarcas.Alterar;
+var  mMsg : string;
+begin
+  inherited;
+  mMsg:= aCtrlMarca.Carregar(aMarca);
+  umCadastroMarcas.ConhecaObj(aMarca, aCtrlMarca);
+  umCadastroMarcas.LimpaEdit;
+  umCadastroMarcas.CarregaEdit;
+  umCadastroMarcas.ShowModal;
+  self.DBGrid1.DataSource := TDataSource(aCtrlMarca.GetDS);
+  aCtrlMarca.Pesquisar(EdtPesquisar.Text);
+end;
+
+procedure TFrmConsultaMarcas.btnPesquisarClick(Sender: TObject);
+begin
+  inherited;
+  aCtrlMarca.Pesquisar(self.EdtPesquisar.Text);
+end;
+
+procedure TFrmConsultaMarcas.ConhecaObj(pObj, pCtrl: TObject);
+begin
+  inherited;
+
+end;
+
+procedure TFrmConsultaMarcas.Excluir;
+begin
+  inherited;
+
+end;
+
+procedure TFrmConsultaMarcas.Incluir;
+begin
+  inherited;
+
+end;
+
+procedure TFrmConsultaMarcas.Pesquisar;
+begin
+  inherited;
+
+end;
+
+procedure TFrmConsultaMarcas.Sair;
+begin
+  inherited;
+
+end;
+
+procedure TFrmConsultaMarcas.SetCadastro(pObj: TObject);
+begin
+  inherited;
+
+end;
+
+end.

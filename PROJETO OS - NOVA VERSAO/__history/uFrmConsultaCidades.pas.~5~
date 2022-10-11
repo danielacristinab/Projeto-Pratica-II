@@ -1,0 +1,108 @@
+unit uFrmConsultaCidades;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmConsultaPai, Vcl.StdCtrls,
+  Vcl.ComCtrls, ufrmCadastroCidades, uCidades, uColCidades, uCtrlCidades;
+
+type
+  TFrmConsultaCidades = class(TFrmConsultaPai)
+    procedure btnPesquisarClick(Sender: TObject);
+  private
+    { Private declarations }
+    umCadastroCidades : TFrmCadastroCidades;
+    aCidade : Cidades;
+    aCtrlCidade : CtrlCidades;
+  public
+    { Public declarations }
+    procedure ConhecaObj(pObj: TObject;  pCtrl: TObject); override;
+    procedure Incluir;                                    override;
+    procedure Alterar;                                    override;
+    procedure Excluir;                                    override;
+    procedure Pesquisar;                                  override;
+    procedure Sair;                                       override;
+    procedure SetCadastro(pObj: TObject);                 override;
+    procedure CarregaLV;                                  override;
+  end;
+
+var
+  FrmConsultaCidades: TFrmConsultaCidades;
+
+implementation
+
+{$R *.dfm}
+
+{ TFrmConsultaCidades }
+
+procedure TfrmConsultaCidades.Alterar;
+begin
+  inherited;
+  umCadastroCidades.ShowModal;
+end;
+
+procedure TFrmConsultaCidades.btnPesquisarClick(Sender: TObject);
+begin
+  inherited;
+  umCadastroCidades.ShowModal;
+end;
+
+procedure TfrmConsultaCidades.CarregaLV;
+var LVItem : TListItem;
+    tam, k : integer;
+    aCidade : Cidades;
+    aColCidades : ColCidades;
+begin
+  aColCidades := ColCidades(aCtrlCidade.CarregarColecao);
+  self.ListView1.Clear;
+  tam := aColCidades.GetTam;
+  for k := 1 to tam do
+  begin
+    aCidade := Cidades(aColCidades.carrega(k));
+    LVItem := ListView1.Items.Add;
+    LVITem.Caption := inttostr(aCidade.GetCodigo);
+    LVITem.SubItems.Add(aCidade.GetCidade);
+    LVItem.SubItems.Add(aCidade.GetDDD);
+    LVItem.SubItems.add(aCidade.getoEstado.GetEstado);
+  end;
+end;
+
+procedure TfrmConsultaCidades.ConhecaObj(pObj, pCtrl: TObject);
+begin
+  inherited;
+  aCidade := Cidades(pObj);
+
+end;
+
+procedure TfrmConsultaCidades.Excluir;
+begin
+  inherited;
+  umCadastroCidades.ShowModal;
+end;
+
+procedure TfrmConsultaCidades.Incluir;
+begin
+  inherited;
+  umCadastroCidades.ConhecaObj(aCidade,nil);
+  umCadastroCidades.ShowModal;
+end;
+
+procedure TfrmConsultaCidades.Pesquisar;
+begin
+  inherited;
+  umCadastroCidades.ShowModal;
+end;
+
+procedure TfrmConsultaCidades.Sair;
+begin
+  inherited;
+
+end;
+
+procedure TfrmConsultaCidades.SetCadastro(pObj: TObject);
+begin
+  inherited;
+  umCadastroCidades := TFrmCadastroCidades(pObj);
+end;
+end.

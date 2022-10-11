@@ -1,0 +1,263 @@
+inherited FrmCadastroCondicaoPagamento: TFrmCadastroCondicaoPagamento
+  Caption = 'Cadastro Condicao Pagamento'
+  ClientHeight = 564
+  ClientWidth = 559
+  OnCreate = FormCreate
+  ExplicitWidth = 575
+  ExplicitHeight = 603
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited lblCodigo: TLabel
+    Top = 13
+    ExplicitTop = 13
+  end
+  inherited lblDataCad: TLabel
+    Left = 28
+    Top = 504
+    ExplicitLeft = 28
+    ExplicitTop = 504
+  end
+  inherited lblUltAlt: TLabel
+    Left = 138
+    Top = 504
+    ExplicitLeft = 138
+    ExplicitTop = 504
+  end
+  inherited lblUser: TLabel
+    Left = 258
+    Top = 504
+    ExplicitLeft = 258
+    ExplicitTop = 504
+  end
+  object lblCondPag: TLabel [4]
+    Left = 79
+    Top = 13
+    Width = 116
+    Height = 13
+    Caption = 'Condicao de Pagamento'
+  end
+  object lblMulta: TLabel [5]
+    Left = 334
+    Top = 13
+    Width = 26
+    Height = 13
+    Caption = 'Multa'
+  end
+  object lblJuros: TLabel [6]
+    Left = 396
+    Top = 13
+    Width = 26
+    Height = 13
+    Caption = 'Juros'
+  end
+  object lblDesconto: TLabel [7]
+    Left = 471
+    Top = 13
+    Width = 45
+    Height = 13
+    Caption = 'Desconto'
+  end
+  object lblPorcentagem: TLabel [8]
+    Left = 154
+    Top = 141
+    Width = 63
+    Height = 13
+    Caption = 'Porcentagem'
+  end
+  object lblParcela: TLabel [9]
+    Left = 30
+    Top = 141
+    Width = 35
+    Height = 13
+    Caption = 'Parcela'
+  end
+  object lblCodFormaPag: TLabel [10]
+    Left = 24
+    Top = 74
+    Width = 73
+    Height = 13
+    Caption = 'Cod Forma Pag'
+  end
+  object lblFormaPag: TLabel [11]
+    Left = 109
+    Top = 74
+    Width = 102
+    Height = 13
+    Caption = 'Forma de Pagamento'
+  end
+  object lblPrazo: TLabel [12]
+    Left = 79
+    Top = 141
+    Width = 27
+    Height = 13
+    Caption = 'Prazo'
+  end
+  object lblTotalPercentual: TLabel [13]
+    Left = 454
+    Top = 451
+    Width = 78
+    Height = 13
+    Caption = 'Total Porcentual'
+  end
+  inherited edtCodigo: TEdit
+    Top = 32
+    ExplicitTop = 32
+  end
+  inherited btnSair: TButton
+    Left = 471
+    Top = 521
+    TabOrder = 15
+    ExplicitLeft = 471
+    ExplicitTop = 521
+  end
+  inherited btnSalvar: TButton
+    Left = 390
+    Top = 521
+    Enabled = False
+    TabOrder = 14
+    ExplicitLeft = 390
+    ExplicitTop = 521
+  end
+  inherited edtDataCad: TEdit
+    Left = 28
+    Top = 523
+    TabOrder = 17
+    ExplicitLeft = 28
+    ExplicitTop = 523
+  end
+  inherited edtUltAlt: TEdit
+    Left = 138
+    Top = 523
+    TabOrder = 18
+    ExplicitLeft = 138
+    ExplicitTop = 523
+  end
+  inherited edtUser: TEdit
+    Left = 258
+    Top = 523
+    TabOrder = 19
+    ExplicitLeft = 258
+    ExplicitTop = 523
+  end
+  object edtCondPag: TEdit
+    Left = 79
+    Top = 32
+    Width = 231
+    Height = 21
+    TabOrder = 1
+  end
+  object edtMulta: TEdit
+    Left = 333
+    Top = 32
+    Width = 57
+    Height = 21
+    TabOrder = 2
+  end
+  object edtJuros: TEdit
+    Left = 396
+    Top = 32
+    Width = 57
+    Height = 21
+    TabOrder = 3
+  end
+  object edtDesconto: TEdit
+    Left = 471
+    Top = 32
+    Width = 57
+    Height = 21
+    TabOrder = 4
+  end
+  object edtPorcentagem: TEdit
+    Left = 154
+    Top = 160
+    Width = 57
+    Height = 21
+    TabOrder = 10
+  end
+  object edtParcela: TEdit
+    Left = 28
+    Top = 160
+    Width = 37
+    Height = 21
+    TabOrder = 8
+  end
+  object edtCodFormaPag: TEdit
+    Left = 24
+    Top = 93
+    Width = 57
+    Height = 21
+    Enabled = False
+    TabOrder = 5
+  end
+  object edtFormaPag: TEdit
+    Left = 111
+    Top = 93
+    Width = 272
+    Height = 21
+    TabOrder = 6
+  end
+  object edtPrazo: TEdit
+    Left = 79
+    Top = 160
+    Width = 57
+    Height = 21
+    TabOrder = 9
+  end
+  object btnPesquisarFormaPag: TButton
+    Left = 396
+    Top = 91
+    Width = 75
+    Height = 25
+    Caption = 'Pesquisar'
+    TabOrder = 7
+    OnClick = btnPesquisarFormaPagClick
+  end
+  object ListView1: TListView
+    Left = 24
+    Top = 208
+    Width = 520
+    Height = 234
+    Columns = <
+      item
+        Caption = 'Parcela'
+      end
+      item
+        Caption = 'Prazo'
+      end
+      item
+        Caption = 'Percentual'
+      end
+      item
+        Caption = 'Forma Pag'
+      end>
+    TabOrder = 13
+    ViewStyle = vsReport
+  end
+  object btnAdicionar: TButton
+    Left = 235
+    Top = 158
+    Width = 75
+    Height = 25
+    Caption = 'Adicionar'
+    TabOrder = 11
+    OnClick = btnAdicionarClick
+  end
+  object btnRemover: TButton
+    Left = 334
+    Top = 158
+    Width = 75
+    Height = 25
+    Caption = 'Remover'
+    TabOrder = 12
+    OnClick = btnRemoverClick
+  end
+  object edtTotalPercent: TEdit
+    Left = 461
+    Top = 470
+    Width = 90
+    Height = 21
+    TabOrder = 16
+    Text = '0'
+    OnChange = edtTotalPercentChange
+  end
+end

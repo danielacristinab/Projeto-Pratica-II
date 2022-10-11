@@ -1,0 +1,305 @@
+unit uFrmCadastroFuncionarios;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmCadastroPessoa, Vcl.StdCtrls,
+  uFrmConsultaCidades, uFuncionarios, uCtrlFuncionarios, uCidades, uCargos,
+  uFrmConsultaCargos;
+
+type
+  TFrmCadastroFuncionarios = class(TFrmCadastroPessoa)
+    lblNome: TLabel;
+    lblDataNasc: TLabel;
+    lblRG: TLabel;
+    lblCPF: TLabel;
+    lblTelefone: TLabel;
+    lblCelular: TLabel;
+    edtNome: TEdit;
+    edtDataNasc: TEdit;
+    edtRG: TEdit;
+    edtCPF: TEdit;
+    edtTelefone: TEdit;
+    edtCelular: TEdit;
+    edtEmail: TEdit;
+    lblEmail: TLabel;
+    edtCodCargo: TEdit;
+    edtCargo: TEdit;
+    btnPesquisarCargo: TButton;
+    lblCodCargo: TLabel;
+    lblCargo: TLabel;
+    procedure btnPesquisarCargoClick(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
+  private
+    { Private declarations }
+    umFrmConsultaCidades : TFrmConsultaCidades;
+    umFrmConsultaCargos : TFrmConsultaCargos;
+    oFuncionario : Funcionarios;
+    aCtrlFuncionarios : CtrlFuncionarios;
+  public
+    { Public declarations }
+    procedure ConhecaObj(pObj: TObject;  pCtrl: TObject);  override;
+    procedure LimpaEdit;                                   override;
+    procedure CarregaEdit;                                 override;
+    procedure BloqueiaEdit;                                override;
+    procedure DesbloqueiEdit;                              override;
+    procedure Salvar;                                      override;
+    procedure Sair;                                        override;
+    procedure SetConsulta(pObj: TObject);                  override;
+  end;
+
+var
+  FrmCadastroFuncionarios: TFrmCadastroFuncionarios;
+
+implementation
+
+{$R *.dfm}
+
+{ TFrmCadastroFuncionarios }
+
+procedure TFrmCadastroFuncionarios.BloqueiaEdit;
+begin
+  inherited;
+  edtCodigo.Enabled := false;
+  edtNome.Enabled := false;
+  edtDataNasc.Enabled := false;
+  edtRg.Enabled := false;
+  edtCPF.Enabled := false;
+  edtTelefone.Enabled := false;
+  edtCelular.Enabled := false;
+  edtEndereco.Enabled := false;
+  edtNumero.Enabled := false;
+  edtCep.Enabled := false;
+  edtBairro.Enabled := false;
+  edtComplemento.Enabled := false;
+  edtCodCargo.Enabled := false;
+  edtCargo.Enabled := false;
+  edtCodCidade.Enabled := false;
+  edtCidade.Enabled := false;
+  edtDataCad.Enabled := false;
+  edtUltAlt.Enabled := false;
+end;
+
+procedure TFrmCadastroFuncionarios.btnPesquisarCargoClick(Sender: TObject);
+var btn_nome : string;
+    oCargo  : Cargos;
+begin
+  inherited;
+  oCargo := Cargos.CrieObj;
+  btn_nome := umFrmConsultaCargos.btnSair.Caption;
+  umFrmConsultaCargos.btnSair.Caption := 'Selecionar';
+  umFrmConsultaCargos.ConhecaObj(oCargo,aCtrlFuncionarios.GetaCtrlCargos);
+  umFrmConsultaCargos.ShowModal;
+  umFrmConsultaCargos.btnSair.Caption := btn_nome;
+  self.edtCodCidade.Text := inttostr(oCargo.GetCodigo);
+  self.edtCidade.Text := oCargo.GetCargo;
+  oFuncionario.SetoCargo(oCargo);
+end;
+
+procedure TFrmCadastroFuncionarios.btnPesquisarClick(Sender: TObject);
+var btn_nome : string;
+    aCidade  : Cidades;
+begin
+  inherited;
+  aCidade := Cidades.CrieObj;
+  btn_nome := umFrmConsultaCidades.btnSair.Caption;
+  umFrmConsultaCidades.btnSair.Caption := 'Selecionar';
+  umFrmConsultaCidades.ConhecaObj(aCidade,aCtrlFuncionarios.GetaCtrlCidade);
+  umFrmConsultaCidades.ShowModal;
+  umFrmConsultaCidades.btnSair.Caption := btn_nome;
+  self.edtCodCidade.Text := inttostr(aCidade.GetCodigo);
+  self.edtCidade.Text := aCidade.GetCidade;
+  oFuncionario.setaCidade(aCidade);
+end;
+
+procedure TFrmCadastroFuncionarios.CarregaEdit;
+begin
+  inherited;
+  if oFuncionario.GetCodigo <> 0 then
+    self.edtCodigo.Text := inttostr(oFuncionario.GetCodigo);
+  edtCodigo.Text    := inttostr(oFuncionario.GetCodigo);
+  edtNome.Text      := oFuncionario.GetNome;
+  edtDataNasc.Text  := oFuncionario.GetDataNasc;
+  edtRg.Text        := oFuncionario.GetRG;
+  edtCPF.Text       := oFuncionario.GetCPF;
+  edtTelefone.Text  := oFuncionario.GetTelefone;
+  edtCelular.Text   := oFuncionario.GetCelular;
+  edtEndereco.Text  := oFuncionario.GetEndereco;
+  edtNumero.Text    := inttostr(oFuncionario.GetNumero);
+  edtCep.Text       := inttostr(oFuncionario.GetCep);
+  edtBairro.Text    := oFuncionario.GetBairro;
+  edtComplemento.Text := oFuncionario.GetComplemento;
+  edtCodCargo.Text  := inttostr(oFuncionario.GetoCargo.GetCodigo);
+  edtCargo.Text     := oFuncionario.GetoCargo.GetCargo;
+  edtCodCidade.Text := inttostr(oFuncionario.getaCidade.GetCodigo);
+  edtCidade.Text    := oFuncionario.getaCidade.GetCidade;
+  edtDataCad.Text   := oFuncionario.GetDataCad;
+  edtUltAlt.Text    := oFuncionario.GetUltAlt;
+end;
+
+procedure TFrmCadastroFuncionarios.ConhecaObj(pObj, pCtrl: TObject);
+begin
+  inherited;
+  oFuncionario := Funcionarios(pObj);
+  aCtrlFuncionarios := CtrlFuncionarios(pCtrl);
+  self.LimpaEdit;
+  self.CarregaEdit;
+end;
+
+procedure TFrmCadastroFuncionarios.DesbloqueiEdit;
+begin
+  inherited;
+  edtCodigo.Enabled := true;
+  edtNome.Enabled := true;
+  edtDataNasc.Enabled := true;
+  edtRg.Enabled := true;
+  edtCPF.Enabled := true;
+  edtTelefone.Enabled := true;
+  edtCelular.Enabled := true;
+  edtEndereco.Enabled := true;
+  edtNumero.Enabled := true;
+  edtCep.Enabled := true;
+  edtBairro.Enabled := true;
+  edtComplemento.Enabled := true;
+  edtCodCargo.Enabled := true;
+  edtCargo.Enabled := true;
+  edtCodCidade.Enabled := true;
+  edtCidade.Enabled := true;
+end;
+
+procedure TFrmCadastroFuncionarios.LimpaEdit;
+begin
+  inherited;
+  edtCodigo.Text := '0';
+  edtNome.Clear;
+  edtDataNasc.Clear;
+  edtRg.Clear;
+  edtCPF.Clear;
+  edtTelefone.Clear;
+  edtCelular.Clear;
+  edtEndereco.Clear;
+  edtNumero.Clear;
+  edtCep.Clear;
+  edtBairro.Clear;
+  edtComplemento.Clear;
+  edtCodCargo.Clear;
+  edtCargo.Clear;
+  edtCodCidade.Clear;
+  edtCidade.Clear;
+end;
+
+procedure TFrmCadastroFuncionarios.Sair;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroFuncionarios.Salvar;
+begin
+  if (btnSalvar.Caption = '&Salvar') or (btnSalvar.Caption = '&Alterar') then
+  begin
+    if length(self.edtNome.text) = 0 then
+      self.edtNome.Color := clYellow;
+    if length(self.edtDataNasc.text) = 0 then
+      self.edtDataNasc.Color := clYellow;
+    if length(self.edtCPF.text) = 0 then
+      self.edtCPF.Color := clYellow;
+    if length(self.edtCelular.text) = 0 then
+      self.edtCelular.Color := clYellow;
+    if length(self.edtEndereco.text) = 0 then
+      self.edtEndereco.Color := clYellow;
+    if length(self.edtNumero.text) = 0 then
+      self.edtNumero.Color := clYellow;
+    if length(self.edtBairro.text) = 0 then
+      self.edtBairro.Color := clYellow;
+    if length(self.edtCEP.text) = 0 then
+      self.edtCEP.Color := clYellow;
+    if length(self.edtCidade.text) = 0 then
+      self.edtCidade.Color := clYellow;
+    if self.edtNome.Text = '' then
+    begin
+      showmessage('Campo Nome obrigatorio!');
+      self.edtNome.SetFocus;
+    end
+    else if self.edtDataNasc.Text = '' then
+    begin
+      showmessage('Campo Data Nascimento obrigatorio!');
+      self.edtDataNasc.SetFocus;
+    end
+    else if self.edtCPF.Text = '' then
+    begin
+      showmessage('Campo CPF/CNPJ obrigatorio!');
+      self.edtCPF.SetFocus;
+    end
+    else if self.edtCelular.Text = '' then
+    begin
+      showmessage('Campo Celular obrigatorio!');
+      self.edtCelular.SetFocus;
+    end
+     else if self.edtEndereco.Text = '' then
+    begin
+      showmessage('Campo Endereço obrigatorio!');
+      self.edtEndereco.SetFocus;
+    end
+     else if self.edtNumero.Text = '' then
+    begin
+      showmessage('Campo Numero obrigatorio!');
+      self.edtNumero.SetFocus;
+    end
+     else if self.edtBairro.Text = '' then
+    begin
+      showmessage('Campo Bairro obrigatorio!');
+      self.edtBairro.SetFocus;
+    end
+     else if self.edtCEP.Text = '' then
+    begin
+      showmessage('Campo CEP obrigatorio!');
+      self.edtCEP.SetFocus;
+    end
+     else if self.edtCidade.Text = '' then
+    begin
+      showmessage('Campo Cidade obrigatorio!');
+      self.edtCidade.SetFocus;
+    end
+    else
+    begin
+      oFuncionario.SetCodigo(strtoint(edtCodigo.Text));
+      oFuncionario.SetNome(edtNome.Text);
+      oFuncionario.SetDataNasc(edtDataNasc.Text);
+      oFuncionario.SetRG(edtRG.Text);
+      oFuncionario.SetCPF(edtCPF.Text);
+      oFuncionario.SetEmail(edtEmail.Text);
+      oFuncionario.SetTelefone(edtTelefone.Text);
+      oFuncionario.SetCelular(edtCelular.Text);
+      oFuncionario.SetEndereco(edtEndereco.Text);
+      oFuncionario.SetNumero(strtoint(edtNumero.Text));
+      oFuncionario.SetCep(strtoint(edtCEP.Text));
+      oFuncionario.SetBairro(edtBairro.Text);
+      oFuncionario.SetComplemento(edtComplemento.Text);
+      oFuncionario.GetoCargo.SetCodigo(strtoint(edtCodCargo.text));
+      oFuncionario.GetoCargo.SetCargo(edtCargo.Text);
+      oFuncionario.GetaCidade.SetCodigo(strtoint(edtCodCidade.Text));
+      oFuncionario.GetaCidade.SetCidade(edtCidade.Text);
+      oFuncionario.SetDataCad(edtDataCad.Text);
+      oFuncionario.SetUltAlt(edtUltAlt.Text);
+
+      aCtrlFuncionarios.salvar(oFuncionario.Clone);
+    end;
+    showmessage('Funcionario salvo com sucesso!');
+  end
+  else if (btnSalvar.Caption = '&Excluir') then
+  begin
+    aCtrlFuncionarios.Excluir(oFuncionario);
+    showmessage('Funcionario excluido com sucesso!');
+  end;
+    close;
+end;
+
+procedure TFrmCadastroFuncionarios.SetConsulta(pObj: TObject);
+begin
+  inherited;
+  umFrmConsultaCidades := TFrmConsultaCidades(pObj);
+end;
+
+end.

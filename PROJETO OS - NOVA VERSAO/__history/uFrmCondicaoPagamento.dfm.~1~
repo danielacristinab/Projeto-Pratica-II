@@ -1,0 +1,163 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Condi'#231#227'o de Pagamento'
+  ClientHeight = 457
+  ClientWidth = 708
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object LblCodigo: TLabel
+    Left = 24
+    Top = 24
+    Width = 33
+    Height = 13
+    Caption = 'Codigo'
+  end
+  object LblCondicao: TLabel
+    Left = 104
+    Top = 24
+    Width = 44
+    Height = 13
+    Caption = 'Condicao'
+  end
+  object LblMulta: TLabel
+    Left = 360
+    Top = 24
+    Width = 26
+    Height = 13
+    Caption = 'Multa'
+  end
+  object LblJuros: TLabel
+    Left = 424
+    Top = 24
+    Width = 26
+    Height = 13
+    Caption = 'Juros'
+  end
+  object LblDescontos: TLabel
+    Left = 512
+    Top = 24
+    Width = 50
+    Height = 13
+    Caption = 'Descontos'
+  end
+  object LblParcela: TLabel
+    Left = 26
+    Top = 85
+    Width = 35
+    Height = 13
+    Caption = 'Parcela'
+  end
+  object LblPrazo: TLabel
+    Left = 104
+    Top = 85
+    Width = 27
+    Height = 13
+    Caption = 'Prazo'
+  end
+  object LblPorcentagem: TLabel
+    Left = 184
+    Top = 85
+    Width = 63
+    Height = 13
+    Caption = 'Porcentagem'
+  end
+  object EdtCodig: TEdit
+    Left = 24
+    Top = 43
+    Width = 57
+    Height = 21
+    TabOrder = 0
+  end
+  object EdtCondicao: TEdit
+    Left = 104
+    Top = 43
+    Width = 217
+    Height = 21
+    TabOrder = 1
+  end
+  object EdtMulta: TEdit
+    Left = 344
+    Top = 43
+    Width = 57
+    Height = 21
+    TabOrder = 2
+  end
+  object EdtJuros: TEdit
+    Left = 424
+    Top = 43
+    Width = 57
+    Height = 21
+    TabOrder = 3
+  end
+  object EdtDesconto: TEdit
+    Left = 512
+    Top = 43
+    Width = 49
+    Height = 21
+    TabOrder = 4
+  end
+  object EdtParcela: TEdit
+    Left = 24
+    Top = 104
+    Width = 57
+    Height = 21
+    TabOrder = 5
+  end
+  object EdtPrazo: TEdit
+    Left = 104
+    Top = 104
+    Width = 57
+    Height = 21
+    TabOrder = 6
+  end
+  object EdtPorcentagem: TEdit
+    Left = 184
+    Top = 104
+    Width = 63
+    Height = 21
+    TabOrder = 7
+  end
+  object BtnAdd: TButton
+    Left = 270
+    Top = 102
+    Width = 75
+    Height = 25
+    Caption = 'Adicionar'
+    TabOrder = 8
+    OnClick = BtnAddClick
+  end
+  object BtnRemover: TButton
+    Left = 374
+    Top = 102
+    Width = 75
+    Height = 25
+    Caption = 'Remover'
+    TabOrder = 9
+  end
+  object lv1: TListView
+    Left = 24
+    Top = 144
+    Width = 425
+    Height = 289
+    Columns = <
+      item
+        Caption = 'Parcela'
+      end
+      item
+        Caption = 'Prazo'
+      end
+      item
+        Caption = 'Porcentagem'
+      end>
+    TabOrder = 10
+    ViewStyle = vsReport
+  end
+end

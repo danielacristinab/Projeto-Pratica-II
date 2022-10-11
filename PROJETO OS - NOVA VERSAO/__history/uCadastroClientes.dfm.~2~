@@ -1,0 +1,111 @@
+inherited FrmCadastroPessoa1: TFrmCadastroPessoa1
+  Caption = 'FrmCadastroPessoa1'
+  ClientHeight = 455
+  ClientWidth = 729
+  ExplicitWidth = 745
+  ExplicitHeight = 494
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited lblNumero: TLabel
+    Left = 470
+    ExplicitLeft = 470
+  end
+  object lblNome: TLabel [10]
+    Left = 80
+    Top = 8
+    Width = 75
+    Height = 13
+    Caption = 'Nome Completo'
+  end
+  object lblDataNasc: TLabel [11]
+    Left = 26
+    Top = 67
+    Width = 81
+    Height = 13
+    Caption = 'Data Nascimento'
+  end
+  object lblRG: TLabel [12]
+    Left = 222
+    Top = 67
+    Width = 14
+    Height = 13
+    Caption = 'RG'
+  end
+  object lblCPF: TLabel [13]
+    Left = 470
+    Top = 67
+    Width = 19
+    Height = 13
+    Caption = 'CPF'
+  end
+  object lblTelefone: TLabel [14]
+    Left = 26
+    Top = 130
+    Width = 42
+    Height = 13
+    Caption = 'Telefone'
+  end
+  object lblCelular: TLabel [15]
+    Left = 224
+    Top = 130
+    Width = 33
+    Height = 13
+    Caption = 'Celular'
+  end
+  inherited edtEndereco: TEdit
+    Width = 423
+    ExplicitWidth = 423
+  end
+  inherited edtNumero: TEdit
+    Left = 470
+    Width = 131
+    ExplicitLeft = 470
+    ExplicitWidth = 131
+  end
+  inherited edtBairro: TEdit
+    Left = 470
+    ExplicitLeft = 470
+  end
+  object edtNome: TEdit
+    Left = 80
+    Top = 40
+    Width = 619
+    Height = 21
+    TabOrder = 13
+  end
+  object edtDataNasc: TEdit
+    Left = 19
+    Top = 94
+    Width = 188
+    Height = 21
+    TabOrder = 14
+  end
+  object edtRG: TEdit
+    Left = 222
+    Top = 94
+    Width = 225
+    Height = 21
+    TabOrder = 15
+  end
+  object edtCPF: TEdit
+    Left = 470
+    Top = 94
+    Width = 229
+    Height = 21
+    TabOrder = 16
+  end
+  object edtTelefone: TEdit
+    Left = 26
+    Top = 149
+    Width = 181
+    Height = 21
+    TabOrder = 17
+  end
+  object edtCelular: TEdit
+    Left = 224
+    Top = 149
+    Width = 223
+    Height = 21
+    TabOrder = 18
+  end
+end

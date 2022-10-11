@@ -1,0 +1,169 @@
+unit uProdutos;
+
+interface
+uses uPai, uModelos, uGrupos, uFornecedores;
+type Produtos = class (Pai)
+   private
+   protected
+    produto : string[25];
+    Qtd : real;
+    Und : string;
+    Custo : real;
+    Venda : real;
+    Saldo : integer;
+    umModelo : Modelos;
+    umGrupo : Grupos;
+    umFornecedor : Fornecedores;
+   public
+     constructor CrieObj;
+     procedure SetProduto(pProduto: string);
+     procedure SetQtd(pQtd: real);
+     procedure SetUnd(pUnd: string);
+     procedure SetCusto(pCusto: real);
+     procedure SetVenda(pVenda: real);
+     procedure SetSaldo(pSaldo: integer);
+     procedure SetumModelo(pUmModelo: modelos);
+     procedure SetumGrupo(pUmGrupo: grupos);
+     procedure SetumFornecedor(pUmFornecedor : Fornecedores);
+     function GetProduto : string;
+     function GetQtd : real;
+     function GetUnd : string;
+     function GetCusto : real;
+     function GetVenda : real;
+     function GetSaldo : integer;
+     function GetUmModelo : Modelos;
+     function GetUmGrupo : grupos;
+     function GetUmFornecedor : fornecedores;
+     function Clone : Produtos;
+     destructor Destrua_se;
+end;
+implementation
+
+{ Produtos }
+
+function Produtos.Clone: Produtos;
+begin
+  result := produtos.CrieObj;
+  result.setCodigo(codigo);
+  result.SetProduto(produto);
+  result.SetQtd(Qtd);
+  result.SetUnd(und);
+  result.SetCusto(custo);
+  result.SetVenda(venda);
+  result.SetSaldo(saldo);
+  result.SetumModelo(umModelo);
+  result.SetumGrupo(umGrupo);
+  result.SetumFornecedor(umFornecedor);
+  result.setDataCad(DataCad);
+  result.setDataCad(DataUltAlt);
+end;
+
+constructor Produtos.CrieObj;
+begin
+  produto := '';
+  Qtd := 0;
+  Und := '';
+  Custo := 0;
+  Venda := 0;
+  Saldo := 0;
+  umModelo := Modelos.CrieObj;
+  umGrupo := Grupos.CrieObj;
+  umFornecedor := Fornecedores.CrieObj;
+end;
+
+destructor Produtos.Destrua_se;
+begin
+
+end;
+
+function Produtos.GetCusto: real;
+begin
+  result := custo;
+end;
+
+function Produtos.GetUmFornecedor: fornecedores;
+begin
+  result := umFornecedor;
+end;
+
+function Produtos.GetProduto: string;
+begin
+  result := produto;
+end;
+
+function Produtos.GetQtd: real;
+begin
+  result := Qtd;
+end;
+
+function Produtos.GetSaldo: integer;
+begin
+  result := saldo;
+end;
+
+function Produtos.GetUmGrupo: grupos;
+begin
+  result := umGrupo;
+end;
+
+function Produtos.GetUmModelo: Modelos;
+begin
+  result := umModelo;
+end;
+
+function Produtos.GetUnd: string;
+begin
+  result := und;
+end;
+
+function Produtos.GetVenda: real;
+begin
+  result := venda;
+end;
+
+procedure Produtos.SetCusto(pCusto: real);
+begin
+  custo := pCusto;
+end;
+
+procedure Produtos.SetProduto(pProduto: string);
+begin
+  produto := pProduto;
+end;
+
+procedure Produtos.SetQtd(pQtd: real);
+begin
+  Qtd := pQtd;
+end;
+
+procedure Produtos.SetSaldo(pSaldo: integer);
+begin
+  saldo := pSaldo;
+end;
+
+procedure Produtos.SetumFornecedor(pUmFornecedor: Fornecedores);
+begin
+  umFornecedor := pUmFornecedor;
+end;
+
+procedure Produtos.SetumGrupo(pUmGrupo: grupos);
+begin
+  umGrupo := pUmGrupo;
+end;
+
+procedure Produtos.SetumModelo(pUmModelo: modelos);
+begin
+  umModelo := pUmModelo;
+end;
+
+procedure Produtos.SetUnd(pUnd: string);
+begin
+  und := pUnd;
+end;
+
+procedure Produtos.SetVenda(pVenda: real);
+begin
+  venda := pVenda;
+end;
+
+end.

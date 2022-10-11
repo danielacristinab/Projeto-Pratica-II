@@ -1,0 +1,51 @@
+unit uProdutos;
+
+interface
+uses uPai, uModelos, uGrupos;
+type Produtos = class (Pai)
+   private
+   protected
+    produto : string[25];
+    Und : string;
+    Custo : real;
+    Venda : real;
+    Saldo : integer;
+    umModelo : Modelos;
+    umGrupo : Grupos;
+   public
+     constructor CrieObj;
+     procedure SetPrduto(pProduto: string);
+     function GetProduto : string;
+     function Clone : Produtos;
+     destructor Destrua_se;
+end;
+implementation
+
+{ Produtos }
+
+function Produtos.Clone: Produtos;
+begin
+
+end;
+
+constructor Produtos.CrieObj;
+begin
+
+end;
+
+destructor Produtos.Destrua_se;
+begin
+
+end;
+
+function Produtos.GetProduto: string;
+begin
+
+end;
+
+procedure Produtos.SetPrduto(pProduto: string);
+begin
+
+end;
+
+end.

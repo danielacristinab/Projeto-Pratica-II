@@ -1,0 +1,112 @@
+inherited FrmCadastroPessoa: TFrmCadastroPessoa
+  Caption = 'Cadastro Pessoa'
+  PixelsPerInch = 96
+  TextHeight = 13
+  object lblEndereco: TLabel [3]
+    Left = 28
+    Top = 72
+    Width = 45
+    Height = 13
+    Caption = 'Endereco'
+  end
+  object lblNumero: TLabel [4]
+    Left = 474
+    Top = 72
+    Width = 37
+    Height = 13
+    Caption = 'Numero'
+  end
+  object lblComplemento: TLabel [5]
+    Left = 28
+    Top = 131
+    Width = 65
+    Height = 13
+    Caption = 'Complemento'
+  end
+  object lblCEP: TLabel [6]
+    Left = 328
+    Top = 131
+    Width = 19
+    Height = 13
+    Caption = 'CEP'
+  end
+  object lblBairro: TLabel [7]
+    Left = 472
+    Top = 131
+    Width = 28
+    Height = 13
+    Caption = 'Bairro'
+  end
+  object lblCodCidade: TLabel [8]
+    Left = 28
+    Top = 187
+    Width = 69
+    Height = 13
+    Caption = 'Codigo Cidade'
+  end
+  object lblCidade: TLabel [9]
+    Left = 176
+    Top = 187
+    Width = 33
+    Height = 13
+    Caption = 'Cidade'
+  end
+  object edtEndereco: TEdit
+    Left = 28
+    Top = 104
+    Width = 421
+    Height = 21
+    TabOrder = 5
+  end
+  object edtNumero: TEdit
+    Left = 474
+    Top = 104
+    Width = 146
+    Height = 21
+    TabOrder = 6
+  end
+  object edtComplemento: TEdit
+    Left = 26
+    Top = 160
+    Width = 279
+    Height = 21
+    TabOrder = 7
+  end
+  object edtCEP: TEdit
+    Left = 328
+    Top = 160
+    Width = 121
+    Height = 21
+    TabOrder = 8
+  end
+  object edtBairro: TEdit
+    Left = 474
+    Top = 160
+    Width = 227
+    Height = 21
+    TabOrder = 9
+  end
+  object edtCodCidade: TEdit
+    Left = 26
+    Top = 216
+    Width = 121
+    Height = 21
+    Enabled = False
+    TabOrder = 10
+  end
+  object edtCidade: TEdit
+    Left = 176
+    Top = 216
+    Width = 353
+    Height = 21
+    TabOrder = 11
+  end
+  object btnPesquisar: TButton
+    Left = 545
+    Top = 214
+    Width = 75
+    Height = 25
+    Caption = 'Pesquisar'
+    TabOrder = 12
+  end
+end

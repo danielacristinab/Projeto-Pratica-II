@@ -1,0 +1,32 @@
+unit uFrmCadastroPai;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TCadastroPai = class(TForm)
+    lblCodigo: TLabel;
+    lblDataCad: TLabel;
+    lblUltAlt: TLabel;
+    edtCodigo: TEdit;
+    btnSair: TButton;
+    btnSalvar: TButton;
+    edtDataCad: TEdit;
+    edtUltAlt: TEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  CadastroPai: TCadastroPai;
+
+implementation
+
+{$R *.dfm}
+
+end.

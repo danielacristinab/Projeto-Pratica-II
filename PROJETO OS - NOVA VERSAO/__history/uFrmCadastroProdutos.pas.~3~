@@ -1,0 +1,51 @@
+unit uFrmCadastroProdutos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmCadastroPai, Vcl.StdCtrls;
+
+type
+  TFrmCadastroProdutos = class(TFrmCadastroPai)
+    edtProduto: TEdit;
+    edtQtd: TEdit;
+    lblProduto: TLabel;
+    lblQtd: TLabel;
+    edtUnd: TEdit;
+    edtCusto: TEdit;
+    edtVenda: TEdit;
+    edtCodModelo: TEdit;
+    edtModelo: TEdit;
+    edtCodFonecedor: TEdit;
+    edtCodGrupo: TEdit;
+    edtSaldo: TEdit;
+    edtGrupo: TEdit;
+    edtFornecedor: TEdit;
+    lblUnd: TLabel;
+    lblCusto: TLabel;
+    lblVenda: TLabel;
+    lblSaldo: TLabel;
+    lblCodModelo: TLabel;
+    lblModelo: TLabel;
+    lblCodFornecedor: TLabel;
+    lblFornecedor: TLabel;
+    lblCodGrupo: TLabel;
+    lblGrupo: TLabel;
+    btnPesquisarModelo: TButton;
+    btnPesquisarFornecedor: TButton;
+    btnPesquisarGrupo: TButton;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmCadastroProdutos: TFrmCadastroProdutos;
+
+implementation
+
+{$R *.dfm}
+
+end.

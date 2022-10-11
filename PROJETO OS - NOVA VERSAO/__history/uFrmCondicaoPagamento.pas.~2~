@@ -1,0 +1,53 @@
+unit uFrmCondicaoPagamento;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls;
+
+type
+  TFrmCondicaoPagamento = class(TForm)
+    LblCodigo: TLabel;
+    EdtCodig: TEdit;
+    EdtCondicao: TEdit;
+    EdtMulta: TEdit;
+    EdtJuros: TEdit;
+    EdtDesconto: TEdit;
+    EdtParcela: TEdit;
+    EdtPrazo: TEdit;
+    EdtPorcentagem: TEdit;
+    LblCondicao: TLabel;
+    LblMulta: TLabel;
+    LblJuros: TLabel;
+    LblDescontos: TLabel;
+    LblParcela: TLabel;
+    LblPrazo: TLabel;
+    LblPorcentagem: TLabel;
+    BtnAdd: TButton;
+    BtnRemover: TButton;
+    lv1: TListView;
+    procedure BtnAddClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmCondicaoPagamento: TFrmCondicaoPagamento;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrmCondicaoPagamento.BtnAddClick(Sender: TObject);
+var item : TListItem;
+begin
+  item := lv1.Items.Add;
+  item.Caption := EdtParcela.Text;
+  item.SubItems.Add(EdtPrazo.Text);
+  item.SubItems.Add(EdtPorcentagem.Text);
+end;
+
+end.

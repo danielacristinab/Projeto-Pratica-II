@@ -1,0 +1,184 @@
+unit uFuncionarios;
+
+interface
+uses uPai, uPessoa, uCidades, uCargos;
+type Funcionarios = class (Pessoa)
+  private
+  protected
+    nome : string[50];
+   	NumMatricula : integer;
+	  DataNasc : string[8];
+    RG : string[10];
+    CPF : string[11];
+    Telefone : string[13]; {(45)3523-3523}
+    Celular : string [20]; {+000 (45) 9 99323306}
+    Endereco : String[50];
+    Numero : string[10];
+    bairro : string[50];
+    aCidade : integer;
+	  oCargo : Cargos;
+  public
+   constructor CrieObj;
+   procedure SetNome(pNome: string);
+   procedure SetNumMatricula(pNumMatricula: integer);
+   procedure SetDataNasc(pDataNasc: string);
+   procedure SetRG(pRG: string);
+   procedure SetCPF(pCPF: string);
+   procedure SetTelefone(pTelefone: string);
+   procedure SetCelular(pCelular: string);
+   procedure SetEndereco(pEndereco: string);
+   procedure SetNumero(pNumero: string);
+   procedure SetBairro(pBairro: string);
+   procedure SetaCidade(paCidade: integer);
+   procedure SetoCargo(poCargo: Cargos);
+   function Clone : Funcionarios;
+   function GetNome : string;
+   function GetNumMatricula : integer;
+   function GetDataNasc : string;
+   function GetRG : string;
+   function GetCPF : string;
+   function GetTelefone : string;
+   function GetCelular : string;
+   function GetEndereco : string;
+   function GetNumero : string;
+   function GetBairro : string;
+   function GetaCidade : integer;
+   function GetoCargo : Cargos;
+   destructor Destrua_se;
+end;
+implementation
+
+{ Pessoa }
+
+function Funcionarios.Clone: Funcionarios;
+begin
+  result := Funcionarios.crieObj;
+  result.setCodigo(codigo);
+  result.SetNome(nome);
+
+
+
+  result.setDataCad(dataCad);
+  result.setDataCad(DataUltAlt);
+end;
+
+constructor Funcionarios.CrieObj;
+begin
+    nome := ' ';
+	DataNasc := ' ';
+    RG := ' ';
+    CPF := ' ';
+    Telefone := ' ';
+    Celular := ' ';
+    Endereco := ' ';
+    Numero := ' ';
+    Bairro := ' ';
+    aCidade := Cidades.CrieObj;
+end;
+
+destructor Funcionarios.Destrua_se;
+begin
+
+end;
+
+function Funcionarios.GetaCidade: integer;
+begin
+  result := aCidade;
+end;
+
+function Funcionarios.GetBairro: string;
+begin
+  result := Bairro;
+end;
+
+function Funcionarios.GetCelular: string;
+begin
+  result := Celular;
+end;
+
+function Funcionarios.GetCPF: string;
+begin
+  result := CPF;
+end;
+
+function Funcionarios.GetDataNasc: string;
+begin
+  result := DataNasc;
+end;
+
+function Funcionarios.GetEndereco: string;
+begin
+  result := Endereco;
+end;
+
+function Funcionarios.GetNome: string;
+begin
+  result := Nome;
+end;
+
+function Funcionarios.GetNumero: string;
+begin
+  result := Numero;
+end;
+
+function Funcionarios.GetRG: string;
+begin
+  result := RG;
+end;
+
+function Funcionarios.GetTelefone: string;
+begin
+  result := Telefone;
+end;
+
+procedure Funcionarios.SetaCidade(paCidade: integer);
+begin
+  aCidade := paCidade;
+end;
+
+procedure Funcionarios.SetBairro(pBairro: string);
+begin
+  Bairro := pBairro;
+end;
+
+procedure Funcionarios.SetCelular(pCelular: string);
+begin
+  Celular := pCelular;
+end;
+
+procedure Funcionarios.SetCPF(pCPF: string);
+begin
+  CPF := pCPF;
+end;
+
+procedure Funcionarios.SetDataNasc(pDataNasc: string);
+begin
+  Nome := pDataNasc;
+end;
+
+procedure Funcionarios.SetEndereco(pEndereco: string);
+begin
+  Endereco := pEndereco;
+end;
+
+procedure Funcionarios.SetNome(pNome: string);
+begin
+  Nome := pNome;
+end;
+
+procedure Funcionarios.SetNumero(pNumero: string);
+begin
+  Numero := pNumero;
+end;
+
+procedure Funcionarios.SetRG(pRG: string);
+begin
+  RG := pRG;
+end;
+
+procedure Funcionarios.SetTelefone(pTelefone: string);
+begin
+  Telefone := pTelefone;
+end;
+
+end.

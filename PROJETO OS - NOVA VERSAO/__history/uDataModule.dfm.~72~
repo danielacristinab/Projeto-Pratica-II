@@ -1,0 +1,512 @@
+object DM: TDM
+  OldCreateOrder = False
+  Height = 572
+  Width = 857
+  object DSFornecedores: TDataSource
+    Left = 568
+    Top = 120
+  end
+  object DSPaises: TDataSource
+    DataSet = qPaises
+    Left = 360
+    Top = 64
+  end
+  object DSEstados: TDataSource
+    DataSet = qEstados
+    Left = 360
+    Top = 120
+  end
+  object DSCidades: TDataSource
+    DataSet = qCidades
+    Left = 360
+    Top = 184
+  end
+  object DSClientes: TDataSource
+    Left = 568
+    Top = 64
+  end
+  object DSFuncionarios: TDataSource
+    Left = 568
+    Top = 184
+  end
+  object DSCargos: TDataSource
+    Left = 568
+    Top = 240
+  end
+  object DSMarcas: TDataSource
+    Left = 736
+    Top = 72
+  end
+  object DSModelos: TDataSource
+    Left = 736
+    Top = 136
+  end
+  object DSProdutos: TDataSource
+    Left = 744
+    Top = 200
+  end
+  object DSGrupos: TDataSource
+    Left = 744
+    Top = 256
+  end
+  object DSCondPag: TDataSource
+    Left = 144
+    Top = 264
+  end
+  object DSFormaPag: TDataSource
+    DataSet = qFormaPag
+    Left = 152
+    Top = 344
+  end
+  object qMarcas: TIBDataSet
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    UniDirectional = False
+    Left = 672
+    Top = 72
+  end
+  object Conexao: TIBDatabase
+    Connected = True
+    DatabaseName = 'C:\BD-PRATICA\PROJETO_OS.FDB'
+    Params.Strings = (
+      'user_name=SYSDBA'
+      'password=masterkey'
+      'lc_ctype=WIN1252')
+    LoginPrompt = False
+    DefaultTransaction = Trans
+    ServerType = 'IBServer'
+    Left = 80
+    Top = 88
+  end
+  object Trans: TIBTransaction
+    Active = True
+    Left = 160
+    Top = 88
+  end
+  object qPaises: TIBDataSet
+    Database = Conexao
+    Transaction = Trans
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from PAISES'
+      'where'
+      '  CODPAIS = :OLD_CODPAIS')
+    InsertSQL.Strings = (
+      'insert into PAISES'
+      '  (PAIS, SIGLA, DDI, MOEDA, DATCAD, DATULTALT)'
+      'values'
+      '  (:PAIS, :SIGLA, :DDI, :MOEDA, :DATCAD, :DATULTALT)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  CODPAIS,'
+      '  PAIS,'
+      '  SIGLA,'
+      '  DDI,'
+      '  MOEDA,'
+      '  DATCAD,'
+      '  DATULTALT'
+      'from PAISES '
+      'where'
+      '  CODPAIS = :CODPAIS')
+    SelectSQL.Strings = (
+      'select * from PAISES')
+    ModifySQL.Strings = (
+      'update PAISES'
+      'set'
+      '  PAIS = :PAIS,'
+      '  SIGLA = :SIGLA,'
+      '  DDI = :DDI,'
+      '  MOEDA = :MOEDA,'
+      '  DATCAD = :DATCAD,'
+      '  DATULTALT = :DATULTALT'
+      'where'
+      '  CODPAIS = :OLD_CODPAIS')
+    ParamCheck = True
+    UniDirectional = False
+    Left = 288
+    Top = 72
+    object qPaisesCODPAIS: TIntegerField
+      FieldName = 'CODPAIS'
+      Origin = 'PAISES.CODPAIS'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qPaisesPAIS: TIBStringField
+      FieldName = 'PAIS'
+      Origin = 'PAISES.PAIS'
+      Required = True
+      Size = 50
+    end
+    object qPaisesSIGLA: TIBStringField
+      FieldName = 'SIGLA'
+      Origin = 'PAISES.SIGLA'
+      Required = True
+      Size = 3
+    end
+    object qPaisesDDI: TIBStringField
+      FieldName = 'DDI'
+      Origin = 'PAISES.DDI'
+      Required = True
+      Size = 4
+    end
+    object qPaisesMOEDA: TIBStringField
+      FieldName = 'MOEDA'
+      Origin = 'PAISES.MOEDA'
+      Required = True
+      Size = 3
+    end
+    object qPaisesDATCAD: TDateField
+      FieldName = 'DATCAD'
+      Origin = 'PAISES.DATCAD'
+    end
+    object qPaisesDATULTALT: TDateField
+      FieldName = 'DATULTALT'
+      Origin = 'PAISES.DATULTALT'
+    end
+  end
+  object qClientes: TIBDataSet
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    UniDirectional = False
+    Left = 472
+    Top = 72
+  end
+  object qFornecedores: TIBDataSet
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    UniDirectional = False
+    Left = 472
+    Top = 128
+  end
+  object qFuncionarios: TIBDataSet
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    UniDirectional = False
+    Left = 472
+    Top = 184
+  end
+  object qCargos: TIBDataSet
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    UniDirectional = False
+    Left = 480
+    Top = 248
+  end
+  object qModelos: TIBDataSet
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    UniDirectional = False
+    Left = 664
+    Top = 144
+  end
+  object qProdutos: TIBDataSet
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    UniDirectional = False
+    Left = 664
+    Top = 208
+  end
+  object qGrupos: TIBDataSet
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    UniDirectional = False
+    Left = 664
+    Top = 264
+  end
+  object qCondPag: TIBDataSet
+    Database = Conexao
+    Transaction = Trans
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from PAISES'
+      'where'
+      '  CODPAIS = :OLD_CODPAIS')
+    InsertSQL.Strings = (
+      'insert into PAISES'
+      '  (PAIS, SIGLA, DDI, MOEDA, DATCAD, DATULTALT)'
+      'values'
+      '  (:PAIS, :SIGLA, :DDI, :MOEDA, :DATCAD, :DATULTALT)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  CODPAIS,'
+      '  PAIS,'
+      '  SIGLA,'
+      '  DDI,'
+      '  MOEDA,'
+      '  DATCAD,'
+      '  DATULTALT'
+      'from PAISES '
+      'where'
+      '  CODPAIS = :CODPAIS')
+    SelectSQL.Strings = (
+      'select * from PAISES')
+    ModifySQL.Strings = (
+      'update PAISES'
+      'set'
+      '  PAIS = :PAIS,'
+      '  SIGLA = :SIGLA,'
+      '  DDI = :DDI,'
+      '  MOEDA = :MOEDA,'
+      '  DATCAD = :DATCAD,'
+      '  DATULTALT = :DATULTALT'
+      'where'
+      '  CODPAIS = :OLD_CODPAIS')
+    ParamCheck = True
+    UniDirectional = False
+    Left = 72
+    Top = 280
+    object IntegerField1: TIntegerField
+      FieldName = 'CODPAIS'
+      Origin = 'PAISES.CODPAIS'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object IBStringField1: TIBStringField
+      FieldName = 'PAIS'
+      Origin = 'PAISES.PAIS'
+      Required = True
+      Size = 50
+    end
+    object IBStringField2: TIBStringField
+      FieldName = 'SIGLA'
+      Origin = 'PAISES.SIGLA'
+      Required = True
+      Size = 3
+    end
+    object IBStringField3: TIBStringField
+      FieldName = 'DDI'
+      Origin = 'PAISES.DDI'
+      Required = True
+      Size = 4
+    end
+    object IBStringField4: TIBStringField
+      FieldName = 'MOEDA'
+      Origin = 'PAISES.MOEDA'
+      Required = True
+      Size = 3
+    end
+    object DateField1: TDateField
+      FieldName = 'DATCAD'
+      Origin = 'PAISES.DATCAD'
+    end
+    object DateField2: TDateField
+      FieldName = 'DATULTALT'
+      Origin = 'PAISES.DATULTALT'
+    end
+  end
+  object qFormaPag: TIBDataSet
+    Database = Conexao
+    Transaction = Trans
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from FORMASPAGAMENTO'
+      'where'
+      '  CODFORMAPAG = :OLD_CODFORMAPAG')
+    InsertSQL.Strings = (
+      'insert into FORMASPAGAMENTO'
+      '  (FORMAPAG, DATCAD, DATULTALT)'
+      'values'
+      '  (:FORMAPAG, :DATCAD, :DATULTALT)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  CODFORMAPAG,'
+      '  FORMAPAG,'
+      '  DATCAD,'
+      '  DATULTALT'
+      'from FORMASPAGAMENTO '
+      'where'
+      '  CODFORMAPAG = :CODFORMAPAG')
+    SelectSQL.Strings = (
+      'select * from FORMASPAGAMENTO;')
+    ModifySQL.Strings = (
+      'update FORMASPAGAMENTO'
+      'set'
+      '  FORMAPAG = :FORMAPAG,'
+      '  DATCAD = :DATCAD,'
+      '  DATULTALT = :DATULTALT'
+      'where'
+      '  CODFORMAPAG = :OLD_CODFORMAPAG')
+    ParamCheck = True
+    UniDirectional = False
+    Active = True
+    Left = 72
+    Top = 344
+    object qFormaPagCODFORMAPAG: TIntegerField
+      FieldName = 'CODFORMAPAG'
+      Origin = 'FORMASPAGAMENTO.CODFORMAPAG'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qFormaPagFORMAPAG: TIBStringField
+      FieldName = 'FORMAPAG'
+      Origin = 'FORMASPAGAMENTO.FORMAPAG'
+      Size = 50
+    end
+    object qFormaPagDATCAD: TDateField
+      FieldName = 'DATCAD'
+      Origin = 'FORMASPAGAMENTO.DATCAD'
+    end
+    object qFormaPagDATULTALT: TDateField
+      FieldName = 'DATULTALT'
+      Origin = 'FORMASPAGAMENTO.DATULTALT'
+    end
+  end
+  object qCidades: TIBDataSet
+    Database = Conexao
+    Transaction = Trans
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from CIDADES'
+      'where'
+      '  CODCIDADE = :OLD_CODCIDADE')
+    InsertSQL.Strings = (
+      'insert into CIDADES'
+      '  (CIDADE, DDD, CODESTADO, DATCAD, DATULTALT)'
+      'values'
+      '  (:CIDADE, :DDD, :CODESTADO, :DATCAD, :DATULTALT)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  CODCIDADE,'
+      '  CIDADE,'
+      '  DDD,'
+      '  CODESTADO,'
+      '  DATCAD,'
+      '  DATULTALT'
+      'from CIDADES '
+      'where'
+      '  CODCIDADE = :CODCIDADE')
+    SelectSQL.Strings = (
+      'select * from CIDADES;')
+    ModifySQL.Strings = (
+      'update CIDADES'
+      'set'
+      '  CIDADE = :CIDADE,'
+      '  DDD = :DDD,'
+      '  CODESTADO = :CODESTADO,'
+      '  DATCAD = :DATCAD,'
+      '  DATULTALT = :DATULTALT'
+      'where'
+      '  CODCIDADE = :OLD_CODCIDADE')
+    ParamCheck = True
+    UniDirectional = False
+    Active = True
+    Left = 288
+    Top = 192
+    object qCidadesCODCIDADE: TIntegerField
+      FieldName = 'CODCIDADE'
+      Origin = 'CIDADES.CODCIDADE'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qCidadesCIDADE: TIBStringField
+      FieldName = 'CIDADE'
+      Origin = 'CIDADES.CIDADE'
+      Required = True
+      Size = 50
+    end
+    object qCidadesDDD: TIBStringField
+      FieldName = 'DDD'
+      Origin = 'CIDADES.DDD'
+      Required = True
+      Size = 3
+    end
+    object qCidadesCODESTADO: TIntegerField
+      FieldName = 'CODESTADO'
+      Origin = 'CIDADES.CODESTADO'
+      Required = True
+    end
+    object qCidadesDATCAD: TDateField
+      FieldName = 'DATCAD'
+      Origin = 'CIDADES.DATCAD'
+    end
+    object qCidadesDATULTALT: TDateField
+      FieldName = 'DATULTALT'
+      Origin = 'CIDADES.DATULTALT'
+    end
+  end
+  object qEstados: TIBDataSet
+    Database = Conexao
+    Transaction = Trans
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from ESTADOS'
+      'where'
+      '  CODESTADO = :OLD_CODESTADO')
+    InsertSQL.Strings = (
+      'insert into ESTADOS'
+      '  (ESTADO, UF, CODPAIS, DATCAD, DATULTALT)'
+      'values'
+      '  (:ESTADO, :UF, :CODPAIS, :DATCAD, :DATULTALT)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  CODESTADO,'
+      '  ESTADO,'
+      '  UF,'
+      '  CODPAIS,'
+      '  DATCAD,'
+      '  DATULTALT'
+      'from ESTADOS '
+      'where'
+      '  CODESTADO = :CODESTADO')
+    SelectSQL.Strings = (
+      'select * from  ESTADOS')
+    ModifySQL.Strings = (
+      'update ESTADOS'
+      'set'
+      '  ESTADO = :ESTADO,'
+      '  UF = :UF,'
+      '  CODPAIS = :CODPAIS,'
+      '  DATCAD = :DATCAD,'
+      '  DATULTALT = :DATULTALT'
+      'where'
+      '  CODESTADO = :OLD_CODESTADO')
+    ParamCheck = True
+    UniDirectional = False
+    Left = 288
+    Top = 128
+    object qEstadosCODESTADO: TIntegerField
+      FieldName = 'CODESTADO'
+      Origin = 'ESTADOS.CODESTADO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qEstadosESTADO: TIBStringField
+      FieldName = 'ESTADO'
+      Origin = 'ESTADOS.ESTADO'
+      Required = True
+      Size = 50
+    end
+    object qEstadosUF: TIBStringField
+      FieldName = 'UF'
+      Origin = 'ESTADOS.UF'
+      Required = True
+      Size = 3
+    end
+    object qEstadosCODPAIS: TIntegerField
+      FieldName = 'CODPAIS'
+      Origin = 'ESTADOS.CODPAIS'
+      Required = True
+    end
+    object qEstadosDATCAD: TDateField
+      FieldName = 'DATCAD'
+      Origin = 'ESTADOS.DATCAD'
+    end
+    object qEstadosDATULTALT: TDateField
+      FieldName = 'DATULTALT'
+      Origin = 'ESTADOS.DATULTALT'
+    end
+  end
+end

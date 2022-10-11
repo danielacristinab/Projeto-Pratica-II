@@ -1,0 +1,26 @@
+unit uFrmCadastroModelos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmCadastroPai, Vcl.StdCtrls;
+
+type
+  TFrmCadastroModelos = class(TFrmCadastroPai)
+    edtModelo: TEdit;
+    lblModelo: TLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmCadastroModelos: TFrmCadastroModelos;
+
+implementation
+
+{$R *.dfm}
+
+end.

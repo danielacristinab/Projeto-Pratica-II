@@ -1,0 +1,46 @@
+unit uGrupos;
+
+interface
+uses uPai, uModelos;
+type Grupos = class (Pai)
+   private
+   protected
+     Grupo : string;
+
+   public
+    constructor CrieObj;
+    procedure SetGrupo(pGrupo: string);
+    function GetGrupo : string;
+    function Clone : Grupos;
+    destructor Destrua_se;
+end;
+implementation
+
+{ Grupos }
+
+function Grupos.Clone: Grupos;
+begin
+
+end;
+
+constructor Grupos.CrieObj;
+begin
+  grupo := ' ';
+end;
+
+destructor Grupos.Destrua_se;
+begin
+
+end;
+
+function Grupos.GetGrupo: string;
+begin
+  result := grupo;
+end;
+
+procedure Grupos.SetGrupo(pGrupo: string);
+begin
+  grupo := pGrupo;
+end;
+
+end.

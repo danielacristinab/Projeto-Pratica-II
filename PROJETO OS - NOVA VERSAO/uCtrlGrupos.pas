@@ -1,0 +1,63 @@
+unit uCtrlGrupos;
+
+interface
+uses uDataModule, Data.DB, uDAOGrupos;
+type CtrlGrupos = class
+  private
+  protected
+    aDAOGrupos : DAOGrupos;
+  public
+    constructor CrieObj;
+    procedure SetDM(pDM : TObject);             virtual;
+    function GetDS: TDataSource;                virtual;
+    function salvar(pObj: TObject): string;     virtual;
+    function Pesquisar(pChave: string): string; virtual;
+    function Carregar(pObj: TObject): string;   virtual;
+    function Excluir(pObj: TObject): string;    virtual;
+    destructor Destrua_se;
+end;
+implementation
+
+{ CtrlGrupos }
+
+function CtrlGrupos.Carregar(pObj: TObject): string;
+begin
+  aDAOGrupos.Carregar(pObj);
+end;
+
+constructor CtrlGrupos.CrieObj;
+begin
+  aDAOGrupos := DAOGrupos.CrieObj;
+end;
+
+destructor CtrlGrupos.Destrua_se;
+begin
+  aDAOGrupos.Destrua_se;
+end;
+
+function CtrlGrupos.Excluir(pObj: TObject): string;
+begin
+  aDAOGrupos.Excluir(pObj);
+end;
+
+function CtrlGrupos.GetDS: TDataSource;
+begin
+  result := aDAOGrupos.GetDS;
+end;
+
+function CtrlGrupos.Pesquisar(pChave: string): string;
+begin
+  result := aDAOGrupos.Pesquisar(pChave);
+end;
+
+function CtrlGrupos.salvar(pObj: TObject): string;
+begin
+  result := aDAOGrupos.Salvar(pObj);
+end;
+
+procedure CtrlGrupos.SetDM(pDM: TObject);
+begin
+  aDAOGrupos.SetDM(pDm);
+end;
+
+end.

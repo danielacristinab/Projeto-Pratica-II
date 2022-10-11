@@ -1,0 +1,148 @@
+unit uDAOEstados;
+
+interface
+uses uDAO, uEstados, Data.DB, System.SysUtils;
+  type DAOEstados = class   (DAO)
+    private
+    protected
+      oEstado : Estados;
+    public
+      constructor CrieObj;
+      function GetDS: TDataSource;                override;
+      function Salvar(pObj: TObject): string;     override;
+      function Carregar(pObj: TObject): string;   override;
+      function Pesquisar(pChave: string): string; override;
+      function Excluir(pObj: TObject): string;    override;
+      function AcheiReg() : boolean;
+      destructor Destrua_se;
+  end;
+
+implementation
+
+{ DAOEstados }
+
+constructor DAOEstados.CrieObj;
+begin
+  inherited;
+end;
+
+function DAOEstados.AcheiReg: boolean;
+begin
+  result := not (umDM.qPaises.Eof);
+end;
+
+function DAOEstados.Carregar(pObj: TObject): string;
+var mEstado : Estados;
+begin
+   mEstado := Estados(pObj);
+   try
+    if not umDM.trans.Active then
+      umDM.trans.Active := true;
+    if not umDM.qEstados.Active then
+      umDM.qEstados.Open;
+    if mEstado.getCodigo <> 0 then
+      self.Pesquisar(inttostr(mEstado.getCodigo));
+    with umDM.qEstados do
+    begin
+        mEstado.SetCodigo(umDM.qEstados.FieldByName('CODESTADO').value);
+        mEstado.SetEstado(umDM.qEstados.FieldByName('ESTADO').AsString);
+        mEstado.SetUF(umDM.qEstados.FieldByName('UF').AsString);
+        mEstado.getoPais.setCodigo(umDM.qEstados.FieldByName('oPAIS').Value);
+        result := '';
+    end;
+   except on e:exception do
+    result:= 'Erro ao carregar: '+ e.Message;
+   end;
+end;
+
+function DAOEstados.GetDS: TDataSource;
+begin
+  result := umDm.DSEstados;
+end;
+
+function DAOEstados.Pesquisar(pChave: string): string;
+var mSql: string;
+begin
+  if length(pChave) = 0 then
+    mSQL := 'select * from estados order by estado'
+  else if ehNumero(pChave) then
+    mSQL := 'select * from estados where codestado=' +QuotedStr(pChave)
+  else
+    mSQL := 'select * from estados where estado like ' + quotedstr('%' + pChave
+              + '%') + 'or codestado like ' + quotedstr('%' + pChave + '%') +
+              ' order by estado, codestado';
+
+    umDm.qEstados.Active := false;
+    umDm.qEstados.SelectSQL.Text := mSQL;
+  if not umDm.trans.Active then
+    umDm.trans.Active := true;
+  if not umDM.qEstados.Active then
+    umDm.qEstados.Open;
+end;
+
+function DAOEstados.Salvar(pObj: TObject): string;
+var mSql  : string;
+    mEstado: Estados;
+begin
+    mEstado := Estados(pObj);
+    try
+      if not umDM.Trans.InTransaction then
+        umDM.Trans.StartTransaction;
+      if not umDM.qEstados.Active then
+        umDM.qEstados.Open;
+
+      if mEstado.getCodigo = 0 then
+      begin
+        umDM.qEstados.Insert;
+        //umDM.qEstadosDATCAD.Value := now;
+      end
+      else
+      begin
+        if mEstado.getCodigo <> 0 then
+        begin
+          umDM.qEstados.Edit;
+          //umDM.qEstadosDATCAD.Value := now;
+        end;
+      end;
+        umDM.qEstados.FieldByName('CODESTADO').Value       := mEstado.getCodigo;
+        umDM.qEstados.fieldByName('ESTADO').value          := mEstado.getEstado;
+        umDM.qEstados.fieldByName('UF').value              := mEstado.getUF;
+        umDM.qEstados.fieldByName('CODESTADO').value       := mEstado.GetoPais.GetCodigo;
+        umDM.qEstados.fieldByName('DATCAD').AsDateTime     := mEstado.getDataCad;
+        umDM.qEstados.fieldByName('DATULTALT').AsDateTime  := mEstado.getUltAlt;
+        umDM.qEstados.Post;
+        umDM.qEstados.Transaction.Commit;
+   except
+    umDM.qEstados.Transaction.Rollback;
+  end;
+
+end;
+
+function DAOEstados.Excluir(pObj: TObject): string;
+var mSql  : string;
+    mEstado : Estados;
+begin
+  try
+    mEstado := Estados(pObj);
+    mSql := 'delete from estados where codEstado = '+inttostr(mEstado.getCodigo);
+    umDM.qEstados.Active := false;
+    umDM.qEstados.SelectSQL.Text := mSQL;
+    if not umDM.trans.Active then
+      umDM.trans.Active := true;
+    if not umDM.qEstados.Active then
+      umDM.qEstados.Open;
+      umDM.qEstados.Transaction.CommitRetaining;
+      result := '';
+    except on e: Exception do
+    begin
+      umDM.Trans.Rollback;
+      result := 'Erro ao Excluir : '  + e.Message;
+    end;
+   end;
+end;
+
+destructor DAOEstados.Destrua_se;
+begin
+
+end;
+end.

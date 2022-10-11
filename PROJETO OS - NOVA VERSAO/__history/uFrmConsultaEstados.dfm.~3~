@@ -1,0 +1,10 @@
+inherited FrmConsultaEstados: TFrmConsultaEstados
+  Caption = 'Consulta Estados'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited btnPesquisar: TButton
+    Left = 474
+    OnClick = btnPesquisarClick
+    ExplicitLeft = 474
+  end
+end

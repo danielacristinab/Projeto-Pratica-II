@@ -1,0 +1,156 @@
+unit uFrmCadastroProdutos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmCadastroPai, Vcl.StdCtrls, uProdutos,
+  uCtrlProdutos, uFrmConsultaProdutos;
+
+type
+  TFrmCadastroProdutos = class(TFrmCadastroPai)
+    edtProduto: TEdit;
+    edtQtd: TEdit;
+    lblProduto: TLabel;
+    lblQtd: TLabel;
+    edtUnd: TEdit;
+    edtCusto: TEdit;
+    edtVenda: TEdit;
+    edtCodModelo: TEdit;
+    edtModelo: TEdit;
+    edtCodFonecedor: TEdit;
+    edtCodGrupo: TEdit;
+    edtSaldo: TEdit;
+    edtGrupo: TEdit;
+    edtFornecedor: TEdit;
+    lblUnd: TLabel;
+    lblCusto: TLabel;
+    lblVenda: TLabel;
+    lblSaldo: TLabel;
+    lblCodModelo: TLabel;
+    lblModelo: TLabel;
+    lblCodFornecedor: TLabel;
+    lblFornecedor: TLabel;
+    lblCodGrupo: TLabel;
+    lblGrupo: TLabel;
+    btnPesquisarModelo: TButton;
+    btnPesquisarFornecedor: TButton;
+    btnPesquisarGrupo: TButton;
+  private
+    { Private declarations }
+    umFrmConsultaProdutos : TFrmCadastroProdutos;
+    oProduto : Produtos;
+    aCtrlProdutos : CtrlProdutos;
+  public
+    { Public declarations }
+    procedure ConhecaObj(pObj: TObject;  pCtrl: TObject);  override;
+    procedure LimpaEdit;                                   override;
+    procedure CarregaEdit;                                 override;
+    procedure BloqueiaEdit;                                override;
+    procedure DesbloqueiEdit;                              override;
+    procedure Salvar;                                      override;
+    procedure Sair;                                        override;
+  end;
+
+var
+  FrmCadastroProdutos: TFrmCadastroProdutos;
+
+implementation
+
+{$R *.dfm}
+
+{ TFrmCadastroProdutos }
+
+procedure TFrmCadastroProdutos.BloqueiaEdit;
+begin
+  inherited;
+  edtDataCad.Enabled := false;
+  edtUltAlt.Enabled := false;
+end;
+
+procedure TFrmCadastroProdutos.CarregaEdit;
+begin
+  inherited;
+  if oProduto.GetCodigo <> 0 then
+    self.edtCodigo.Text := inttostr(oProduto.GetCodigo);
+  edtCodigo.Text  := inttoStr(oProduto.getCodigo);
+  edtProduto.Text := oProduto.GetProduto;
+  edtQtd.Text     := oProduto.
+  edtUnd.Text     := oProduto
+  edtCusto.Text   := oProduto
+  edtVenda.Text   := oProduto
+  edtCodModelo.Text   := oProduto
+  edtModelo.Text  := oProduto
+  edtCodFonecedor.Text   := oProduto
+  edtCodGrupo.Text := oProduto
+  edtSaldo.Text   := oProduto
+  edtGrupo.Text   := oProduto
+  edtFornecedor.Text   := oProduto
+  edtDataCad.Text := oProduto.GetDataCad;
+  edtUltAlt.Text  := oProduto.GetUltAlt;
+end;
+
+procedure TFrmCadastroProdutos.ConhecaObj(pObj, pCtrl: TObject);
+begin
+  inherited;
+  oProduto := Produtos(pObj);
+  aCtrlProdutos := CtrlProdutos(pCtrl);
+  self.LimpaEdit;
+  self.CarregaEdit;
+end;
+
+procedure TFrmCadastroProdutos.DesbloqueiEdit;
+begin
+  inherited;
+  edtProduto.Enabled := true;
+  edtDataCad.Enabled := true;
+  edtUltAlt.Enabled := true;
+end;
+
+procedure TFrmCadastroProdutos.LimpaEdit;
+begin
+  inherited;
+  edtCodigo.Text := '0';
+  edtProduto.Clear;
+  edtDataCad.Clear;
+  edtUltAlt.Clear;
+end;
+
+procedure TFrmCadastroProdutos.Sair;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroProdutos.Salvar;
+begin
+    if (btnSalvar.Caption = '&Salvar') or (btnSalvar.Caption = '&Alterar') then
+  begin
+    if length(self.edtProduto.text) = 0 then
+      self.edtProduto.Color := clYellow;
+    if self.edtProduto.Text = '' then
+    begin
+      showmessage('Campo Produto obrigatorio!');
+      self.edtProduto.SetFocus;
+    end
+    else
+    begin
+      oProduto.SetCodigo(strtoint(self.edtCodigo.Text));
+
+      oProduto.SetDataCad(self.edtDataCad.Text);
+      oProduto.SetUltAlt(self.edtUltAlt.Text);
+
+      self.aCtrlProdutos.Salvar(oModelo.Clone);
+    end;
+    showmessage('Produto salvo com sucesso!');
+  end
+  else if (btnSalvar.Caption = '&Excluir') then
+  begin
+    aCtrlProdutos.Excluir(oModelo);
+    showmessage('Produto excluido com sucesso!');
+  end;
+  close;
+
+end;
+
+end.

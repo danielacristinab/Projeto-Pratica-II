@@ -1,0 +1,160 @@
+unit uDAOFornecedores;
+
+interface
+uses uDAO, uFornecedores, Data.DB, System.SysUtils;
+  type DAOFornecedores = class   (DAO)
+    private
+    protected
+      oFonecedor : Fornecedores;
+    public
+      constructor CrieObj;
+      function GetDS: TDataSource;                override;
+      function Salvar(pObj: TObject): string;     override;
+      function Carregar(pObj: TObject): string;   override;
+      function Pesquisar(pChave: string): string; override;
+      function Excluir(pObj: TObject): string;    override;
+      function AcheiReg() : boolean;
+      destructor Destrua_se;
+  end;
+
+implementation
+
+{ DAOFornecedores }
+
+constructor DAOFornecedores.CrieObj;
+begin
+  inherited;
+end;
+
+function DAOFornecedores.GetDS: TDataSource;
+begin
+  result := umDm.DSFornecedores;
+end;
+
+function DAOFornecedores.AcheiReg: boolean;
+begin
+  result := not (umDM.qFornecedores.Eof);
+end;
+
+function DAOFornecedores.Carregar(pObj: TObject): string;
+var mFornecedores : Fornecedores;
+begin
+  try
+   try
+      mFornecedores := Fornecedores(pObj);
+      with umDM.qFornecedores DO
+      begin
+        mFornecedores := Fornecedores(pObj);
+        mFornecedores.SetCodigo(umDM.qFornecedores.FieldByName('CODCIDADE').value);
+        mFornecedores.setCNPJ(umDM.qFornecedores.FieldByName('CNPJ').AsString);
+        mFornecedores.SetRazaoSocial(umDM.qFornecedores.FieldByName('RAZAOSOCIAL').AsString);
+        mFornecedores.SetApelidoNomeFantasia(umDM.qFornecedores.FieldByName('NOMEFANTASIA').AsString);
+        mFornecedores.setTelefone(umDM.qFornecedores.FieldByName('TELEFONE').AsString);
+        mFornecedores.setEmail(umDM.qFornecedores.FieldByName('EMAIL').AsString);
+        mFornecedores.SetRG_IE(umDM.qFornecedores.FieldByName('RG_IE').AsString);
+        mFornecedores.SetSite(umDM.qFornecedores.FieldByName('SITE').AsString);
+        mFornecedores.setEndereco(umDM.qFornecedores.FieldByName('ENDERECO').AsString);
+        mFornecedores.setNumero(umDM.qFornecedores.FieldByName('NUMERO').Value);
+        mFornecedores.setBairro(umDM.qFornecedores.FieldByName('BAIRRO').AsString);
+        mFornecedores.setCEP(umDM.qFornecedores.FieldByName('CEP').Value);
+        mFornecedores.setComplemento(umDM.qFornecedores.FieldByName('COMPLEMENTO').AsString);
+        mFornecedores.getaCidade.setCodigo(umDM.qFornecedores.FieldByName('aCIDADE').Value);
+        result := '';
+      end;
+   except on e:exception do
+      result:= 'Erro ao carregar: '+ e.Message;
+   end;
+ finally
+ end;
+
+end;
+
+function DAOFornecedores.Pesquisar(pChave: string): string;
+var mSql: string;
+begin
+  if pChave <> '' then
+    if ehNumero(pChave) then
+      mSql := 'select * from Fornecedores where codFornecedor = '+quotedstr(pChave)
+    else
+      mSql := 'select * from Fornecedores where razaosocial = '+quotedstr(pChave)+' order by razaosocial'
+  else
+    mSql := 'select * from Fornecedores order by razaosocial';
+  umDM.qFornecedores.Active := false;
+  umDM.qFornecedores.SQL.Text := mSql;
+  umDM.qFornecedores.Open();
+end;
+
+function DAOFornecedores.Salvar(pObj: TObject): string;
+var mSql  : string;
+    mFornecedores : Fornecedores;
+begin
+    try
+      umDM.FDTrans.StartTransaction;
+      mFornecedores := Fornecedores(pObj);
+      with umDM.qFornecedores do
+      begin
+        if mFornecedores.getCodigo = 0 then
+        mSql := 'insert into Fornecedores (cnpj, razaocial, nomefantasia, telefone, email,'+
+                'site, rg_ie, endereco, numero, bairro, cep, complemento, codcidade) ' +
+                'values ( :cnpj, :razaosocial, :nomefantasia, :telefone, :email, :site,'+
+                ':rg_ie, :endereco, :numero, :bairro, :cep, :complemento, :codcidade)'
+        else
+        begin
+          mSql := 'update Fornecedores set cnpj = :cnpj , razaocial = :razaosocial, '+
+                  'nomefantasia = :nomefantasia, telefone = :telefone, email = :email, '+
+                  'site = :site, rg_ie = :rg_ie, endereco = :endereco, numero = :numero, '+
+                  'bairro = :bairro, cep = :cep, complemento = :complemento,  '+
+                  'codcidade = :codcidade';
+          mSql := mSql + 'where codFornecedor = :CodFornecedor;';
+        end;
+        umDM.qFornecedores.SQL.Clear;
+        umDM.qFornecedores.SQL.Add(mSql);
+        ParamByName('CNPJ').Value := mFornecedores.GetCnpj;
+        ParamByName('RAZAOSOCIAL').Value := mFornecedores.GetRazaoSocial;
+        ParamByName('NOMEFANTASIA').Value := mFornecedores.GetApelidoNomeFantasia;
+        ParamByName('TELEFONE').Value := mFornecedores.getTelefone;
+        ParamByName('EMAIL').Value := mFornecedores.GetEmail;
+        ParamByName('SITE').Value := mFornecedores.GetSite;
+        ParamByName('RG_IE').Value := mFornecedores.GetRG_IE;
+        ParamByName('ENDERECO').Value := mFornecedores.getEndereco;
+        ParamByName('NUMERO').Value := mFornecedores.getNumero;
+        ParamByName('BAIRRO').Value := mFornecedores.getBairro;
+        ParamByName('CEP').Value := mFornecedores.getCEP;
+        ParamByName('COMPLEMENTO').Value := mFornecedores.getComplemento;
+        ParamByName('CODCIDADE').Value := mFornecedores.GetaCidade.GetCodigo;
+        if mFornecedores.GetCodigo <> 0 then
+          ParamByName('CODFORNECEDOR').Value := mFornecedores.GetCodigo;
+        ExecSQL;
+      end;
+      umDM.FDTrans.Commit;
+    except
+      umDM.FDTrans.Rollback;
+end;
+end;
+
+function DAOFornecedores.Excluir(pObj: TObject): string;
+var mSql  : string;
+    mFornecedores : Fornecedores;
+begin
+  try
+    mFornecedores := Fornecedores(pObj);
+    mSql := 'delete from fornecedores where codFornecedor = '+inttostr(mFornecedores.getCodigo);
+    umDm.FDTrans.StartTransaction;
+    umDm.qFornecedores.Active:= false;
+    umDm.qFornecedores.SQL.Clear;
+    umDM.qFornecedores.ExecSQL(mSql);
+    umDm.FDTrans.Commit;
+    result := '';
+  except on e: Exception do
+    begin
+      umDm.FDTrans.Rollback;
+      result := 'Erro ao Excluir : '  + e.Message;
+    end;
+  end;
+end;
+
+destructor DAOFornecedores.Destrua_se;
+begin
+
+end;
+end.

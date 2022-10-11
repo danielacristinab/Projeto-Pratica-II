@@ -1,0 +1,93 @@
+unit uFrmConsultaCondicaoPagamento;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmConsultaPai, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, uCondicaoPagamento,
+  uCtrlCondPag;
+
+type
+  TFrmConsultaCondicaoPagamento = class(TFrmConsultaPai)
+  private
+    { Private declarations }
+    umCadastroCondicaoPag : TFrmCadastroCondicaoPagamento;
+    aCondicaoPag : CondicaoPagamento;
+    aCtrlCondicaoPag : CtrlCondPag;
+  public
+    { Public declarations }
+    procedure ConhecaObj(pObj: TObject;  pCtrl: TObject); override;
+    procedure Incluir;                                    override;
+    procedure Alterar;                                    override;
+    procedure Excluir;                                    override;
+    procedure Pesquisar;                                  override;
+    procedure Sair;                                       override;
+    procedure SetCadastro(pObj: TObject);                 override;
+  end;
+
+var
+  FrmConsultaCondicaoPagamento: TFrmConsultaCondicaoPagamento;
+
+implementation
+
+{$R *.dfm}
+
+{ TFrmConsultaCondicaoPagamento }
+
+procedure TFrmConsultaCondicaoPagamento.Alterar;
+var  mMsg : string;
+begin
+  inherited;
+  mMsg:= aCtrlCondicaoPag.Carregar(aCondicaoPag);
+  umCadastroCondicaoPag.ConhecaObj(aCondicaoPag, aCtrlCondicaoPag);
+  umCadastroCondicaoPag.LimpaEdit;
+  umCadastroCondicaoPag.CarregaEdit;
+  umCadastroCondicaoPag.ShowModal;
+  self.DBGrid1.DataSource := TDataSource(aCtrlCondicaoPag.GetDS);
+  aCtrlCondicaoPag.Pesquisar(EdtPesquisar.Text);
+end;
+
+procedure TFrmConsultaCondicaoPagamento.ConhecaObj(pObj, pCtrl: TObject);
+begin
+  inherited;
+  aCondicaoPag := CondicaoPagamento(pObj);
+  aCtrlCondicaoPag := CtrlCondPag(pCtrl);
+  self.DBGrid1.DataSource := TDataSource(aCtrlCondicaoPag.GetDS);
+  aCtrlCondicaoPag.Pesquisar(EdtPesquisar.Text);
+end;
+
+procedure TFrmConsultaCondicaoPagamento.Excluir;
+begin
+  inherited;
+
+end;
+
+procedure TFrmConsultaCondicaoPagamento.Incluir;
+begin
+  inherited;
+  umCadastroCondicaoPag.ConhecaObj(aCondicaoPag, aCtrlCondicaoPag);
+  umCadastroCondicaoPag.ShowModal;
+  self.DBGrid1.DataSource := TDataSource(aCtrlCondicaoPag.GetDS);
+  aCtrlCondicaoPag.Pesquisar(EdtPesquisar.Text);
+end;
+
+procedure TFrmConsultaCondicaoPagamento.Pesquisar;
+begin
+  inherited;
+  aCtrlCondicaoPag.Pesquisar(self.EdtPesquisar.Text);
+end;
+
+procedure TFrmConsultaCondicaoPagamento.Sair;
+begin
+  inherited;
+
+end;
+
+procedure TFrmConsultaCondicaoPagamento.SetCadastro(pObj: TObject);
+begin
+  inherited;
+  umCadastroCondicaoPag := TFrmCadastroCondicaoPagamento(pObj);
+end;
+
+end.

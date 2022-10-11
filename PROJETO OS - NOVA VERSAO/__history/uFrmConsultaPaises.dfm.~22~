@@ -1,0 +1,68 @@
+inherited FrmConsultaPaises: TFrmConsultaPaises
+  Caption = 'Consulta Paises'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited btnPesquisar: TButton
+    Left = 476
+    OnClick = btnPesquisarClick
+    ExplicitLeft = 476
+  end
+  inherited btnSair: TButton
+    Left = 638
+    ExplicitLeft = 638
+  end
+  inherited btnIncluir: TButton
+    Left = 395
+    ExplicitLeft = 395
+  end
+  inherited btnExcluir: TButton
+    Left = 557
+    ExplicitLeft = 557
+  end
+  inherited btnAlterar: TButton
+    Left = 476
+    ExplicitLeft = 476
+  end
+  inherited DBGrid1: TDBGrid
+    Top = 64
+    DataSource = DM.DSPaises
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'CODPAIS'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'PAIS'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'SIGLA'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DDI'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'MOEDA'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DATCAD'
+        Width = 119
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DATULTALT'
+        Width = 146
+        Visible = True
+      end>
+  end
+end

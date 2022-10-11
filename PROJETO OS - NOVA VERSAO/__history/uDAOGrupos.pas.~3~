@@ -1,0 +1,74 @@
+unit uDAOGrupos;
+
+interface
+uses uDataModule, Data.DB, System.SysUtils;
+type DAOGrupos = class
+  private
+  protected
+  public
+  constructor CrieObj;
+    procedure SetDM(pDM: TObject);              virtual;
+    function GetDS: TDataSource;                virtual;
+    function Salvar(pObj: TObject): string;     virtual;
+    function Carregar(pObj: TObject): string;   virtual;
+    function Pesquisar(pChave: string): string; virtual;
+    function Excluir(pObj: TObject): string;    virtual;
+    function ehNumero(valor: string): boolean;
+    function AcheiReg() : boolean;
+    destructor Destrua_se;
+  end;
+implementation
+
+{ DAOGrupos }
+
+function DAOGrupos.AcheiReg: boolean;
+begin
+
+end;
+
+function DAOGrupos.Carregar(pObj: TObject): string;
+begin
+
+end;
+
+constructor DAOGrupos.CrieObj;
+begin
+
+end;
+
+destructor DAOGrupos.Destrua_se;
+begin
+
+end;
+
+function DAOGrupos.ehNumero(valor: string): boolean;
+begin
+
+end;
+
+function DAOGrupos.Excluir(pObj: TObject): string;
+begin
+
+end;
+
+function DAOGrupos.GetDS: TDataSource;
+begin
+
+end;
+
+function DAOGrupos.Pesquisar(pChave: string): string;
+begin
+
+end;
+
+function DAOGrupos.Salvar(pObj: TObject): string;
+begin
+
+end;
+
+procedure DAOGrupos.SetDM(pDM: TObject);
+begin
+
+end;
+
+end.

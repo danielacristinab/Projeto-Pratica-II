@@ -1,0 +1,62 @@
+unit uCtrlProdutos;
+
+interface
+uses uDataModule, Data.DB;
+type CtrlProdutos = class
+  private
+  protected
+  public
+    constructor CrieObj;
+    procedure SetDM(pDM : TObject);             virtual;
+    function GetDS: TDataSource;                virtual;
+    function salvar(pObj: TObject): string;     virtual;
+    function Pesquisar(pChave: string): string; virtual;
+    function Carregar(pObj: TObject): string;   virtual;
+    function Excluir(pObj: TObject): string;    virtual;
+    destructor Destrua_se;
+end;
+implementation
+
+{ CtrlProdutos }
+
+function CtrlProdutos.Carregar(pObj: TObject): string;
+begin
+
+end;
+
+constructor CtrlProdutos.CrieObj;
+begin
+
+end;
+
+destructor CtrlProdutos.Destrua_se;
+begin
+
+end;
+
+function CtrlProdutos.Excluir(pObj: TObject): string;
+begin
+
+end;
+
+function CtrlProdutos.GetDS: TDataSource;
+begin
+
+end;
+
+function CtrlProdutos.Pesquisar(pChave: string): string;
+begin
+
+end;
+
+function CtrlProdutos.salvar(pObj: TObject): string;
+begin
+
+end;
+
+procedure CtrlProdutos.SetDM(pDM: TObject);
+begin
+
+end;
+
+end.

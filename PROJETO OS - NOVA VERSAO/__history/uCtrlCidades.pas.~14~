@@ -1,0 +1,76 @@
+unit uCtrlCidades;
+
+interface
+uses uController, uDAOCidades, Data.DB, uCidades, uCtrlEstados;
+  type CtrlCidades = class (controller)
+    private
+    protected
+      aDaoCidades : DAOCidades;
+      aCtrlEstado : CtrlEstados;
+    public
+      constructor CrieObj;
+      procedure SetaCtrlEstado(pObj: TObject);
+      function GetaCtrlEstado: CtrlEstados;
+      procedure SetDM(pDM : TObject);             override;
+      function GetDS: TDataSource;                override;
+      function salvar(pObj: TObject): string;     override;
+      function Pesquisar(pChave: string): string; override;
+      function Carregar(pObj: TObject): string;   override;
+      function AcheiReg: boolean;
+      destructor Destrua_se;
+  end;
+implementation
+
+{ CtrlCidades }
+
+function CtrlCidades.AcheiReg: boolean;
+begin
+  result := aDaoCidades.AcheiReg;
+end;
+
+function CtrlCidades.Carregar(pObj: TObject): string;
+begin
+  aDaoCidades.Carregar(pObj);
+end;
+
+constructor CtrlCidades.CrieObj;
+begin
+  aDaoCidades := DAOCidades.CrieObj;
+end;
+
+destructor CtrlCidades.Destrua_se;
+begin
+  aDAOCidades.Destrua_se;
+end;
+
+function CtrlCidades.GetaCtrlEstado: CtrlEstados;
+begin
+  result := aCtrlEstado;
+end;
+
+function CtrlCidades.GetDS: TDataSource;
+begin
+  result := aDAOCidades.GetDS;
+end;
+
+function CtrlCidades.Pesquisar(pChave: string): string;
+begin
+  result := aDaoCidades.Pesquisar(pChave);
+end;
+
+function CtrlCidades.salvar(pObj: TObject): string;
+begin
+    result := aDAOCidades.Salvar(pObj);
+end;
+
+procedure CtrlCidades.SetaCtrlEstado(pObj: TObject);
+begin
+   aCtrlEstado := CtrlEstados(pObj);
+end;
+
+procedure CtrlCidades.SetDM(pDM: TObject);
+begin
+  aDAOCidades.SetDM(pDM);
+end;
+
+end.

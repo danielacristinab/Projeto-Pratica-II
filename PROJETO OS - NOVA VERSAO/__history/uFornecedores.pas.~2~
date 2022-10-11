@@ -1,0 +1,119 @@
+unit uFornecedores;
+
+interface
+uses uPai, uPessoa;
+type Fornecedores = class (Pessoa)
+  private
+  protected
+    RazaoSocial : string[50];
+	  ApelidoNomeFantasia : string[50];
+	  cnpj : string[15];
+	  RG_IE : string[15];
+	  site : string;
+    Telefone : string[13];
+    Email : string[50];
+ public
+   constructor CrieObj;
+   procedure SetRazaoSocial(pRazaoSocial : string);
+	 procedure SetApelidoNomeFantasia(pApelidoNomeFantasia : string);
+	 procedure SetCnpj(pcnpj : string);
+	 procedure SetRG_IE(pRG_IE : string);
+	 procedure SetSite(psite : string);
+   procedure SetTelefone(pTelefone : string);
+   procedure SetEmail(pEmail : string);
+   function GetRazaoSocial : string;
+	 function GetApelidoNomeFantasia : string;
+	 function GetCnpj : string;
+	 function GetRG_IE : string;
+	 function GetSite : string;
+   function GetTelefone : string;
+   function GetEmail : string;
+   destructor Destrua_se;
+end;
+implementation
+
+
+{ Fonecedor }
+
+constructor Fornecedores.CrieObj;
+begin
+
+end;
+
+destructor Fornecedores.Destrua_se;
+begin
+
+end;
+
+function Fornecedores.GetApelidoNomeFantasia: string;
+begin
+
+end;
+
+function Fornecedores.GetCnpj: string;
+begin
+
+end;
+
+function Fornecedores.GetEmail: string;
+begin
+
+end;
+
+function Fornecedores.GetRazaoSocial: string;
+begin
+
+end;
+
+function Fornecedores.GetRG_IE: string;
+begin
+
+end;
+
+function Fornecedores.GetSite: string;
+begin
+
+end;
+
+function Fornecedores.GetTelefone: string;
+begin
+
+end;
+
+procedure Fornecedores.SetApelidoNomeFantasia(pApelidoNomeFantasia: string);
+begin
+
+end;
+
+procedure Fornecedores.SetCnpj(pcnpj: string);
+begin
+
+end;
+
+procedure Fornecedores.SetEmail(pEmail: string);
+begin
+
+end;
+
+procedure Fornecedores.SetRazaoSocial(pRazaoSocial: string);
+begin
+
+end;
+
+procedure Fornecedores.SetRG_IE(pRG_IE: string);
+begin
+
+end;
+
+procedure Fornecedores.SetSite(psite: string);
+begin
+
+end;
+
+procedure Fornecedores.SetTelefone(pTelefone: string);
+begin
+
+end;
+
+end.
+

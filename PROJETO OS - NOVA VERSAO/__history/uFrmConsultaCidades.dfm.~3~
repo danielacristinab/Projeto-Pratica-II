@@ -1,0 +1,27 @@
+inherited FrmConsultaCidades: TFrmConsultaCidades
+  Caption = 'Consulta Cidades'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited btnPesquisar: TButton
+    Left = 474
+    OnClick = btnPesquisarClick
+    ExplicitLeft = 474
+  end
+  inherited ListView1: TListView
+    Left = 8
+    Columns = <
+      item
+        Caption = 'CODIGO'
+      end
+      item
+        Caption = 'CIDADE'
+      end
+      item
+        Caption = 'DDD'
+      end
+      item
+        Caption = 'ESTADO'
+      end>
+    ExplicitLeft = 8
+  end
+end

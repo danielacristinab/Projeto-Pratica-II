@@ -1,0 +1,128 @@
+unit uDAOModelos;
+
+interface
+uses uDAO, umodelos, Data.DB, System.SysUtils;
+  type DAOmodelos = class   (DAO)
+    private
+    protected
+    public
+      constructor CrieObj;
+      function GetDS: TDataSource;                override;
+      function Salvar(pObj: TObject): string;     override;
+      function Carregar(pObj: TObject): string;   override;
+      function Pesquisar(pChave: string): string; override;
+      function Excluir(pObj: TObject): string;    override;
+      function AcheiReg() : boolean;
+      destructor Destrua_se;
+  end;
+
+implementation
+
+{ DAOmodelos }
+
+constructor DAOmodelos.CrieObj;
+begin
+  inherited;
+end;
+
+function DAOmodelos.GetDS: TDataSource;
+begin
+  result := umDm.DSmodelos;
+end;
+
+function DAOmodelos.AcheiReg: boolean;
+begin
+  result := not (umDM.qmodelos.Eof);
+end;
+
+function DAOmodelos.Carregar(pObj: TObject): string;
+var mmodelos : modelos;
+begin
+  try
+   try
+      mmodelos := modelos(pObj);
+      with umDM.qmodelos DO
+      begin
+        mmodelos := modelos(pObj);
+        mmodelos.SetCodigo(umDM.qmodelos.FieldByName('CODmodelo').value);
+        mmodelos.Setmodelo(umDM.qmodelos.FieldByName('modelo').Value);
+        result := '';
+      end;
+   except on e:exception do
+      result:= 'Erro ao carregar: '+ e.Message;
+   end;
+ finally
+ end;
+
+end;
+
+function DAOmodelos.Pesquisar(pChave: string): string;
+var mSql: string;
+begin
+  if pChave <> '' then
+    if ehNumero(pChave) then
+      mSql := 'select * from modelos where codmodelo = '+quotedstr(pChave)
+    else
+      mSql := 'select * from modelos where modelo = '+quotedstr(pChave)+' order by modelo'
+  else
+    mSql := 'select * from modelos order by modelo';
+  umDM.qmodelos.Active := false;
+  //umDM.qmodelos.SQL.Text := mSql;
+  umDM.qmodelos.Open();
+end;
+
+function DAOmodelos.Salvar(pObj: TObject): string;
+var mSql  : string;
+    mmodelos : modelos;
+begin
+    try
+      umDM.Trans.StartTransaction;
+      mmodelos := modelos(pObj);
+      with umDM.qmodelos do
+      begin
+        if mmodelos.getCodigo = 0 then
+        mSql := 'insert into modelos (modelo) values ( :modelo)'
+        else
+        begin
+          mSql := 'update modelos set modelo = :modelo';
+          mSql := mSql + ' where codmodelo = :Codmodelo;';
+        end;
+        //umDM.qmodelos.SQL.Clear;
+        //umDM.qmodelos.SQL.Add(mSql);
+        ParamByName('modelo').Value := mmodelos.getmodelo;
+        if mmodelos.GetCodigo <> 0 then
+          ParamByName('CODmodelo').Value := mmodelos.GetCodigo;
+        ExecSQL;
+      end;
+      umDM.Trans.Commit;
+    except
+      umDM.Trans.Rollback;
+end;
+end;
+
+function DAOmodelos.Excluir(pObj: TObject): string;
+var mSql  : string;
+    mmodelos : modelos;
+begin
+  try
+      mmodelos := modelos(pObj);
+      mSql := 'delete from modelos where codmodelo = '+inttostr(mmodelos.getCodigo);
+      umDm.Trans.StartTransaction;
+      umDm.qmodelos.Active:= false;
+      //umDm.qmodelos.SQL.Clear;
+      //umDM.qmodelos.ExecSQL(mSql);
+      umDm.Trans.Commit;
+      result := '';
+   except on e: Exception do
+   begin
+      umDm.Trans.Rollback;
+      result := 'Erro ao Excluir : '  + e.Message;
+   end;
+  end;
+end;
+
+destructor DAOmodelos.Destrua_se;
+begin
+
+end;
+end.

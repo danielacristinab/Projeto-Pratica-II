@@ -1,0 +1,69 @@
+unit uPai;
+
+interface
+
+type Pai = class
+  private
+  protected
+    Codigo : integer;
+    DataCad : TDate;
+    DataUltAlt : TDate;
+  public
+    constructor CrieObj;
+    procedure SetCodigo(pCodigo: integer);
+    procedure SetDataCad(pDataCad: string);
+    procedure SetUltAlt(pUltAlt: string);
+    function GetCodigo : integer;
+    function GetDataCad : TDate;
+    function GetUltAlt : striTDateng;
+    destructor Destrua_se;
+end;
+
+implementation
+
+{ Pai }
+
+constructor Pai.CrieObj;
+begin
+    Codigo := 0;
+    DataCad := 0;
+    DataUltAlt := 0;
+end;
+
+destructor Pai.Destrua_se;
+begin
+
+end;
+
+function Pai.GetCodigo: integer;
+begin
+  result := Codigo;
+end;
+
+function Pai.GetDataCad: TDate;
+begin
+  result := DataCad;
+end;
+
+function Pai.GetUltAlt: TDate;
+begin
+  result := DataUltAlt;
+end;
+
+procedure Pai.SetCodigo(pCodigo: integer);
+begin
+  Codigo := pCodigo;
+end;
+
+procedure Pai.SetDataCad(pDataCad: string);
+begin
+  Datacad := pDataCad;
+end;
+
+procedure Pai.SetUltAlt(pUltAlt: string);
+begin
+  DataUltAlt := pUltAlt;
+end;
+
+end.
+

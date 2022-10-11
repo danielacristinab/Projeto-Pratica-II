@@ -1,0 +1,84 @@
+unit uFrmCadastroGrupos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmCadastroPai, Vcl.StdCtrls,
+  uGrupos, uCtrlGrupos;
+
+type
+  TFrmCadastroGrupos = class(TFrmCadastroPai)
+    edtGrupo: TEdit;
+    lblGrupo: TLabel;
+    edtDescricao: TEdit;
+    lblDescricao: TLabel;
+  private
+    { Private declarations }
+    oGrupo : Grupos;
+    aCtrlGrupos : CtrlGrupos;
+  public
+    { Public declarations }
+    procedure ConhecaObj(pObj: TObject;  pCtrl: TObject);  override;
+    procedure LimpaEdit;                                   override;
+    procedure CarregaEdit;                                 override;
+    procedure BloqueiaEdit;                                override;
+    procedure DesbloqueiEdit;                              override;
+    procedure Salvar;                                      override;
+    procedure Sair;                                        override;
+  end;
+
+var
+  FrmCadastroGrupos: TFrmCadastroGrupos;
+
+implementation
+
+{$R *.dfm}
+
+{ TFrmCadastroGrupos }
+
+procedure TFrmCadastroGrupos.BloqueiaEdit;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroGrupos.CarregaEdit;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroGrupos.ConhecaObj(pObj, pCtrl: TObject);
+begin
+  oGrupo := Grupos(pObj);
+  aCtrlGrupos := CtrlGrupos(pCtrl);
+  self.LimpaEdit;
+  self.CarregaEdit;
+end;
+
+procedure TFrmCadastroGrupos.DesbloqueiEdit;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroGrupos.LimpaEdit;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroGrupos.Sair;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroGrupos.Salvar;
+begin
+  inherited;
+
+end;
+
+end.

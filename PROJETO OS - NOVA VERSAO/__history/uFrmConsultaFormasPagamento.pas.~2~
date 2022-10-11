@@ -1,0 +1,80 @@
+unit uFrmConsultaFormasPagamento;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmConsultaPai, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, uFrmCadastroFormasPagamento, uFormasPagamento,
+  uCtrlFormaPag;
+
+type
+  TFrmConsultaPai1 = class(TFrmConsultaPai)
+  private
+    { Private declarations }
+    umCadastroFormaPag : TFrmCadastroFormasPagamento;
+    aFormaPag : FormasPagamento;
+    aCtrlFormaPag : CtrlFormaPag;
+  public
+    { Public declarations }
+    procedure ConhecaObj(pObj: TObject;  pCtrl: TObject); override;
+    procedure Incluir;                                    override;
+    procedure Alterar;                                    override;
+    procedure Excluir;                                    override;
+    procedure Pesquisar;                                  override;
+    procedure Sair;                                       override;
+    procedure SetCadastro(pObj: TObject);                 override;
+  end;
+
+var
+  FrmConsultaPai1: TFrmConsultaPai1;
+
+implementation
+
+{$R *.dfm}
+
+{ TFrmConsultaPai1 }
+
+procedure TFrmConsultaPai1.Alterar;
+begin
+  inherited;
+
+end;
+
+procedure TFrmConsultaPai1.ConhecaObj(pObj, pCtrl: TObject);
+begin
+  inherited;
+
+end;
+
+procedure TFrmConsultaPai1.Excluir;
+begin
+  inherited;
+
+end;
+
+procedure TFrmConsultaPai1.Incluir;
+begin
+  inherited;
+
+end;
+
+procedure TFrmConsultaPai1.Pesquisar;
+begin
+  inherited;
+
+end;
+
+procedure TFrmConsultaPai1.Sair;
+begin
+  inherited;
+
+end;
+
+procedure TFrmConsultaPai1.SetCadastro(pObj: TObject);
+begin
+  inherited;
+
+end;
+
+end.

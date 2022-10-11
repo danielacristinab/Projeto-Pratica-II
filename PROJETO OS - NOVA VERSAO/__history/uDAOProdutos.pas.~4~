@@ -1,0 +1,74 @@
+unit uDAOProdutos;
+
+interface
+uses uDAO, uDataModule, Data.DB, System.SysUtils, uProdutos;
+type DAOProdutos = class   (DAO)
+  private
+  protected
+  public
+  constructor CrieObj;
+    procedure SetDM(pDM: TObject);              virtual;
+    function GetDS: TDataSource;                virtual;
+    function Salvar(pObj: TObject): string;     virtual;
+    function Carregar(pObj: TObject): string;   virtual;
+    function Pesquisar(pChave: string): string; virtual;
+    function Excluir(pObj: TObject): string;    virtual;
+    function ehNumero(valor: string): boolean;
+    function AcheiReg() : boolean;
+    destructor Destrua_se;
+  end;
+implementation
+
+{ DAOProdutos }
+
+function DAOProdutos.AcheiReg: boolean;
+begin
+  result := not (umDM.qProdutos.Eof);
+end;
+
+function DAOProdutos.Carregar(pObj: TObject): string;
+begin
+
+end;
+
+constructor DAOProdutos.CrieObj;
+begin
+
+end;
+
+destructor DAOProdutos.Destrua_se;
+begin
+
+end;
+
+function DAOProdutos.ehNumero(valor: string): boolean;
+begin
+
+end;
+
+function DAOProdutos.Excluir(pObj: TObject): string;
+begin
+
+end;
+
+function DAOProdutos.GetDS: TDataSource;
+begin
+  result := umDm.DSProdutos;
+end;
+
+function DAOProdutos.Pesquisar(pChave: string): string;
+begin
+
+end;
+
+function DAOProdutos.Salvar(pObj: TObject): string;
+begin
+
+end;
+
+procedure DAOProdutos.SetDM(pDM: TObject);
+begin
+
+end;
+
+end.

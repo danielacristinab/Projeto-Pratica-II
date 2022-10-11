@@ -1,0 +1,80 @@
+unit uFrmCadastroFormasPagamento;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmCadastroPai, Vcl.StdCtrls, uFormasPagamento,
+  uCtrlFormaPag;
+
+type
+  TFrmCadastroFormasPagamento = class(TFrmCadastroPai)
+    edtFormaPag: TEdit;
+    lblFormaPag: TLabel;
+  private
+    { Private declarations }
+    aFormaPag : FormasPagamento;
+    aCtrlFormaPag : CtrlFormaPag;
+  public
+    { Public declarations }
+    procedure ConhecaObj(pObj: TObject;  pCtrl: TObject);  override;
+    procedure LimpaEdit;                                   override;
+    procedure CarregaEdit;                                 override;
+    procedure BloqueiaEdit;                                override;
+    procedure DesbloqueiEdit;                              override;
+    procedure Salvar;                                      override;
+    procedure Sair;                                        override;
+  end;
+
+var
+  FrmCadastroFormasPagamento: TFrmCadastroFormasPagamento;
+
+implementation
+
+{$R *.dfm}
+
+{ TFrmCadastroFormasPagamento }
+
+procedure TFrmCadastroFormasPagamento.BloqueiaEdit;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroFormasPagamento.CarregaEdit;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroFormasPagamento.ConhecaObj(pObj, pCtrl: TObject);
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroFormasPagamento.DesbloqueiEdit;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroFormasPagamento.LimpaEdit;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroFormasPagamento.Sair;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroFormasPagamento.Salvar;
+begin
+  inherited;
+
+end;
+
+end.

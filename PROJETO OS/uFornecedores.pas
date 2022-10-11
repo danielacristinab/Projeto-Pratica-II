@@ -58,6 +58,7 @@ end;
 
 constructor Fornecedores.CrieObj;
 begin
+    inherited;
     RazaoSocial := ' ';
 	  ApelidoNomeFantasia := ' ';
 	  cnpj := ' ';

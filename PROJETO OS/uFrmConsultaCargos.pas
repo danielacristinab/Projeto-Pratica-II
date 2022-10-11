@@ -45,11 +45,12 @@ begin
   umCadastroCargos.LimpaEdit;
   umCadastroCargos.CarregaEdit;
   umCadastroCargos.ShowModal;
+  self.DBGrid1.DataSource := TDataSource(aCtrlCargo.GetDS);
+  aCtrlCargo.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TFrmConsultaCargos.btnPesquisarClick(Sender: TObject);
 begin
-  inherited;
   aCtrlCargo.Pesquisar(self.EdtPesquisar.Text);
 end;
 
@@ -70,9 +71,21 @@ begin
 end;
 
 procedure TFrmConsultaCargos.Excluir;
+var btn_nome : string;
 begin
   inherited;
-
+  aCtrlCargo.carregar(oCargo);
+  umCadastroCargos.conhecaObj(oCargo, aCtrlCargo);
+  umCadastroCargos.limpaEdit;
+  umCadastroCargos.carregaEdit;
+  btn_nome := umCadastroCargos.btnSalvar.Caption;
+  umCadastroCargos.btnSalvar.Caption := '&Excluir';
+  umCadastroCargos.bloqueiaEdit;
+  umCadastroCargos.ShowModal;
+  umCadastroCargos.DesbloqueiEdit;
+  umCadastroCargos.btnSalvar.Caption := btn_nome;
+  self.DBGrid1.DataSource := TDataSource(aCtrlCargo.GetDS);
+  aCtrlCargo.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TFrmConsultaCargos.Incluir;
@@ -81,6 +94,8 @@ begin
   umCadastroCargos.ConhecaObj(oCargo, aCtrlCargo);
   umCadastroCargos.LimpaEdit;
   umCadastroCargos.ShowModal;
+  self.DBGrid1.DataSource := TDataSource(aCtrlCargo.GetDS);
+  aCtrlCargo.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TFrmConsultaCargos.Pesquisar;

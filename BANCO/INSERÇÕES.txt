@@ -14,6 +14,14 @@ insert into clientes(nome, datanasc, cpf_cnpj, rg, email, telefone, celular, end
 
 insert into cargos(codcargo, cargo) values (150, 'auxADM');
 
+insert into modelos(modelo, codmarca) values ('Bullet', 751);
+insert into marcas(marca) values ('Intelbras');
+
+
 insert into funcionarios(nome, datanasc, cpf, rg, email, telefone, celular, endereco, numero, bairro, cep, complemento, codcargo, codcidade) values ('Daniela', '29051997', '09978797939', '107460365', 'danielahotmailcom', '32208052', '45999323306', 'Jose Castagnaro', 618, 'panorama', 85856655, 'casa', 150, 1000);
 
 insert into fornecedores(cnpj, razaosocial, nomefantasia, telefone, email, site, rg_ie, endereco, numero, bairro, cep, complemento, codcidade) values ('123654000152', 'danielacia', 'quazla', '30256352', 'danielahotmailcom', 'quazla.com', '45999323306', 'Jose Castagnaro', 618, 'panorama', 85856655, 'casa',1000);
+
+insert into grupos(grupo, descricao) values ('ACESSORIOS', 'SJFBAKJDFBABF');
+
+insert into formaspagamento(formapag) values ('CARTAO');

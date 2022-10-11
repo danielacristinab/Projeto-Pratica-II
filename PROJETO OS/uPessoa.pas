@@ -33,6 +33,7 @@ implementation
 
 constructor Pessoa.CrieObj;
 begin
+    inherited;
     endereco := ' ';
     numero := 0;
     cep := 0;
@@ -103,7 +104,7 @@ end;
 
 destructor Pessoa.Destrua_se;
 begin
-
+  inherited;
 end;
 end.
 

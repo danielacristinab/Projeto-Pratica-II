@@ -19,7 +19,7 @@ object FrmConsultaPai: TFrmConsultaPai
     Width = 75
     Height = 25
     Caption = '&Pesquisar'
-    TabOrder = 0
+    TabOrder = 1
   end
   object btnSair: TButton
     Left = 646
@@ -27,7 +27,7 @@ object FrmConsultaPai: TFrmConsultaPai
     Width = 75
     Height = 25
     Caption = '&Sair'
-    TabOrder = 1
+    TabOrder = 6
     OnClick = btnSairClick
   end
   object btnIncluir: TButton
@@ -36,7 +36,7 @@ object FrmConsultaPai: TFrmConsultaPai
     Width = 75
     Height = 25
     Caption = '&Incluir'
-    TabOrder = 2
+    TabOrder = 3
     OnClick = btnIncluirClick
   end
   object btnExcluir: TButton
@@ -45,7 +45,7 @@ object FrmConsultaPai: TFrmConsultaPai
     Width = 75
     Height = 25
     Caption = '&Excluir'
-    TabOrder = 3
+    TabOrder = 5
     OnClick = btnExcluirClick
   end
   object btnAlterar: TButton
@@ -62,14 +62,14 @@ object FrmConsultaPai: TFrmConsultaPai
     Top = 24
     Width = 430
     Height = 21
-    TabOrder = 5
+    TabOrder = 0
   end
   object DBGrid1: TDBGrid
     Left = 16
     Top = 80
     Width = 705
     Height = 353
-    TabOrder = 6
+    TabOrder = 2
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11

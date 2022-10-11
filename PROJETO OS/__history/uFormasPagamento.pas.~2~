@@ -1,0 +1,49 @@
+unit uFormasPagamento;
+
+interface
+uses uPai;
+type FormaPagamento = class (Pai)
+  private
+  protected
+    FormaPag : string[50];
+ public
+   constructor CrieObj;
+   procedure SetFormaPagamento(pFormaPag: string);
+   function GetFormaPagamento : string;
+   function Clone : FormaPagamento;
+   destructor Destrua_se;
+end;
+implementation
+
+{ FormaPagamento }
+
+function FormaPagamento.Clone: FormaPagamento;
+begin
+  result := FormaPagamento.CrieObj;
+  result.SetCodigo(codigo);
+  result.SetFormaPagamento(FormaPag);
+  result.setDataCad(dataCad);
+  result.setDataCad(DataUltAlt);
+end;
+
+constructor FormaPagamento.CrieObj;
+begin
+  FormaPag := ' ';
+end;
+
+destructor FormaPagamento.Destrua_se;
+begin
+
+end;
+
+function FormaPagamento.GetFormaPagamento: string;
+begin
+  result := FormaPag;
+end;
+
+procedure FormaPagamento.SetFormaPagamento(pFormaPag: string);
+begin
+  FormaPag := pFormaPag;
+end;
+
+end.

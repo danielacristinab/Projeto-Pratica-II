@@ -39,7 +39,7 @@ function Clientes.Clone: Clientes;
 begin
   result := Clientes.crieObj;
   result.setCodigo(codigo);
-  result.SetNome(nome);
+  result.SetNome(Nome);
   result.SetDataNasc(DataNasc);
   result.SetRG(RG);
   result.SetCPF_CNPJ(cpf_cnpj);
@@ -58,18 +58,19 @@ end;
 
 constructor Clientes.CrieObj;
 begin
-    nome := ' ';
-   	DataNasc := ' ';
-    RG := ' ';
-    CPF_CNPJ := ' ';
-    Email := ' ';
-    Telefone := ' ';
-    Celular := ' ';
+  inherited;
+  Nome := ' ';
+  DataNasc := ' ';
+  RG := ' ';
+  CPF_CNPJ := ' ';
+  Email := ' ';
+  Telefone := ' ';
+  Celular := ' ';
 end;
 
 destructor Clientes.Destrua_se;
 begin
-
+  inherited;
 end;
 
 function Clientes.GetCelular: string;

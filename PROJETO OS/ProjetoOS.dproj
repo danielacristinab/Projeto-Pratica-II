@@ -114,52 +114,6 @@
         <DCCReference Include="uFrmCadastroEstados.pas">
             <Form>FrmCadastroEstados</Form>
         </DCCReference>
-        <DCCReference Include="uFrmConsultaPai.pas">
-            <Form>FrmConsultaPai</Form>
-        </DCCReference>
-        <DCCReference Include="uFrmConsultaPaises.pas">
-            <Form>FrmConsultaPaises</Form>
-        </DCCReference>
-        <DCCReference Include="uFrmConsultaEstados.pas">
-            <Form>FrmConsultaEstados</Form>
-        </DCCReference>
-        <DCCReference Include="uFrmConsultaCidades.pas">
-            <Form>FrmConsultaCidades</Form>
-        </DCCReference>
-        <DCCReference Include="uFrmCondicaoPagamento.pas">
-            <Form>FrmCondicaoPagamento</Form>
-        </DCCReference>
-        <DCCReference Include="uPai.pas"/>
-        <DCCReference Include="uPessoa.pas"/>
-        <DCCReference Include="uFornecedores.pas"/>
-        <DCCReference Include="uDAO.pas"/>
-        <DCCReference Include="uDAOCidades.pas"/>
-        <DCCReference Include="uDAOEstados.pas"/>
-        <DCCReference Include="uDAOPaises.pas"/>
-        <DCCReference Include="uDAOClientes.pas"/>
-        <DCCReference Include="uDAOFuncionarios.pas"/>
-        <DCCReference Include="uDAOFornecedores.pas"/>
-        <DCCReference Include="uDAOCargos.pas"/>
-        <DCCReference Include="uController.pas"/>
-        <DCCReference Include="uCtrlEstados.pas"/>
-        <DCCReference Include="uCtrlPaises.pas"/>
-        <DCCReference Include="uCtrlCidades.pas"/>
-        <DCCReference Include="uCtrlClientes.pas"/>
-        <DCCReference Include="uCtrlFuncionarios.pas"/>
-        <DCCReference Include="uCtrlFornecedores.pas"/>
-        <DCCReference Include="uCtrlCargos.pas"/>
-        <DCCReference Include="uDataModule.pas">
-            <Form>DM</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="uOS.pas"/>
-        <DCCReference Include="uEstados.pas"/>
-        <DCCReference Include="uPaises.pas"/>
-        <DCCReference Include="uCidades.pas"/>
-        <DCCReference Include="uInterfaces.pas"/>
-        <DCCReference Include="uFuncionarios.pas"/>
-        <DCCReference Include="uClientes.pas"/>
-        <DCCReference Include="uCargos.pas"/>
         <DCCReference Include="uFrmCadastroPessoa.pas">
             <Form>FrmCadastroPessoa</Form>
         </DCCReference>
@@ -175,6 +129,30 @@
         <DCCReference Include="uFrmCadastroCargos.pas">
             <Form>FrmCadastroCargos</Form>
         </DCCReference>
+        <DCCReference Include="uFrmCadastroModelos.pas">
+            <Form>FrmCadastroModelos</Form>
+        </DCCReference>
+        <DCCReference Include="uFrmCadastroMarcas.pas">
+            <Form>FrmCadastroMarcas</Form>
+        </DCCReference>
+        <DCCReference Include="uFrmCadastroGrupos.pas">
+            <Form>FrmCadastroGrupos</Form>
+        </DCCReference>
+        <DCCReference Include="uFrmCadastroProdutos.pas">
+            <Form>FrmCadastroProdutos</Form>
+        </DCCReference>
+        <DCCReference Include="uFrmConsultaPai.pas">
+            <Form>FrmConsultaPai</Form>
+        </DCCReference>
+        <DCCReference Include="uFrmConsultaPaises.pas">
+            <Form>FrmConsultaPaises</Form>
+        </DCCReference>
+        <DCCReference Include="uFrmConsultaEstados.pas">
+            <Form>FrmConsultaEstados</Form>
+        </DCCReference>
+        <DCCReference Include="uFrmConsultaCidades.pas">
+            <Form>FrmConsultaCidades</Form>
+        </DCCReference>
         <DCCReference Include="uFrmConsultaClientes.pas">
             <Form>FrmConsultaClientes</Form>
         </DCCReference>
@@ -187,6 +165,80 @@
         <DCCReference Include="uFrmConsultaCargos.pas">
             <Form>FrmConsultaCargos</Form>
         </DCCReference>
+        <DCCReference Include="uFrmConsultaModelos.pas">
+            <Form>FrmConsultaModelos</Form>
+        </DCCReference>
+        <DCCReference Include="uFrmConsultaMarcas.pas">
+            <Form>FrmConsultaMarcas</Form>
+        </DCCReference>
+        <DCCReference Include="uFrmConsultaProdutos.pas">
+            <Form>FrmConsultaProdutos</Form>
+        </DCCReference>
+        <DCCReference Include="uFrmConsultaGrupos.pas">
+            <Form>FrmConsultaGrupos</Form>
+        </DCCReference>
+        <DCCReference Include="uFrmConsultaCondicaoPagamento.pas">
+            <Form>FrmConsultaCondicaoPagamento</Form>
+        </DCCReference>
+        <DCCReference Include="uPai.pas"/>
+        <DCCReference Include="uPessoa.pas"/>
+        <DCCReference Include="uInterfaces.pas"/>
+        <DCCReference Include="uOS.pas"/>
+        <DCCReference Include="uEstados.pas"/>
+        <DCCReference Include="uPaises.pas"/>
+        <DCCReference Include="uCidades.pas"/>
+        <DCCReference Include="uFornecedores.pas"/>
+        <DCCReference Include="uFuncionarios.pas"/>
+        <DCCReference Include="uClientes.pas"/>
+        <DCCReference Include="uCargos.pas"/>
+        <DCCReference Include="uMarcas.pas"/>
+        <DCCReference Include="uModelos.pas"/>
+        <DCCReference Include="uProdutos.pas"/>
+        <DCCReference Include="uGrupos.pas"/>
+        <DCCReference Include="uDAO.pas"/>
+        <DCCReference Include="uDAOCidades.pas"/>
+        <DCCReference Include="uDAOEstados.pas"/>
+        <DCCReference Include="uDAOPaises.pas"/>
+        <DCCReference Include="uDAOClientes.pas"/>
+        <DCCReference Include="uDAOFuncionarios.pas"/>
+        <DCCReference Include="uDAOFornecedores.pas"/>
+        <DCCReference Include="uDAOCargos.pas"/>
+        <DCCReference Include="uDAOMarcas.pas"/>
+        <DCCReference Include="uDAOModelos.pas"/>
+        <DCCReference Include="uDAOProdutos.pas"/>
+        <DCCReference Include="uDAOGrupos.pas"/>
+        <DCCReference Include="uController.pas"/>
+        <DCCReference Include="uCtrlEstados.pas"/>
+        <DCCReference Include="uCtrlPaises.pas"/>
+        <DCCReference Include="uCtrlCidades.pas"/>
+        <DCCReference Include="uCtrlClientes.pas"/>
+        <DCCReference Include="uCtrlFuncionarios.pas"/>
+        <DCCReference Include="uCtrlFornecedores.pas"/>
+        <DCCReference Include="uCtrlCargos.pas"/>
+        <DCCReference Include="uCtrlModelos.pas"/>
+        <DCCReference Include="uCtrlMarcas.pas"/>
+        <DCCReference Include="uCtrlGrupos.pas"/>
+        <DCCReference Include="uCtrlProdutos.pas"/>
+        <DCCReference Include="uDataModule.pas">
+            <Form>DM</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="uCondicaoPagamento.pas"/>
+        <DCCReference Include="uDAOCondPag.pas"/>
+        <DCCReference Include="uCtrlCondPag.pas"/>
+        <DCCReference Include="uFormasPagamento.pas"/>
+        <DCCReference Include="uDAOFormaPag.pas"/>
+        <DCCReference Include="uCtrlFormaPag.pas"/>
+        <DCCReference Include="uFrmCadastroFormasPagamento.pas">
+            <Form>FrmCadastroFormasPagamento</Form>
+        </DCCReference>
+        <DCCReference Include="uFrmConsultaFormasPagamento.pas">
+            <Form>FrmConsultaFormasPagamento</Form>
+        </DCCReference>
+        <DCCReference Include="uFrmCadastroCondicaoPagamento.pas">
+            <Form>FrmCadastroCondicaoPagamento</Form>
+        </DCCReference>
+        <DCCReference Include="uParcelas.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -990,6 +1042,7 @@
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">False</Platform>
             </Platforms>
+            <ModelSupport>False</ModelSupport>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>

@@ -1,0 +1,196 @@
+inherited FrmCadastroCondicaoPagamento: TFrmCadastroCondicaoPagamento
+  Caption = 'Cadastro Condicao Pagamento'
+  ClientWidth = 653
+  ExplicitWidth = 669
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited lblCodigo: TLabel
+    Top = 13
+    ExplicitTop = 13
+  end
+  object lblCondPag: TLabel [4]
+    Left = 74
+    Top = 13
+    Width = 116
+    Height = 13
+    Caption = 'Condicao de Pagamento'
+  end
+  object lblMulta: TLabel [5]
+    Left = 254
+    Top = 13
+    Width = 26
+    Height = 13
+    Caption = 'Multa'
+  end
+  object lblJuros: TLabel [6]
+    Left = 334
+    Top = 13
+    Width = 26
+    Height = 13
+    Caption = 'Juros'
+  end
+  object lblDesconto: TLabel [7]
+    Left = 407
+    Top = 13
+    Width = 45
+    Height = 13
+    Caption = 'Desconto'
+  end
+  object lblPorcentagem: TLabel [8]
+    Left = 488
+    Top = 13
+    Width = 63
+    Height = 13
+    Caption = 'Porcentagem'
+  end
+  object lblParcela: TLabel [9]
+    Left = 26
+    Top = 77
+    Width = 35
+    Height = 13
+    Caption = 'Parcela'
+  end
+  object lblCodFormaPag: TLabel [10]
+    Left = 72
+    Top = 77
+    Width = 73
+    Height = 13
+    Caption = 'Cod Forma Pag'
+  end
+  object lblFormaPag: TLabel [11]
+    Left = 151
+    Top = 77
+    Width = 102
+    Height = 13
+    Caption = 'Forma de Pagamento'
+  end
+  object lblPrazo: TLabel [12]
+    Left = 568
+    Top = 13
+    Width = 27
+    Height = 13
+    Caption = 'Prazo'
+  end
+  inherited edtCodigo: TEdit
+    Top = 32
+    ExplicitTop = 32
+  end
+  inherited btnSair: TButton
+    Left = 550
+    ExplicitLeft = 550
+  end
+  inherited btnSalvar: TButton
+    Left = 469
+    ExplicitLeft = 469
+  end
+  object edtCondPag: TEdit
+    Left = 63
+    Top = 32
+    Width = 186
+    Height = 21
+    TabOrder = 6
+  end
+  object edtMulta: TEdit
+    Left = 254
+    Top = 32
+    Width = 57
+    Height = 21
+    TabOrder = 7
+  end
+  object edtJuros: TEdit
+    Left = 334
+    Top = 32
+    Width = 57
+    Height = 21
+    TabOrder = 8
+  end
+  object edtDesconto: TEdit
+    Left = 407
+    Top = 32
+    Width = 57
+    Height = 21
+    TabOrder = 9
+  end
+  object edtPorcentagem: TEdit
+    Left = 488
+    Top = 32
+    Width = 57
+    Height = 21
+    TabOrder = 10
+  end
+  object edtParcela: TEdit
+    Left = 24
+    Top = 96
+    Width = 37
+    Height = 21
+    TabOrder = 11
+  end
+  object edtCodFormaPag: TEdit
+    Left = 72
+    Top = 96
+    Width = 57
+    Height = 21
+    Enabled = False
+    TabOrder = 12
+  end
+  object edtFormaPag: TEdit
+    Left = 151
+    Top = 96
+    Width = 217
+    Height = 21
+    TabOrder = 13
+  end
+  object edtPrazo: TEdit
+    Left = 568
+    Top = 32
+    Width = 57
+    Height = 21
+    TabOrder = 14
+  end
+  object btnPesquisarFormaPag: TButton
+    Left = 374
+    Top = 94
+    Width = 81
+    Height = 25
+    Caption = 'Pesquisar'
+    TabOrder = 15
+    OnClick = btnPesquisarFormaPagClick
+  end
+  object ListView1: TListView
+    Left = 24
+    Top = 136
+    Width = 601
+    Height = 234
+    Columns = <
+      item
+        Caption = 'Parcela'
+      end
+      item
+        Caption = 'Prazo'
+      end
+      item
+        Caption = 'Percentual'
+      end
+      item
+        Caption = 'Forma Pag'
+      end>
+    TabOrder = 16
+    ViewStyle = vsReport
+  end
+  object btnAdicionar: TButton
+    Left = 469
+    Top = 94
+    Width = 75
+    Height = 25
+    Caption = 'Adicionar'
+    TabOrder = 17
+  end
+  object btnRemover: TButton
+    Left = 550
+    Top = 94
+    Width = 75
+    Height = 25
+    Caption = 'Remover'
+    TabOrder = 18
+  end
+end

@@ -46,6 +46,8 @@ begin
   umCadastroCidades.LimpaEdit;
   umCadastroCidades.CarregaEdit;
   umCadastroCidades.ShowModal;
+  self.DBGrid1.DataSource := TDataSource(aCtrlCidade.GetDS);
+  aCtrlCidade.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TFrmConsultaCidades.btnPesquisarClick(Sender: TObject);
@@ -70,10 +72,21 @@ begin
 end;
 
 procedure TfrmConsultaCidades.Excluir;
+var btn_nome : string;
 begin
   inherited;
-  umCadastroCidades.ConhecaObj(aCidade,aCtrlCidade);
+  aCtrlCidade.carregar(aCidade);
+  umCadastroCidades.conhecaObj(aCidade, aCtrlCidade);
+  umCadastroCidades.limpaEdit;
+  umCadastroCidades.carregaEdit;
+  btn_nome := umCadastroCidades.btnSalvar.Caption;
+  umCadastroCidades.btnSalvar.Caption := '&Excluir';
+  umCadastroCidades.bloqueiaEdit;
   umCadastroCidades.ShowModal;
+  umCadastroCidades.DesbloqueiEdit;
+  umCadastroCidades.btnSalvar.Caption := btn_nome;
+  self.DBGrid1.DataSource := TDataSource(aCtrlCidade.GetDS);
+  aCtrlCidade.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TfrmConsultaCidades.Incluir;
@@ -81,6 +94,8 @@ begin
   inherited;
   umCadastroCidades.ConhecaObj(aCidade,aCtrlCidade);
   umCadastroCidades.ShowModal;
+  self.DBGrid1.DataSource := TDataSource(aCtrlCidade.GetDS);
+  aCtrlCidade.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TfrmConsultaCidades.Pesquisar;

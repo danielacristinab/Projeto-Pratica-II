@@ -1,0 +1,14 @@
+unit uGrupos;
+
+interface
+uses uPai, uModelos;
+type Grupos = class (Pai)
+   private
+   protected
+
+   public
+
+end;
+implementation
+
+end.

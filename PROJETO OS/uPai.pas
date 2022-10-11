@@ -6,16 +6,16 @@ type Pai = class
   private
   protected
     Codigo : integer;
-    DataCad : string;
-    DataUltAlt : string;
+    DataCad : String;
+    DataUltAlt : String;
   public
     constructor CrieObj;
     procedure SetCodigo(pCodigo: integer);
-    procedure SetDataCad(pDataCad: string);
-    procedure SetUltAlt(pUltAlt: string);
+    procedure SetDataCad(pDataCad: String);
+    procedure SetUltAlt(pUltAlt: String);
     function GetCodigo : integer;
-    function GetDataCad : string;
-    function GetUltAlt : string;
+    function GetDataCad : String;
+    function GetUltAlt : String;
     destructor Destrua_se;
 end;
 
@@ -40,12 +40,12 @@ begin
   result := Codigo;
 end;
 
-function Pai.GetDataCad: string;
+function Pai.GetDataCad: String;
 begin
   result := DataCad;
 end;
 
-function Pai.GetUltAlt: string;
+function Pai.GetUltAlt: String;
 begin
   result := DataUltAlt;
 end;
@@ -55,12 +55,12 @@ begin
   Codigo := pCodigo;
 end;
 
-procedure Pai.SetDataCad(pDataCad: string);
+procedure Pai.SetDataCad(pDataCad: String);
 begin
   Datacad := pDataCad;
 end;
 
-procedure Pai.SetUltAlt(pUltAlt: string);
+procedure Pai.SetUltAlt(pUltAlt: String);
 begin
   DataUltAlt := pUltAlt;
 end;

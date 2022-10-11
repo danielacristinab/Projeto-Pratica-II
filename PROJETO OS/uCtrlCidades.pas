@@ -16,6 +16,7 @@ uses uController, uDAOCidades, Data.DB, uCidades, uCtrlEstados;
       function salvar(pObj: TObject): string;     override;
       function Pesquisar(pChave: string): string; override;
       function Carregar(pObj: TObject): string;   override;
+      function Excluir(pObj: TObject): string;    override;
       function AcheiReg: boolean;
       destructor Destrua_se;
   end;
@@ -41,6 +42,11 @@ end;
 destructor CtrlCidades.Destrua_se;
 begin
   aDAOCidades.Destrua_se;
+end;
+
+function CtrlCidades.Excluir(pObj: TObject): string;
+begin
+  aDaoCidades.Excluir(pObj);
 end;
 
 function CtrlCidades.GetaCtrlEstado: CtrlEstados;

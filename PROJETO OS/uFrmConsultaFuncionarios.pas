@@ -43,6 +43,8 @@ begin
   umCadastroFuncionarios.LimpaEdit;
   umCadastroFuncionarios.CarregaEdit;
   umCadastroFuncionarios.ShowModal;
+  self.DBGrid1.DataSource := TDataSource(aCtrlFuncionarios.GetDS);
+  aCtrlFuncionarios.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TFrmConsultaFuncionarios.ConhecaObj(pObj, pCtrl: TObject);
@@ -55,10 +57,21 @@ begin
 end;
 
 procedure TFrmConsultaFuncionarios.Excluir;
+var btn_nome : string;
 begin
   inherited;
-  umCadastroFuncionarios.ConhecaObj(oFuncionario, aCtrlFuncionarios);
+  aCtrlFuncionarios.carregar(oFuncionario);
+  umCadastroFuncionarios.conhecaObj(oFuncionario, aCtrlFuncionarios);
+  umCadastroFuncionarios.limpaEdit;
+  umCadastroFuncionarios.carregaEdit;
+  btn_nome := umCadastroFuncionarios.btnSalvar.Caption;
+  umCadastroFuncionarios.btnSalvar.Caption := '&Excluir';
+  umCadastroFuncionarios.bloqueiaEdit;
   umCadastroFuncionarios.ShowModal;
+  umCadastroFuncionarios.DesbloqueiEdit;
+  umCadastroFuncionarios.btnSalvar.Caption := btn_nome;
+  self.DBGrid1.DataSource := TDataSource(aCtrlFuncionarios.GetDS);
+  aCtrlFuncionarios.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TFrmConsultaFuncionarios.Incluir;
@@ -66,12 +79,14 @@ begin
   inherited;
   umCadastroFuncionarios.ConhecaObj(oFuncionario, aCtrlFuncionarios);
   umCadastroFuncionarios.ShowModal;
+  self.DBGrid1.DataSource := TDataSource(aCtrlFuncionarios.GetDS);
+  aCtrlFuncionarios.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TFrmConsultaFuncionarios.Pesquisar;
 begin
   inherited;
-  umCadastroFuncionarios.ShowModal;
+   aCtrlFuncionarios.Pesquisar(self.EdtPesquisar.Text);
 end;
 
 procedure TFrmConsultaFuncionarios.Sair;

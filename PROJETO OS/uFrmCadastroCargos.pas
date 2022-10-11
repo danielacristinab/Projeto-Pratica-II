@@ -88,27 +88,32 @@ end;
 
 procedure TFrmCadastroCargos.Salvar;
 begin
- if (btnSalvar.Caption = '&Salvar') then
+  if (btnSalvar.Caption = '&Salvar') or (btnSalvar.Caption = '&Alterar') then
   begin
-  if length(self.edtCargo.text) = 0 then
-    self.edtCargo.Color := clYellow;
-  if self.edtCargo.Text = '' then
-  begin
-    showmessage('Campo Cargo obrigatorio!');
-    self.edtCargo.SetFocus;
-  end
-  else
-  begin
-    oCargo.SetCodigo(strtoint(self.edtCodigo.Text));
-    oCargo.SetCargo(edtCargo.Text);
-    oCargo.SetDataCad(self.edtDataCad.Text);
-    oCargo.SetUltAlt(self.edtUltAlt.Text);
+    if length(self.edtCargo.text) = 0 then
+      self.edtCargo.Color := clYellow;
+    if self.edtCargo.Text = '' then
+    begin
+      showmessage('Campo Cargo obrigatorio!');
+      self.edtCargo.SetFocus;
+    end
+    else
+    begin
+      oCargo.SetCodigo(strtoint(self.edtCodigo.Text));
+      oCargo.SetCargo(edtCargo.Text);
+      oCargo.SetDataCad(self.edtDataCad.Text);
+      oCargo.SetUltAlt(self.edtUltAlt.Text);
 
-    self.aCtrlCargo.Salvar(oCargo.Clone);
+      self.aCtrlCargo.Salvar(oCargo.Clone);
+    end;
+    showmessage('Cargo salvo com sucesso!');
+  end
+  else if (btnSalvar.Caption = '&Excluir') then
+  begin
+    aCtrlCargo.Excluir(oCargo);
+    showmessage('Cargo excluido com sucesso!');
   end;
-   showmessage('Cargo cadastrado com sucesso!');
-   close;
-  end;
+  close;
 end;
 
 end.

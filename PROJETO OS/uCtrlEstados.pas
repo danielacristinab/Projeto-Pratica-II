@@ -16,6 +16,7 @@ uses uController, uDAOEstados,  uDataModule, Data.DB, uEstados, uCtrlPaises;
       function salvar(pObj: TObject): string;     override;
       function Pesquisar(pChave: string): string; override;
       function Carregar(pObj: TObject): string;   override;
+      function Excluir(pObj: TObject): string;    override;
       function AcheiReg: boolean;
       destructor Destrua_se;
   end;
@@ -69,8 +70,14 @@ begin
   aDaoEstados.SetDM(pDM);
 end;
 
+function CtrlEstados.Excluir(pObj: TObject): string;
+begin
+  aDaoEstados.Excluir(pObj);
+end;
+
 destructor CtrlEstados.Destrua_se;
 begin
   aDaoEstados.Destrua_se;
 end;
+
 end.

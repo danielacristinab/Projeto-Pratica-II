@@ -32,8 +32,6 @@ type
     procedure Sair;                       virtual;
     procedure SetCadastro(pObj: TObject); virtual;
     procedure CarregaLV;                  virtual;
-    procedure SetNomeBotao(pNome: string);
-    function GetNomeBotao: string;
   end;
 
 var
@@ -85,11 +83,6 @@ begin
 
 end;
 
-function TFrmConsultaPai.GetNomeBotao: string;
-begin
-
-end;
-
 procedure TFrmConsultaPai.Incluir;
 begin
 
@@ -108,11 +101,6 @@ end;
 procedure TFrmConsultaPai.SetCadastro(pObj: TObject);
 begin
 
-end;
-
-procedure TFrmConsultaPai.SetNomeBotao(pNome: string);
-begin
-  btnSair.Caption := pNome;
 end;
 
 end.

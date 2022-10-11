@@ -4,36 +4,27 @@ inherited FrmConsultaPaises: TFrmConsultaPaises
   TextHeight = 13
   inherited btnPesquisar: TButton
     Left = 474
-    TabOrder = 1
     OnClick = btnPesquisarClick
     ExplicitLeft = 474
   end
   inherited btnSair: TButton
     Left = 638
-    TabOrder = 6
     ExplicitLeft = 638
   end
   inherited btnIncluir: TButton
     Left = 395
-    TabOrder = 5
     ExplicitLeft = 395
   end
   inherited btnExcluir: TButton
     Left = 557
-    TabOrder = 4
     ExplicitLeft = 557
   end
   inherited btnAlterar: TButton
     Left = 476
-    TabOrder = 3
     ExplicitLeft = 476
-  end
-  inherited edtPesquisar: TEdit
-    TabOrder = 0
   end
   inherited DBGrid1: TDBGrid
     Left = 8
-    TabOrder = 2
     Columns = <
       item
         Expanded = False

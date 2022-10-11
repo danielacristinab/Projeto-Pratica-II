@@ -111,20 +111,19 @@ var mSql  : string;
     mEstado : Estados;
 begin
   try
-      mEstado := Estados(pObj);
-      mSql := 'delete * from estados where codEstado = '+quotedstr(inttostr(mEstado.getCodigo));
-      umDm.FDTrans.StartTransaction;
-      umDm.qEstados.Active:= false;
-      umDm.qEstados.SQL.Clear;
-      umDm.qEstados.SQL.Add(mSql);
-      umDm.qEstados.Open;
-      umDm.FDTrans.Commit;
-      result := '';
-   except on e: Exception do
-   begin
+    mEstado := Estados(pObj);
+    mSql := 'delete from estados where codEstado = '+inttostr(mEstado.getCodigo);
+    umDm.FDTrans.StartTransaction;
+    umDm.qEstados.Active:= false;
+    umDm.qEstados.SQL.Clear;
+    umDM.qEstados.ExecSQL(mSql);
+    umDm.FDTrans.Commit;
+    result := '';
+  except on e: Exception do
+    begin
       umDm.FDTrans.Rollback;
       result := 'Erro ao Excluir : '  + e.Message;
-   end;
+    end;
   end;
 end;
 

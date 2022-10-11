@@ -1,0 +1,62 @@
+unit uCondicaoPagamento;
+
+interface
+uses uPai, uPessoa;
+type CondicaoPagamento = class (Pessoa)
+  private
+  protected
+    CondicaoPagamento : string[50];
+	  Juros : string[50];
+	  Multa : string[15];
+	  Descontos : string[15];
+	  Prazo : string[50];
+    Porcetagem : string[20];
+    //FormaPag : FormaPagamento;
+ public
+   constructor CrieObj;
+   procedure SetCondPag(pCondPag: string);
+   function GetCondPag : string;
+   function Clone : CondicaoPagamento;
+   destructor Destrua_se;
+end;
+implementation
+
+{ CondicaoPagamento }
+
+function CondicaoPagamento.Clone: CondicaoPagamento;
+begin
+    result := CondicaoPagamento.CrieObj;
+    result.setCodigo(codigo);
+
+    result.setDataCad(DataCad);
+    result.setDataCad(DataUltAlt);
+end;
+
+constructor CondicaoPagamento.CrieObj;
+begin
+  CondicaoPagamento := ' ';
+  Juros := '';
+	Multa := '';
+	Descontos := '';
+	Prazo := '';
+  Porcetagem := '';
+end;
+
+destructor CondicaoPagamento.Destrua_se;
+begin
+
+end;
+
+function CondicaoPagamento.GetCondPag: string;
+begin
+
+end;
+
+procedure CondicaoPagamento.SetCondPag(pCondPag: string);
+begin
+
+end;
+
+end.
+
+

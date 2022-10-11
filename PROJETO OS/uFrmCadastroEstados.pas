@@ -126,7 +126,7 @@ end;
 
 procedure TfrmCadastroEstados.Salvar;
 begin
-  if btnSalvar.Caption = '&Salvar' then
+  if (btnSalvar.Caption = '&Salvar') or (btnSalvar.Caption = '&Alterar') then
   begin
     if length(self.edtEstados.text) = 0 then
       self.edtEstados.Color := clYellow;
@@ -149,19 +149,30 @@ begin
       showmessage('Campo Pais obrigatorio!');
       self.edtPais.SetFocus;
     end
-  else
-    oEstado.SetCodigo(strtoint(edtCodigo.Text));
-    oEstado.SetEstado(edtEstados.Text);
-    oEstado.SetUF(edtUF.Text);
-    oEstado.GetoPais.SetCodigo(strtoint(edtCodPais.Text));
-    oEstado.GetoPais.SetPais(edtPais.Text);
-    oEstado.SetDataCad(edtDataCad.Text);
-    oEstado.SetUltAlt(edtUltAlt.Text);
+    else
+    begin
+      oEstado.SetCodigo(strtoint(edtCodigo.Text));
+      oEstado.SetEstado(edtEstados.Text);
+      oEstado.SetUF(edtUF.Text);
+      oEstado.GetoPais.SetCodigo(strtoint(edtCodPais.Text));
+      oEstado.GetoPais.SetPais(edtPais.Text);
+      oEstado.SetDataCad(edtDataCad.Text);
+      oEstado.SetUltAlt(edtUltAlt.Text);
 
-    aCtrlEstados.salvar(oEstado.Clone);
+      aCtrlEstados.salvar(oEstado.Clone);
+    end;
+    showmessage('Estado salvo com sucesso!');
+  end
+  else if (btnSalvar.Caption = '&Excluir') then
+  begin
+    var m : string;
+    m := aCtrlEstados.Excluir(oEstado);
+    if m = ' ' then
+      showmessage('Estado não pode ser excluido!')
+    else
+      showmessage('Estado excluido com sucesso!');
   end;
-    showmessage('Estado cadastrado com sucesso!');
-    close;
+  close;
 end;
 
 procedure TfrmCadastroEstados.SetConsulta(pObj: TObject);

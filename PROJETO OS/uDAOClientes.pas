@@ -94,23 +94,23 @@ begin
       with umDM.qClientes do
       begin
         if mClientes.getCodigo = 0 then
-        mSql := 'insert into Clientes (nome, datanasc, rg, cpf_cnpj, email, telefone,' +
-        'celular, endereco, numero, bairro, cep, complemento, codcidade)' +
-        'values ( :nome, :datanasc, :rg, :cpf_cnpj, :email, :telefone, :celular,' +
+        mSql := 'insert into Clientes (nome, datanasc, rg, cpf_cnpj, email, telefone, '+
+        'celular, endereco, numero, bairro, cep, complemento, codcidade) '+
+        'values ( :nome, :datanasc, :rg, :cpf_cnpj, :email, :telefone, :celular, '+
         ':endereco, :numero, :bairro, :cep, :complemento, :codcidde)'
         else
         begin
-          mSql := 'update Clientes set nome = :nome , datanasc = :datanasc, rg = :rg,'+
-          'cpf_cnpj = :cpf_cnpj, email = :email, telefone = :telefone, celular = :celular,'+
-          'endereco = :endereco, numero = :numero, bairro = :bairro, cep = :cep,'+
+          mSql := 'update Clientes set nome = :nome , datanasc = :datanasc, rg = :rg, '+
+          'cpf_cnpj = :cpf_cnpj, email = :email, telefone = :telefone, celular = :celular, '+
+          'endereco = :endereco, numero = :numero, bairro = :bairro, cep = :cep, '+
           'complemento = :complemento,  codcidade = :codcidade';
-          mSql := mSql + 'where codCliente = :CodCliente;';
+          mSql := mSql + ' where codCliente = :CodCliente';
         end;
         umDM.qClientes.SQL.Clear;
         umDM.qClientes.SQL.Add(mSql);
         ParamByName('NOME').Value := mClientes.getNome;
         ParamByName('DATANASC').Value := mClientes.getDataNasc;
-        ParamByName('RG').Value := mClientes.getDataNasc;
+        ParamByName('RG').Value := mClientes.getRG;
         ParamByName('CPF_CNPJ').Value := mClientes.getCPF_CNPJ;
         ParamByName('EMAIL').Value := mClientes.getEmail;
         ParamByName('TELEFONE').Value := mClientes.getTelefone;
@@ -123,7 +123,8 @@ begin
         ParamByName('CODCIDADE').Value := mClientes.GetaCidade.GetCodigo;
         if mClientes.GetCodigo <> 0 then
           ParamByName('CODCLIENTE').Value := mClientes.GetCodigo;
-        ExecSQL;
+        ExecSQL();
+        close;
       end;
       umDM.FDTrans.Commit;
     except
@@ -136,20 +137,19 @@ var mSql  : string;
     mClientes : Clientes;
 begin
   try
-      mClientes := Clientes(pObj);
-      mSql := 'delete * from Clientes where codCliente = '+quotedstr(inttostr(mClientes.getCodigo));
-      umDm.FDTrans.StartTransaction;
-      umDm.qClientes.Active:= false;
-      umDm.qClientes.SQL.Clear;
-      umDm.qClientes.SQL.Add(mSql);
-      umDm.qClientes.Open;
-      umDm.FDTrans.Commit;
-      result := '';
-   except on e: Exception do
-   begin
+    mClientes := Clientes(pObj);
+    mSql := 'delete from clientes where codCliente = '+inttostr(mClientes.getCodigo);
+    umDm.FDTrans.StartTransaction;
+    umDm.qClientes.Active:= false;
+    umDm.qClientes.SQL.Clear;
+    umDM.qClientes.ExecSQL(mSql);
+    umDm.FDTrans.Commit;
+    result := '';
+  except on e: Exception do
+    begin
       umDm.FDTrans.Rollback;
       result := 'Erro ao Excluir : '  + e.Message;
-   end;
+    end;
   end;
 end;
 

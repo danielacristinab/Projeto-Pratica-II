@@ -1,0 +1,26 @@
+unit uFrmCadastroMarcas;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmCadastroPai, Vcl.StdCtrls;
+
+type
+  TFrmCadastroPai1 = class(TFrmCadastroPai)
+    edtMarca: TEdit;
+    lblMarca: TLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmCadastroPai1: TFrmCadastroPai1;
+
+implementation
+
+{$R *.dfm}
+
+end.

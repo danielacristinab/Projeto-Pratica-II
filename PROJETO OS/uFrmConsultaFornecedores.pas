@@ -10,7 +10,6 @@ uses
 type
   TFrmConsultaFornecedores = class(TFrmConsultaPai)
     procedure btnPesquisarClick(Sender: TObject);
-    procedure btnExcluirClick(Sender: TObject);
   private
     { Private declarations }
     umCadastroFornecedores : TFrmCadastroFornecedores;
@@ -45,12 +44,8 @@ begin
   umCadastroFornecedores.LimpaEdit;
   umCadastroFornecedores.CarregaEdit;
   umCadastroFornecedores.ShowModal;
-end;
-
-procedure TFrmConsultaFornecedores.btnExcluirClick(Sender: TObject);
-begin
-  inherited;
-  aCtrlFornecedores.Excluir(oFornecedor);
+  self.DBGrid1.DataSource := TDataSource(aCtrlFornecedores.GetDS);
+  aCtrlFornecedores.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TFrmConsultaFornecedores.btnPesquisarClick(Sender: TObject);
@@ -82,6 +77,8 @@ begin
   umCadastroFornecedores.ShowModal;
   umCadastroFornecedores.DesbloqueiEdit;
   umCadastroFornecedores.btnSalvar.Caption := btn_nome;
+  self.DBGrid1.DataSource := TDataSource(aCtrlFornecedores.GetDS);
+  aCtrlFornecedores.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TFrmConsultaFornecedores.Incluir;
@@ -89,6 +86,8 @@ begin
   inherited;
   umCadastroFornecedores.ConhecaObj(oFornecedor, aCtrlFornecedores);
   umCadastroFornecedores.ShowModal;
+  self.DBGrid1.DataSource := TDataSource(aCtrlFornecedores.GetDS);
+  aCtrlFornecedores.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TFrmConsultaFornecedores.Pesquisar;

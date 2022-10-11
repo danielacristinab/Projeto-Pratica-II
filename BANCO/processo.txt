@@ -1,0 +1,20 @@
+dados do assistente tecnico,  quesitos(perguntas) para o perito
+nome completo, rg , cpf, profissão, endereço, email, whatsapp
+
+TESTEMUNHAS
+
+Nome: Jose Augusto Chiarelli Hartmann de Carvalho
+RG: 
+CPF: 096.742.159-48 
+Endereço: Av Pedro Basso 472, sala 402 alto são francisco
+Profissão: 
+Email: xaveiro_arch@hotmail.com
+Whatsapp: 45 99821-0237
+
+Nome: Rodrigo de Tarcio Oliveria
+RG: 
+CPF: 
+Endereço: Avenida Felipe Wandscheer, 2645
+Profissão: 
+Email: 
+Whatsapp: 

@@ -1,0 +1,3 @@
+insert into Fornecedores (cnpj, razaocial, nomefantasia, telefone, email, site, rg_ie, endereco, numero, bairro, cep, complemento, codcidade) values ('40589436000182', 'danielaecia', 'quazla', '32208067', 'quazla.com', 'quazla.com',  '1074603365', 'rua jose castagnaro', 618, 'panorama', 85856655, 'casa', 1000);
+
+insert into Clientes (nome, datanasc, rg, cpf_cnpj, email, telefone, celular, endereco, numero, bairro, cep, complemento, codcidade) values ('jose', '02041994', '256984785', '01236547895', 'jose.hart', '35231563', '45999415210', 'rua espirito santo', 970, 'maracana', 85852000, 'casa', 1000);

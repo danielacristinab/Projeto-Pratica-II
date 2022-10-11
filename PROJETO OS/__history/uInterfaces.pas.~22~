@@ -1,0 +1,232 @@
+unit uInterfaces;
+
+interface
+uses
+  uFrmConsultaPaises, uFrmConsultaEstados, uFrmConsultaCidades,
+  uFrmCadastroPaises, uFrmCadastroEstados, uFrmCadastroCidades,
+  uFrmConsultaClientes, uFrmConsultaFornecedores, uFrmConsultaFuncionarios,
+  uFrmCadastroClientes, uFrmCadastroFornecedor, uFrmCadastroFuncionarios,
+  uFrmCadastroCargos, uFrmConsultaCargos, uFrmCadastroModelos,
+  uFrmConsultaModelos, uFrmCadastroMarcas, uFrmConsultaMarcas,
+  uFrmConsultaGrupos, uFrmCadastroGrupos, uFrmCadastroProdutos,
+  uFrmConsultaProdutos, uFrmCadastroCondicaoPagamento, uFrmConsultaCondicaoPagamento,
+  uFrmConsultaFormasPagamento, uFrmCadastroFormasPagamento;
+type Interfaces = class
+  private
+
+  protected
+    umFrmConsultaPaises  : TFrmConsultaPaises;
+    umFrmConsultaEstados : TFrmConsultaEstados;
+    umFrmConsultaCidades : TfrmConsultaCidades;
+    umFrmConsultaClientes : TFrmConsultaClientes;
+    umFrmConsultaFornecedores : TFrmConsultaFornecedores;
+    umFrmConsultaFuncionarios : TFrmConsultaFuncionarios;
+    umFrmConsultaCargos : TFrmConsultaCargos;
+    umFrmConsultaModelos : TFrmConsultaModelos;
+    umFrmConsultaMarcas : TFrmConsultaMarcas;
+    umFrmConsultaGrupos : TFrmConsultaGrupos;
+    umFrmConsultaProdutos : TFrmConsultaProdutos;
+    umFrmConsultaCondPag : TFrmConsultaCondicaoPagamento;
+    umFrmConsultaFormasPag : TFrmConsultaFormasPagamento;
+
+    umFrmCadastroPaises  : TFrmCadastroPaises;
+    umFrmCadastroEstados : TFrmCadastroEstados;
+    umFrmCadastroCidades : TFrmCadastroCidades;
+    umFrmCadastroClientes : TFrmCadastroClientes;
+    umFrmCadastroFornecedores : TFrmCadastroFornecedores;
+    umFrmCadastroFuncionarios : TFrmCadastroFuncionarios;
+    umFrmCadastroCargos : TFrmCadastroCargos;
+    umFrmCadastroModelos : TFrmCadastroModelos;
+    umFrmCadastroMarcas : TFrmCadastroMarcas;
+    umFrmCadastroGrupos : TFrmCadastroGrupos;
+    umFrmCadastroProdutos : TFrmCadastroProdutos;
+    umFrmCadastroCondPag : TFrmCadastroCondicaoPagamento;
+    umFrmCadastroFormasPag : TFrmCadastroFormasPagamento;
+
+  public
+    constructor CrieObj;
+    destructor Destrua_se;
+    procedure PDPaises(pObj, pCtrl : TObject);
+    procedure PDEstados(pObj, pCtrl : TObject);
+    procedure PDCidades(pObj, pCtrl : TObject);
+    procedure PDClientes(pObj, pCtrl : TObject);
+    procedure PDFornecedores(pObj, pCtrl : TObject);
+    procedure PDFuncionarios(pObj, pCtrl : TObject);
+    procedure PDCargos(pObj, pCtrl : TObject);
+    procedure PDModelos(pObj, pCtrl : TObject);
+    procedure PDMarcas(pObj, pCtrl : TObject);
+    procedure PDGrupos(pObj, pCtrl : TObject);
+    procedure PDProdutos(pObj, pCtrl : TObject);
+    procedure PDCondPag(pObj, pCtrl : TObject);
+    procedure PDFormasPag(pObj, pCtrl : TObject);
+
+end;
+
+implementation
+
+{ Interfaces }
+
+constructor Interfaces.CrieObj;
+begin
+  umFrmConsultaPaises  := TFrmConsultaPaises.Create(nil);
+  umFrmConsultaEstados := TFrmConsultaEstados.Create(nil);
+  umFrmConsultaCidades := TFrmConsultaCidades.Create(nil);
+  umFrmConsultaClientes := TFrmConsultaClientes.Create(nil);
+  umFrmConsultaFornecedores := TFrmConsultaFornecedores.Create(nil);
+  umFrmConsultaFuncionarios := TFrmConsultaFuncionarios.Create(nil);
+  umFrmConsultaCargos := TFrmConsultaCargos.Create(nil);
+  umFrmConsultaModelos := TFrmConsultaModelos.Create(nil);
+  umFrmConsultaMarcas := TFrmConsultaMarcas.Create(nil);
+  umFrmConsultaGrupos := TFrmConsultaGrupos.Create(nil);
+  umFrmConsultaProdutos := TFrmConsultaProdutos.Create(nil);
+  umFrmConsultaCondPag := TFrmConsultaCondicaoPagamento(nil);
+  umFrmConsultaFormasPag := TFrmConsultaFormasPagamento(nil);
+
+  umFrmCadastroPaises := TFrmCadastroPaises.Create(nil);
+  umFrmCadastroEstados := TFrmCadastroEstados.Create(nil);
+  umFrmCadastroCidades := TFrmCadastroCidades.Create(nil);
+  umFrmCadastroClientes := TFrmCadastroClientes.Create(nil);
+  umFrmCadastroFuncionarios := TFrmCadastroFuncionarios.Create(nil);
+  umFrmCadastrofornecedores := TFrmCadastroFornecedores.Create(nil);
+  umFrmCadastroCargos := TFrmCadastroCargos.Create(nil);
+  umFrmCadastroModelos := TFrmCadastroModelos.Create(nil);
+  umFrmCadastroMarcas := TFrmCadastroMarcas.Create(nil);
+  umFrmCadastroGrupos := TFrmCadastroGrupos.Create(nil);
+  umFrmCadastroProdutos := TFrmCadastroProdutos.Create(nil);
+  umFrmCadastroCondPag := TFrmCadastroCondicaoPagamento.Create(nil);
+  umFrmCadastroFormasPag := TFrmCadastroFormasPagamento.Create(nil);
+
+  umFrmConsultaPaises.SetCadastro(umFrmCadastroPaises);
+  umFrmConsultaEstados.SetCadastro(umFrmCadastroEstados);
+  umFrmConsultaCidades.SetCadastro(umFrmCadastroCidades);
+  umFrmConsultaClientes.SetCadastro(umFrmCadastroClientes);
+  umFrmConsultaFornecedores.SetCadastro(umFrmCadastroFornecedores);
+  umFrmConsultaFuncionarios.SetCadastro(umFrmCadastroFuncionarios);
+  umFrmConsultaCargos.SetCadastro(umFrmCadastroCargos);
+  umFrmConsultaModelos.SetCadastro(umFrmCadastroModelos);
+  umFrmConsultaMarcas.SetCadastro(umFrmCadastroMarcas);
+  umFrmConsultaGrupos.SetCadastro(umFrmCadastroGrupos);
+  umFrmConsultaProdutos.SetCadastro(umFrmCadastroProdutos);
+ // umFrmConsultaCondPag.SetCadastro(umFrmCadastroCondPag);
+  umFrmConsultaFormasPag.SetCadastro(umFrmCadastroFormasPag);
+
+  umFrmCadastroEstados.SetConsulta(umFrmConsultaPaises);
+  umFrmCadastroCidades.SetConsulta(umFrmConsultaEstados);
+  umFrmCadastroClientes.SetConsulta(umFrmConsultaCidades);
+  umFrmCadastroFornecedores.SetConsulta(umFrmConsultaCidades);
+  umFrmCadastroFuncionarios.SetConsulta(umFrmConsultaCidades);
+  umFrmCadastroModelos.SetConsulta(umFrmConsultaMarcas);
+  umFrmCadastroProdutos.SetConsulta(umFrmConsultaModelos);
+
+end;
+
+destructor Interfaces.Destrua_se;
+begin
+  umFrmConsultaPaises.FreeInstance;
+  umFrmConsultaEstados.FreeInstance;
+  umFrmConsultaCidades.FreeInstance;
+  umFrmConsultaClientes.FreeInstance;
+  umFrmConsultaFornecedores.FreeInstance;
+  umFrmConsultaFuncionarios.FreeInstance;
+  umFrmConsultaCargos.FreeInstance;
+  umFrmConsultaModelos.FreeInstance;
+  umFrmConsultaMarcas.FreeInstance;
+  umFrmConsultaGrupos.FreeInstance;
+  umFrmConsultaProdutos.FreeInstance;
+  umFrmConsultaCondPag.FreeInstance;
+  umFrmConsultaFormasPag.FreeInstance;
+
+  umFrmCadastroPaises.FreeInstance;
+  umFrmCadastroEstados.FreeInstance;
+  umFrmCadastroCidades.FreeInstance;
+  umFrmCadastroClientes.FreeInstance;
+  umFrmCadastroFuncionarios.FreeInstance;
+  umFrmCadastrofornecedores.FreeInstance;
+  umFrmCadastroCargos.FreeInstance;
+  umFrmCadastroModelos.FreeInstance;
+  umFrmCadastroMarcas.FreeInstance;
+  umFrmCadastroGrupos.FreeInstance;
+  umFrmCadastroProdutos.FreeInstance;
+  umFrmCadastroCondPag.FreeInstance;
+  umFrmCadastroFormasPag.FreeInstance;
+end;
+
+procedure Interfaces.PDCargos(pObj, pCtrl: TObject);
+begin
+  umFrmConsultaCargos.ConhecaObj(pObj, pCtrl);
+  umFrmConsultaCargos.ShowModal;
+end;
+
+procedure Interfaces.PDCidades(pObj, pCtrl : TObject);
+begin
+  umFrmConsultacidades.ConhecaObj(pObj, pCtrl);
+  umFrmConsultaCidades.ShowModal;
+end;
+
+procedure Interfaces.PDClientes(pObj, pCtrl: TObject);
+begin
+  umFrmConsultaClientes.ConhecaObj(pObj, pCtrl);
+  umFrmConsultaClientes.ShowModal;
+end;
+
+procedure Interfaces.PDCondPag(pObj, pCtrl: TObject);
+begin
+  umFrmConsultaCondPag.ConhecaObj(pObj, pCtrl);
+  umFrmConsultaCondPag.ShowModal;
+end;
+
+procedure Interfaces.PDEstados(pObj, pCtrl : TObject);
+begin
+  umFrmConsultaEstados.ConhecaObj(pObj, pCtrl);
+  umFrmConsultaEstados.ShowModal;
+end;
+
+procedure Interfaces.PDFormasPag(pObj, pCtrl: TObject);
+begin
+  umFrmConsultaFormasPag.ConhecaObj(pObj, pCtrl);
+  umFrmConsultaFormasPag.ShowModal;
+end;
+
+procedure Interfaces.PDFornecedores(pObj, pCtrl: TObject);
+begin
+  umFrmConsultaFornecedores.ConhecaObj(pObj, pCtrl);
+  umFrmConsultaFornecedores.ShowModal;
+end;
+
+procedure Interfaces.PDFuncionarios(pObj, pCtrl: TObject);
+begin
+  umFrmConsultaFuncionarios.ConhecaObj(pObj, pCtrl);
+  umFrmConsultaFuncionarios.ShowModal;
+end;
+
+procedure Interfaces.PDGrupos(pObj, pCtrl: TObject);
+begin
+  umFrmConsultaGrupos.ConhecaObj(pObj, pCtrl);
+  umFrmConsultaGrupos.ShowModal;
+end;
+
+procedure Interfaces.PDMarcas(pObj, pCtrl: TObject);
+begin
+  umFrmConsultaMarcas.ConhecaObj(pObj, pCtrl);
+  umFrmConsultaMarcas.ShowModal;
+end;
+
+procedure Interfaces.PDModelos(pObj, pCtrl: TObject);
+begin
+  umFrmConsultaModelos.ConhecaObj(pObj, pCtrl);
+  umFrmConsultaModelos.ShowModal;
+end;
+
+procedure Interfaces.PDPaises(pObj, pCtrl : TObject);
+begin
+  umFrmConsultaPaises.ConhecaObj(pObj, pCtrl);
+  umFrmConsultaPaises.ShowModal;
+end;
+
+procedure Interfaces.PDProdutos(pObj, pCtrl: TObject);
+begin
+  umFrmConsultaProdutos.ConhecaObj(pObj, pCtrl);
+  umFrmConsultaProdutos.ShowModal;
+end;
+
+end.

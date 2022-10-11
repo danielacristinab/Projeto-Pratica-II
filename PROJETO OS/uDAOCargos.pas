@@ -106,12 +106,11 @@ var mSql  : string;
 begin
   try
       mCargos := Cargos(pObj);
-      mSql := 'delete * from Cargos where codCargo = '+quotedstr(inttostr(mCargos.getCodigo));
+      mSql := 'delete from cargos where codCargo = '+inttostr(mCargos.getCodigo);
       umDm.FDTrans.StartTransaction;
       umDm.qCargos.Active:= false;
       umDm.qCargos.SQL.Clear;
-      umDm.qCargos.SQL.Add(mSql);
-      umDm.qCargos.Open;
+      umDM.qCargos.ExecSQL(mSql);
       umDm.FDTrans.Commit;
       result := '';
    except on e: Exception do

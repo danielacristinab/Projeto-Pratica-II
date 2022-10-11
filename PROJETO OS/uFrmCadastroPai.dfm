@@ -35,6 +35,13 @@ object FrmCadastroPai: TFrmCadastroPai
     Height = 13
     Caption = 'Ultima Altera'#231#227'o'
   end
+  object lblUser: TLabel
+    Left = 256
+    Top = 376
+    Width = 36
+    Height = 13
+    Caption = 'Usuario'
+  end
   object edtCodigo: TEdit
     Left = 24
     Top = 40
@@ -62,10 +69,11 @@ object FrmCadastroPai: TFrmCadastroPai
     OnClick = btnSalvarClick
   end
   object edtDataCad: TEdit
-    Left = 24
+    Left = 26
     Top = 395
     Width = 81
     Height = 21
+    Enabled = False
     TabOrder = 3
   end
   object edtUltAlt: TEdit
@@ -73,6 +81,15 @@ object FrmCadastroPai: TFrmCadastroPai
     Top = 395
     Width = 89
     Height = 21
+    Enabled = False
     TabOrder = 4
+  end
+  object edtUser: TEdit
+    Left = 256
+    Top = 395
+    Width = 89
+    Height = 21
+    Enabled = False
+    TabOrder = 5
   end
 end

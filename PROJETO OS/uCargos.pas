@@ -2,7 +2,7 @@ unit uCargos;
 
 interface
 uses uPai, uPessoa;
-type Cargos = class (Pessoa)
+type Cargos = class (Pai)
    private
    protected
       Cargo : string[25];
@@ -28,12 +28,13 @@ end;
 
 constructor Cargos.CrieObj;
 begin
+  inherited;
   cargo := ' ';
 end;
 
 destructor Cargos.Destrua_se;
 begin
-
+  inherited;
 end;
 
 function Cargos.GetCargo: string;

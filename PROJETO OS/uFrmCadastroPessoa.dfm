@@ -1,7 +1,23 @@
 inherited FrmCadastroPessoa: TFrmCadastroPessoa
   Caption = 'Cadastro Pessoa'
+  ClientHeight = 470
+  ClientWidth = 725
+  ExplicitWidth = 741
+  ExplicitHeight = 509
   PixelsPerInch = 96
   TextHeight = 13
+  inherited lblDataCad: TLabel
+    Left = 28
+    Top = 420
+    ExplicitLeft = 28
+    ExplicitTop = 420
+  end
+  inherited lblUltAlt: TLabel
+    Left = 138
+    Top = 420
+    ExplicitLeft = 138
+    ExplicitTop = 420
+  end
   object lblEndereco: TLabel [3]
     Left = 24
     Top = 72
@@ -50,6 +66,30 @@ inherited FrmCadastroPessoa: TFrmCadastroPessoa
     Width = 33
     Height = 13
     Caption = 'Cidade'
+  end
+  inherited btnSair: TButton
+    Left = 626
+    Top = 437
+    ExplicitLeft = 626
+    ExplicitTop = 437
+  end
+  inherited btnSalvar: TButton
+    Left = 545
+    Top = 437
+    ExplicitLeft = 545
+    ExplicitTop = 437
+  end
+  inherited edtDataCad: TEdit
+    Left = 26
+    Top = 439
+    ExplicitLeft = 26
+    ExplicitTop = 439
+  end
+  inherited edtUltAlt: TEdit
+    Left = 138
+    Top = 439
+    ExplicitLeft = 138
+    ExplicitTop = 439
   end
   object edtEndereco: TEdit
     Left = 24

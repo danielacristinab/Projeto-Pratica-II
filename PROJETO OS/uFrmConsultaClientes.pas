@@ -45,6 +45,8 @@ begin
   umCadastroClientes.LimpaEdit;
   umCadastroClientes.CarregaEdit;
   umCadastroClientes.ShowModal;
+  self.DBGrid1.DataSource := TDataSource(aCtrlClientes.GetDS);
+  aCtrlClientes.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TFrmConsultaClientes.btnPesquisarClick(Sender: TObject);
@@ -63,10 +65,21 @@ begin
 end;
 
 procedure TFrmConsultaClientes.Excluir;
+var btn_nome : string;
 begin
   inherited;
-  umCadastroClientes.ConhecaObj(oCliente, aCtrlClientes);
+  aCtrlClientes.carregar(oCliente);
+  umCadastroClientes.conhecaObj(oCliente, aCtrlClientes);
+  umCadastroClientes.limpaEdit;
+  umCadastroClientes.carregaEdit;
+  btn_nome := umCadastroClientes.btnSalvar.Caption;
+  umCadastroClientes.btnSalvar.Caption := '&Excluir';
+  umCadastroClientes.bloqueiaEdit;
   umCadastroClientes.ShowModal;
+  umCadastroClientes.DesbloqueiEdit;
+  umCadastroClientes.btnSalvar.Caption := btn_nome;
+  self.DBGrid1.DataSource := TDataSource(aCtrlClientes.GetDS);
+  aCtrlClientes.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TFrmConsultaClientes.Incluir;
@@ -75,6 +88,8 @@ begin
   umCadastroClientes.ConhecaObj(oCliente, aCtrlClientes);
   umCadastroClientes.LimpaEdit;
   umCadastroClientes.ShowModal;
+  self.DBGrid1.DataSource := TDataSource(aCtrlClientes.GetDS);
+  aCtrlClientes.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TFrmConsultaClientes.Pesquisar;

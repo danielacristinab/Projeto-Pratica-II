@@ -59,15 +59,30 @@ begin
 end;
 
 procedure TfrmConsultaEstados.Excluir;
+var btn_nome : string;
 begin
-  umCadastroEstados.ConhecaObj(oEstado, aCtrlEstado);
+  inherited;
+  aCtrlEstado.carregar(oEstado);
+  umCadastroEstados.conhecaObj(oEstado, aCtrlEstado);
+  umCadastroEstados.limpaEdit;
+  umCadastroEstados.carregaEdit;
+  btn_nome := umCadastroEstados.btnSalvar.Caption;
+  umCadastroEstados.btnSalvar.Caption := '&Excluir';
+  umCadastroEstados.bloqueiaEdit;
   umCadastroEstados.ShowModal;
+  umCadastroEstados.DesbloqueiEdit;
+  umCadastroEstados.btnSalvar.Caption := btn_nome;
+  self.DBGrid1.DataSource := TDataSource(aCtrlEstado.GetDS);
+  aCtrlEstado.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TfrmConsultaEstados.Incluir;
 begin
+  inherited;
   umCadastroEstados.ConhecaObj(oEstado, aCtrlEstado);
   umCadastroEstados.ShowModal;
+  self.DBGrid1.DataSource := TDataSource(aCtrlEstado.GetDS);
+  aCtrlEstado.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TfrmConsultaEstados.Alterar;
@@ -79,6 +94,8 @@ begin
   umCadastroEstados.LimpaEdit;
   umCadastroEstados.CarregaEdit;
   umCadastroEstados.ShowModal;
+  self.DBGrid1.DataSource := TDataSource(aCtrlEstado.GetDS);
+  aCtrlEstado.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TfrmConsultaEstados.Pesquisar;

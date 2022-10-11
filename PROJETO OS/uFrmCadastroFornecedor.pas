@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   uFrmCadastroPessoa, Vcl.StdCtrls, uFornecedores, uCtrlFornecedores,
-  uFrmConsultaCidades;
+  uFrmConsultaCidades, uCidades;
 
 type
   TFrmCadastroFornecedores = class(TFrmCadastroPessoa)
@@ -24,6 +24,7 @@ type
     edtCNPJ: TEdit;
     edtTelefone: TEdit;
     edtEmail: TEdit;
+    procedure btnPesquisarClick(Sender: TObject);
   private
     { Private declarations }
     umFrmConsultaCidades : TFrmConsultaCidades;
@@ -70,6 +71,22 @@ begin
   edtCidade.Enabled       := false;
   edtDataCad.Enabled      := false;
   edtUltAlt.Enabled       := false;
+end;
+
+procedure TFrmCadastroFornecedores.btnPesquisarClick(Sender: TObject);
+var btn_nome : string;
+    aCidade  : Cidades;
+begin
+  inherited;
+  aCidade := Cidades.CrieObj;
+  btn_nome := umFrmConsultaCidades.btnSair.Caption;
+  umFrmConsultaCidades.btnSair.Caption := 'Selecionar';
+  umFrmConsultaCidades.ConhecaObj(aCidade,aCtrlFornecedores.GetaCtrlCidade);
+  umFrmConsultaCidades.ShowModal;
+  umFrmConsultaCidades.btnSair.Caption := btn_nome;
+  self.edtCodCidade.Text := inttostr(aCidade.GetCodigo);
+  self.edtCidade.Text := aCidade.GetCidade;
+  oFornecedor.setaCidade(aCidade);
 end;
 
 procedure TFrmCadastroFornecedores.CarregaEdit;
@@ -150,7 +167,7 @@ end;
 
 procedure TFrmCadastroFornecedores.Salvar;
 begin
-   if btnSalvar.Caption = '&Salvar' then
+  if (btnSalvar.Caption = '&Salvar') or (btnSalvar.Caption = '&Alterar') then
   begin
     if length(self.edtNomeFantasia.text) = 0 then
       self.edtNomeFantasia.Color := clYellow;
@@ -229,30 +246,36 @@ begin
       showmessage('Campo Cidade obrigatorio!');
       self.edtCidade.SetFocus;
     end
+    else
+    begin
+      oFornecedor.SetCodigo(strtoint(edtCodigo.Text));
+      oFornecedor.SetCNPJ(edtCNPJ.Text);
+      oFornecedor.SetRazaoSocial(edtRazaoSocial.Text);
+      oFornecedor.SetApelidoNomeFantasia(edtNomeFantasia.Text);
+      oFornecedor.SetTelefone(edtTelefone.Text);
+      oFornecedor.SetEmail(edtEmail.Text);
+      oFornecedor.SetSite(edtSite.Text);
+      oFornecedor.SetRG_IE(edtRG_IE.Text);
+      oFornecedor.SetEndereco(edtEndereco.Text);
+      oFornecedor.SetNumero(strtoint(edtNumero.Text));
+      oFornecedor.SetCep(strtoint(edtCEP.Text));
+      oFornecedor.SetBairro(edtBairro.Text);
+      oFornecedor.SetComplemento(edtComplemento.Text);
+      oFornecedor.GetaCidade.SetCodigo(strtoint(edtCodCidade.Text));
+      oFornecedor.GetaCidade.SetCidade(edtCidade.Text);
+      oFornecedor.SetDataCad(edtDataCad.Text);
+      oFornecedor.SetUltAlt(edtUltAlt.Text);
 
-  else
-    oFornecedor.SetCodigo(strtoint(edtCodigo.Text));
-    oFornecedor.SetCNPJ(edtCNPJ.Text);
-    oFornecedor.SetRazaoSocial(edtRazaoSocial.Text);
-    oFornecedor.SetApelidoNomeFantasia(edtNomeFantasia.Text);
-    oFornecedor.SetTelefone(edtTelefone.Text);
-    oFornecedor.SetEmail(edtEmail.Text);
-    oFornecedor.SetSite(edtSite.Text);
-    oFornecedor.SetRG_IE(edtRG_IE.Text);
-    oFornecedor.SetEndereco(edtEndereco.Text);
-    oFornecedor.SetNumero(strtoint(edtNumero.Text));
-    oFornecedor.SetCep(strtoint(edtCEP.Text));
-    oFornecedor.SetBairro(edtBairro.Text);
-    oFornecedor.SetComplemento(edtComplemento.Text);
-    oFornecedor.GetaCidade.SetCodigo(strtoint(edtCodCidade.Text));
-    oFornecedor.GetaCidade.SetCidade(edtCidade.Text);
-    oFornecedor.SetDataCad(edtDataCad.Text);
-    oFornecedor.SetUltAlt(edtUltAlt.Text);
-
-    aCtrlFornecedores.salvar(oFornecedor.Clone);
+      aCtrlFornecedores.salvar(oFornecedor.Clone);
+    end;
+    showmessage('Fornecedor salvo com sucesso!');
+  end
+  else if (btnSalvar.Caption = '&Excluir') then
+  begin
+    aCtrlFornecedores.Excluir(oFornecedor);
+    showmessage('Fornecedor excluido com sucesso!');
   end;
-    showmessage('Fornecedor cadastrado com sucesso!');
-    close;
+  close;
 end;
 
 procedure TFrmCadastroFornecedores.SetConsulta(pObj: TObject);

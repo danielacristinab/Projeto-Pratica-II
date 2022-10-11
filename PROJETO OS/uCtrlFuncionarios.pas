@@ -1,21 +1,25 @@
 unit uCtrlFuncionarios;
 
 interface
-uses uController, Data.DB, uFuncionarios, uCtrlCidades, uDAOFuncionarios;
+uses uController, Data.DB, uFuncionarios, uCtrlCidades, uDAOFuncionarios, uCtrlCargos;
   type CtrlFuncionarios = class (controller)
     private
     protected
       aDaoFuncionarios : DAOFuncionarios;
       aCtrlCidade : CtrlCidades;
+      aCtrlCargos : CtrlCargos;
     public
       constructor CrieObj;
       procedure SetaCtrlCidade(pObj: TObject);
       function GetaCtrlCidade: CtrlCidades;
+      procedure SetaCtrlCargos(pObj: TObject);
+      function GetaCtrlCargos: CtrlCargos;
       procedure SetDM(pDM : TObject);           override;
       function GetDS: TDataSource;              override;
       function salvar(pObj: TObject): string;   override;
       function Pesquisar(pChave: string): string; override;
       function Carregar(pObj: TObject): string;   override;
+      function Excluir(pObj: TObject): string;    override;
       function AcheiReg: boolean;
       destructor Destrua_se;
   end;
@@ -43,6 +47,16 @@ begin
   aDaoFuncionarios.Destrua_se;
 end;
 
+function CtrlFuncionarios.Excluir(pObj: TObject): string;
+begin
+  aDaoFuncionarios.Excluir(pObj);
+end;
+
+function CtrlFuncionarios.GetaCtrlCargos: CtrlCargos;
+begin
+  result := aCtrlCargos;
+end;
+
 function CtrlFuncionarios.GetaCtrlCidade: CtrlCidades;
 begin
   result := aCtrlCidade;
@@ -61,6 +75,11 @@ end;
 function CtrlFuncionarios.salvar(pObj: TObject): string;
 begin
     result := aDaoFuncionarios.Salvar(pObj);
+end;
+
+procedure CtrlFuncionarios.SetaCtrlCargos(pObj: TObject);
+begin
+  aCtrlCargos := CtrlCargos(pObj);
 end;
 
 procedure CtrlFuncionarios.SetaCtrlCidade(pObj: TObject);

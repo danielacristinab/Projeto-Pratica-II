@@ -99,7 +99,11 @@ inherited FrmCadastroClientes: TFrmCadastroClientes
     ExplicitTop = 137
   end
   inherited edtCEP: TEdit
+    Left = 324
+    Top = 137
     TabOrder = 5
+    ExplicitLeft = 324
+    ExplicitTop = 137
   end
   inherited edtBairro: TEdit
     Left = 470
@@ -114,7 +118,9 @@ inherited FrmCadastroClientes: TFrmCadastroClientes
     ExplicitTop = 215
   end
   inherited edtCidade: TEdit
+    Top = 215
     TabOrder = 19
+    ExplicitTop = 215
   end
   inherited btnPesquisar: TButton
     Left = 474
@@ -123,7 +129,7 @@ inherited FrmCadastroClientes: TFrmCadastroClientes
     ExplicitLeft = 474
   end
   object edtNome: TEdit
-    Left = 78
+    Left = 75
     Top = 45
     Width = 619
     Height = 21
@@ -138,7 +144,7 @@ inherited FrmCadastroClientes: TFrmCadastroClientes
     TabOrder = 13
   end
   object edtRG: TEdit
-    Left = 8
+    Left = 19
     Top = 315
     Width = 225
     Height = 21

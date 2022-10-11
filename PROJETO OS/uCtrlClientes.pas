@@ -16,6 +16,7 @@ uses uController, Data.DB, uClientes, uCtrlCidades, uDAOClientes;
       function salvar(pObj: TObject): string;   override;
       function Pesquisar(pChave: string): string; override;
       function Carregar(pObj: TObject): string;   override;
+      function Excluir(pObj: TObject): string;    override;
       function AcheiReg: boolean;
       destructor Destrua_se;
   end;
@@ -41,6 +42,11 @@ end;
 destructor CtrlClientes.Destrua_se;
 begin
   aDaoClientes.Destrua_se;
+end;
+
+function CtrlClientes.Excluir(pObj: TObject): string;
+begin
+  aDaoClientes.Excluir(pObj);
 end;
 
 function CtrlClientes.GetaCtrlCidade: CtrlCidades;

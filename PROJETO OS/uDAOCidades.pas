@@ -96,7 +96,7 @@ begin
         ParamByName('CODESTADO').Value := mCidades.getoEstado.GetCodigo;
         if mCidades.GetCodigo <> 0 then
           ParamByName('CODCIDADE').Value := mCidades.GetCodigo;
-        ExecSQL;
+      ExecSQL;
       end;
       umDM.FDTrans.Commit;
     except
@@ -109,20 +109,19 @@ var mSql  : string;
     mCidade : Cidades;
 begin
   try
-      mCidade := Cidades(pObj);
-      mSql := 'delete * from cidades where codEstado = '+quotedstr(inttostr(mCidade.getCodigo));
-      umDm.FDTrans.StartTransaction;
-      umDm.qCidades.Active:= false;
-      umDm.qCidades.SQL.Clear;
-      umDm.qCidades.SQL.Add(mSql);
-      umDm.qCidades.Open;
-      umDm.FDTrans.Commit;
-      result := '';
-   except on e: Exception do
-   begin
+    mCidade := Cidades(pObj);
+    mSql := 'delete from cidades where codCidade = '+inttostr(mCidade.getCodigo);
+    umDm.FDTrans.StartTransaction;
+    umDm.qCidades.Active:= false;
+    umDm.qCidades.SQL.Clear;
+    umDM.qCidades.ExecSQL(mSql);
+    umDm.FDTrans.Commit;
+    result := '';
+  except on e: Exception do
+    begin
       umDm.FDTrans.Rollback;
       result := 'Erro ao Excluir : '  + e.Message;
-   end;
+    end;
   end;
 end;
 

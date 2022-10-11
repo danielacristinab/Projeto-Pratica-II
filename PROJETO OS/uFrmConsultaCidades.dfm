@@ -12,13 +12,10 @@ inherited FrmConsultaCidades: TFrmConsultaCidades
     TabOrder = 6
   end
   inherited btnIncluir: TButton
-    TabOrder = 5
+    TabOrder = 3
   end
   inherited btnExcluir: TButton
-    TabOrder = 4
-  end
-  inherited btnAlterar: TButton
-    TabOrder = 3
+    TabOrder = 5
   end
   inherited edtPesquisar: TEdit
     TabOrder = 0

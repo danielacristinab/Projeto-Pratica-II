@@ -1,0 +1,88 @@
+unit uDAOFormaPag;
+
+interface
+uses uDAO, uFormaPagamento, Data.DB, System.SysUtils;
+  type DAOFormaPag = class   (DAO)
+    private
+    protected
+    public
+      constructor CrieObj;
+      function GetDS: TDataSource;                override;
+      function Salvar(pObj: TObject): string;     override;
+      function Carregar(pObj: TObject): string;   override;
+      function Pesquisar(pChave: string): string; override;
+      function Excluir(pObj: TObject): string;    override;
+      function AcheiReg() : boolean;
+      destructor Destrua_se;
+  end;
+
+implementation
+
+{ DAOFormaPag }
+
+function DAOFormaPag.AcheiReg: boolean;
+begin
+  result := not (umDM.qFormaPag.Eof);
+end;
+
+function DAOFormaPag.Carregar(pObj: TObject): string;
+var mFormaPag : FormaPagamento;
+begin
+  try
+   try
+      mFormaPag := FormaPagamento(pObj);
+      with umDM.qFormaPag DO
+      begin
+        mFormaPag := FormaPagamento(pObj);
+        mFormaPag.SetCodigo(umDM.qFormaPag.FieldByName('CODFORMAPAG').value);
+        mFormaPag.SetFormaPagamento(umDM.qFormaPag.FieldByName('FORMAPAG').Value);
+        result := '';
+      end;
+   except on e:exception do
+      result:= 'Erro ao carregar: '+ e.Message;
+   end;
+ finally
+ end;
+end;
+
+constructor DAOFormaPag.CrieObj;
+begin
+  inherited;
+end;
+
+destructor DAOFormaPag.Destrua_se;
+begin
+
+end;
+
+function DAOFormaPag.Excluir(pObj: TObject): string;
+begin
+
+end;
+
+function DAOFormaPag.GetDS: TDataSource;
+begin
+  result := umDm.DSFormaPag;
+end;
+
+function DAOFormaPag.Pesquisar(pChave: string): string;
+var mSql: string;
+begin
+  if pChave <> '' then
+    if ehNumero(pChave) then
+      mSql := 'select * from FormasPagamento where codFormaPag = '+quotedstr(pChave)
+    else
+      mSql := 'select * from FormasPagamento where formapag = '+quotedstr(pChave)+' order by formapag'
+  else
+    mSql := 'select * from FormasPagamento order by formapag';
+  umDM.qFormaPag.Active := false;
+  umDM.qFormaPag.SQL.Text := mSql;
+  umDM.qFormaPag.Open();
+end;
+
+function DAOFormaPag.Salvar(pObj: TObject): string;
+begin
+
+end;
+
+end.

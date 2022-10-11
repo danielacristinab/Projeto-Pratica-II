@@ -3,7 +3,7 @@ inherited FrmCadastroEstados: TFrmCadastroEstados
   PixelsPerInch = 96
   TextHeight = 13
   object lblEstado: TLabel [3]
-    Left = 215
+    Left = 80
     Top = 8
     Width = 33
     Height = 13
@@ -30,12 +30,24 @@ inherited FrmCadastroEstados: TFrmCadastroEstados
     Height = 13
     Caption = 'Codigo Pais'
   end
-  object edtEstados: TEdit
-    Left = 168
-    Top = 40
-    Width = 209
-    Height = 21
+  inherited btnSair: TButton
     TabOrder = 5
+  end
+  inherited btnSalvar: TButton
+    TabOrder = 4
+  end
+  inherited edtDataCad: TEdit
+    TabOrder = 6
+  end
+  inherited edtUltAlt: TEdit
+    TabOrder = 7
+  end
+  object edtEstados: TEdit
+    Left = 80
+    Top = 40
+    Width = 281
+    Height = 21
+    TabOrder = 1
     OnExit = edtEstadosExit
   end
   object edtUF: TEdit
@@ -43,14 +55,14 @@ inherited FrmCadastroEstados: TFrmCadastroEstados
     Top = 40
     Width = 121
     Height = 21
-    TabOrder = 6
+    TabOrder = 2
   end
   object edtPais: TEdit
     Left = 112
     Top = 118
     Width = 209
     Height = 21
-    TabOrder = 7
+    TabOrder = 8
   end
   object btnPesquisarPais: TButton
     Left = 480
@@ -58,7 +70,7 @@ inherited FrmCadastroEstados: TFrmCadastroEstados
     Width = 75
     Height = 25
     Caption = 'Pesquisa Pais'
-    TabOrder = 8
+    TabOrder = 3
     OnClick = btnPesquisarPaisClick
   end
   object edtCodPais: TEdit

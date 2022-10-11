@@ -38,6 +38,9 @@ inherited FrmCadastroPaises: TFrmCadastroPaises
     Width = 49
     ExplicitWidth = 49
   end
+  inherited edtUser: TEdit
+    TabOrder = 9
+  end
   object edtPais: TEdit
     Left = 96
     Top = 40

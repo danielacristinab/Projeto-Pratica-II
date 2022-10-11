@@ -109,3 +109,75 @@ CREATE TABLE Fornecedores(
 
 alter table fornecedores add constraint fk_codCidadesForn foreign key (codCidade) references Cidades(codCidade);
 
+CREATE TABLE Marcas(
+  CodMarca INTEGER PRIMARY KEY,
+  Marca VARCHAR(25) NOT NULL,
+  DatCad  DATE,
+  DatUltAlt DATE
+ );
+
+CREATE TABLE Modelos(
+  CodModelo INTEGER PRIMARY KEY,
+  Modelo VARCHAR(25) NOT NULL,
+  CodMarca INTEGER NOT NULL,
+  DatCad  DATE,
+  DatUltAlt DATE
+ );
+ alter table modelos add constraint fk_codMarca foreign key (codMarca) references Marcas(codMarca);
+ 
+ CREATE TABLE Grupos(
+  CodGrupo INTEGER PRIMARY KEY,
+  Grupo VARCHAR(25) NOT NULL,
+  Descricao VARCHAR(100), 
+  DatCad  DATE,
+  DatUltAlt DATE
+ );
+
+ CREATE TABLE Produtos(
+  CodProd INTEGER PRIMARY KEY,
+  Produto VARCHAR(25) NOT NULL,
+  Quantidade REAL,
+  Und VARCHAR(5),
+  Custo REAL,
+  Venda REAL,
+  Saldo INTEGER,
+  CodModelo INTEGER NOT NULL,
+  CodGrupo INTEGER NOT NULL,
+  CodFornecedor INTEGER,
+  DatCad  DATE,
+  DatUltAlt DATE
+ ); 
+
+alter table produtos add constraint fk_codModelo foreign key (codModelo) references Modelos(codModelo);
+alter table produtos add constraint fk_codGrupo foreign key (codGrupo) references Grupos(codGrupo);
+alter table produtos add constraint fk_codFornecedor foreign key (codFornecedor) references Fornecedores(codFornecedor);
+
+ CREATE TABLE FormasPagamento(
+  CodFormaPag INTEGER PRIMARY KEY,
+  FormaPag VARCHAR(50),
+  DatCad  DATE,
+  DatUltAlt DATE
+ );
+ 
+ CREATE TABLE CondicaoPagamento(
+  CodCondPag	INTEGER PRIMARY KEY,
+  CondPagamento VARCHAR(50) NOT NULL,
+  Multa VARCHAR(50),
+  Juros VARCHAR(50),
+  Desconto VARCHAR(50),
+  DatCad  DATE,
+  DatUltAlt DATE
+ );
+ 
+CREATE TABLE  Parcelas(
+  CodCondPag INTEGER NOT NULL,
+  NumParcelas INTEGER NOT NULL,
+  Parcela INTEGER,
+  Prazo INTEGER,  
+  Porcentagem INTEGER,
+  CodFormaPag INTEGER
+ );
+ alter table parcelas add constraint fk_codFormaPag foreign key (codFormaPag) references FormasPagamento(codFormaPag);
+ CONSTANT PK_ParcelaCond PRIMARY key (CodCondPag,NumParcelas);
+
+ 

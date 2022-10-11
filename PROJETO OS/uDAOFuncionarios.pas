@@ -45,7 +45,7 @@ begin
       with umDM.qFuncionarios DO
       begin
         mFuncionarios := Funcionarios(pObj);
-        mFuncionarios.SetCodigo(umDM.qFuncionarios.FieldByName('CODFUNCIONARIO').value);
+        mFuncionarios.SetCodigo(umDM.qFuncionarios.FieldByName('CODFUNC').value);
         mFuncionarios.SetNome(umDM.qFuncionarios.FieldByName('NOME').Value);
         mFuncionarios.SetDataNasc(umDM.qFuncionarios.FieldByName('DATANASC').Value);
         mFuncionarios.SetRG(umDM.qFuncionarios.FieldByName('RG').Value);
@@ -54,9 +54,9 @@ begin
         mFuncionarios.SetTelefone(umDM.qFuncionarios.FieldByName('TELEFONE').Value);
         mFuncionarios.SetCelular(umDM.qFuncionarios.FieldByName('CELULAR').Value);
         mFuncionarios.SetEndereco(umDM.qFuncionarios.FieldByName('ENDERECO').Value);
-
-        mFuncionarios.GetoCargo.SetCodigo(umDM.qFuncionarios.FieldByName('oCARGO').Value);
-        mFuncionarios.GetaCidade.setCodigo(umDM.qFuncionarios.FieldByName('aCIDADE').Value);
+        mFuncionarios.setComplemento(umDM.qFuncionarios.FieldByName('COMPLEMENTO').AsString);
+        mFuncionarios.GetoCargo.SetCodigo(umDM.qFuncionarios.FieldByName('CODCARGO').Value);
+        mFuncionarios.GetaCidade.setCodigo(umDM.qFuncionarios.FieldByName('CODCIDADE').Value);
         result := '';
       end;
    except on e:exception do
@@ -72,7 +72,7 @@ var mSql: string;
 begin
   if pChave <> '' then
     if ehNumero(pChave) then
-      mSql := 'select * from Funcionarios where codfuncionario = '+quotedstr(pChave)
+      mSql := 'select * from Funcionarios where codfunc = '+quotedstr(pChave)
     else
       mSql := 'select * from Funcionarios where nome = '+quotedstr(pChave)+' order by nome'
   else
@@ -96,7 +96,7 @@ begin
         else
         begin
           mSql := 'update Funcionarios set cidade = :cidade , ddd = :ddd, codestado = :codestado';
-          mSql := mSql + 'where codFuncionario = :CodFuncionario;';
+          mSql := mSql + ' where codFunc = :CodFunc';
         end;
         umDM.qFuncionarios.SQL.Clear;
         umDM.qFuncionarios.SQL.Add(mSql);
@@ -104,7 +104,7 @@ begin
         //ParamByName('DDD').Value := mFuncionarios.getDDD;
         ParamByName('CODCIDADE').Value := mFuncionarios.getaCidade.GetCidade;
         if mFuncionarios.GetCodigo <> 0 then
-          ParamByName('CODCIDADE').Value := mFuncionarios.GetCodigo;
+          ParamByName('CODFUNC').Value := mFuncionarios.GetCodigo;
         ExecSQL;
       end;
       umDM.FDTrans.Commit;
@@ -118,20 +118,19 @@ var mSql  : string;
     mFuncionarios : Funcionarios;
 begin
   try
-      mFuncionarios := Funcionarios(pObj);
-      mSql := 'delete * from Funcionarios where codFuncionario = '+quotedstr(inttostr(mFuncionarios.getCodigo));
-      umDm.FDTrans.StartTransaction;
-      umDm.qFuncionarios.Active:= false;
-      umDm.qFuncionarios.SQL.Clear;
-      umDm.qFuncionarios.SQL.Add(mSql);
-      umDm.qFuncionarios.Open;
-      umDm.FDTrans.Commit;
-      result := '';
-   except on e: Exception do
-   begin
+    mFuncionarios := Funcionarios(pObj);
+    mSql := 'delete from funcionarios where codFunc = '+inttostr(mFuncionarios.getCodigo);
+    umDm.FDTrans.StartTransaction;
+    umDm.qFuncionarios.Active:= false;
+    umDm.qFuncionarios.SQL.Clear;
+    umDM.qFuncionarios.ExecSQL(mSql);
+    umDm.FDTrans.Commit;
+    result := '';
+  except on e: Exception do
+    begin
       umDm.FDTrans.Rollback;
       result := 'Erro ao Excluir : '  + e.Message;
-   end;
+    end;
   end;
 end;
 

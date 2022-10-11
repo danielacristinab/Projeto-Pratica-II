@@ -12,14 +12,20 @@ uses
   uFornecedores, uClientes, uFuncionarios,
   uCtrlClientes, uCtrlFuncionarios, uCtrlFornecedores,
   uDAOClientes, uDAOFuncionarios, uDAOFornecedores,
-  Data.DB, uDataModule, uCargos, uCtrlCargos;
+  Data.DB, uDataModule, uCargos, uCtrlCargos,
+  uDAOModelos, uCtrlModelos, uModelos,
+  uDAOMarcas, uCtrlMarcas, uMarcas,
+  uDAOProdutos, uCtrlProdutos, uProdutos,
+  uDAOGrupos, uCtrlGrupos, uGrupos,
+  uDAOCondPag, uCtrlCondPag, uCondicaoPagamento,
+  uDAOFormaPag, uCtrlFormaPag, uFormasPagamento;
 
 type
   TFrmPrincipal = class(TForm)
     Menu: TMainMenu;
     CADASTRO: TMenuItem;
     CLIENTE: TMenuItem;
-    EQUIPAMENTOS: TMenuItem;
+    GRUPO: TMenuItem;
     OS: TMenuItem;
     RELATORIOS: TMenuItem;
     HOME: TMenuItem;
@@ -34,6 +40,9 @@ type
     N1: TMenuItem;
     N2: TMenuItem;
     CARGO: TMenuItem;
+    PRODUTO: TMenuItem;
+    CONDICAO_PAG: TMenuItem;
+    FORMASPAG: TMenuItem;
     procedure SAIRClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure PAISClick(Sender: TObject);
@@ -43,6 +52,12 @@ type
     procedure FORNECEDORClick(Sender: TObject);
     procedure FUNCIONARIOClick(Sender: TObject);
     procedure CARGOClick(Sender: TObject);
+    procedure MARCAClick(Sender: TObject);
+    procedure MODELOClick(Sender: TObject);
+    procedure GRUPOClick(Sender: TObject);
+    procedure PRODUTOClick(Sender: TObject);
+    procedure CONDICAO_PAGClick(Sender: TObject);
+    procedure FORMASPAGClick(Sender: TObject);
   private
     { Private declarations }
     aInter : Interfaces;
@@ -53,6 +68,12 @@ type
     oFuncionario : Funcionarios;
     oFornecedor : Fornecedores;
     oCargo : Cargos;
+    oModelo : Modelos;
+    aMarca : Marcas;
+    oGrupo : Grupos;
+    oProduto : Produtos;
+    aCondPag : CondicaoPagamento;
+    aFormaPag : FormasPagamento;
 
     aCtrlPais : CtrlPaises;
     aCtrlEstados : CtrlEstados;
@@ -61,6 +82,12 @@ type
     aCtrlFuncionarios : CtrlFuncionarios;
     aCtrlFornecedores : CtrlFornecedores;
     aCtrlCargos : CtrlCargos;
+    aCtrlModelos : CtrlModelos;
+    aCtrlMarcas : CtrlMarcas;
+    aCtrlGrupos : CtrlGrupos;
+    aCtrlProdutos : CtrlProdutos;
+    aCtrlCondPag : CtrlCondPag;
+    aCtrlFormaPag : CtrlFormaPag;
 
     uDM : TDM;
   public
@@ -89,9 +116,19 @@ begin
   aInter.PDClientes(oCliente, aCtrlClientes);
 end;
 
+procedure TFrmPrincipal.CONDICAO_PAGClick(Sender: TObject);
+begin
+  aInter.PDCondPag(aCondPag, aCtrlCondPag);
+end;
+
 procedure TFrmPrincipal.ESTADOClick(Sender: TObject);
 begin
   aInter.PDEstados(oEstado, aCtrlEstados);
+end;
+
+procedure TFrmPrincipal.FORMASPAGClick(Sender: TObject);
+begin
+  aInter.PDFormasPag(aFormaPag, aCtrlFormaPag);
 end;
 
 procedure TFrmPrincipal.FormCreate(Sender: TObject);
@@ -104,6 +141,12 @@ begin
    oFuncionario := Funcionarios.CrieObj;
    oFornecedor := Fornecedores.CrieObj;
    oCargo := Cargos.CrieObj;
+   oModelo := Modelos.CrieObj;
+   aMarca := Marcas.CrieObj;
+   oGrupo := Grupos.CrieObj;
+   oProduto := Produtos.CrieObj;
+   aCondPag := CondicaoPagamento.CrieObj;
+   aFormaPag := FormasPagamento.CrieObj;
 
    aCtrlPais := CtrlPaises.CrieObj;
    aCtrlEstados := CtrlEstados.CrieObj;
@@ -112,6 +155,12 @@ begin
    aCtrlFuncionarios := CtrlFuncionarios.CrieObj;
    aCtrlFornecedores := CtrlFornecedores.CrieObj;
    aCtrlCargos := CtrlCargos.CrieObj;
+   aCtrlModelos := CtrlModelos.CrieObj;
+   aCtrlMarcas := CtrlMarcas.CrieObj;
+   aCtrlGrupos := CtrlGrupos.CrieObj;
+   aCtrlProdutos := CtrlProdutos.CrieObj;
+   aCtrlCondPag := CtrlCondPag.CrieObj;
+   aCtrlFormaPag := CtrlFormaPag.CrieObj;
 
    uDM := TDM.Create(nil);
    aCtrlPais.SetDM(uDM);
@@ -121,12 +170,23 @@ begin
    aCtrlFuncionarios.SetDM(uDM);
    aCtrlFornecedores.SetDM(uDM);
    aCtrlCargos.SetDM(uDM);
+   aCtrlModelos.SetDM(uDM);
+   aCtrlMarcas.SetDM(uDM);
+   aCtrlGrupos.SetDM(uDM);
+   aCtrlProdutos.SetDM(uDM);
+   aCtrlCondPag.SetDM(uDM);
+   aCtrlFormaPag.SetDM(uDM);
 
    aCtrlEstados.setaCtrlPais(aCtrlPais);
    aCtrlCidades.SetaCtrlEstado(aCtrlEstados);
    aCtrlClientes.SetaCtrlCidade(aCtrlCidades);
    aCtrlFuncionarios.SetaCtrlCidade(aCtrlCidades);
    aCtrlFornecedores.SetaCtrlCidade(aCtrlCidades);
+   aCtrlModelos.SetaCtrlMarca(aCtrlMarcas);
+   aCtrlProdutos.SetaCtrlGrupos(aCtrlGrupos);
+   aCtrlProdutos.SetaCtrlModelos(aCtrlModelos);
+   aCtrlProdutos.SetaCtrlFornecedores(aCtrlFornecedores);
+   aCtrlCondPag.SetaCtrlFormaPag(aCtrlFormaPag);
 end;
 
 procedure TFrmPrincipal.FORNECEDORClick(Sender: TObject);
@@ -139,9 +199,29 @@ begin
   aInter.PDFuncionarios(oFuncionario, aCtrlFuncionarios);
 end;
 
+procedure TFrmPrincipal.GRUPOClick(Sender: TObject);
+begin
+  aInter.PDGrupos(oGrupo, aCtrlGrupos);
+end;
+
+procedure TFrmPrincipal.MARCAClick(Sender: TObject);
+begin
+  aInter.PDMarcas(aMarca, aCtrlMarcas);
+end;
+
+procedure TFrmPrincipal.MODELOClick(Sender: TObject);
+begin
+  aInter.PDModelos(oModelo, aCtrlModelos);
+end;
+
 procedure TFrmPrincipal.PAISClick(Sender: TObject);
 begin
   aInter.PDPaises(oPais, aCtrlPais);
+end;
+
+procedure TFrmPrincipal.PRODUTOClick(Sender: TObject);
+begin
+  aInter.PDProdutos(oProduto, aCtrlProdutos);
 end;
 
 procedure TFrmPrincipal.SAIRClick(Sender: TObject);

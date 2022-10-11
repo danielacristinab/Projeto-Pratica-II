@@ -1,0 +1,63 @@
+unit uDAOFormaPag;
+
+interface
+uses uDAO, uFormaPagamento, Data.DB, System.SysUtils;
+  type DAOFormaPag = class   (DAO)
+    private
+    protected
+    public
+      constructor CrieObj;
+      function GetDS: TDataSource;                override;
+      function Salvar(pObj: TObject): string;     override;
+      function Carregar(pObj: TObject): string;   override;
+      function Pesquisar(pChave: string): string; override;
+      function Excluir(pObj: TObject): string;    override;
+      function AcheiReg() : boolean;
+      destructor Destrua_se;
+  end;
+
+implementation
+
+{ DAOFormaPag }
+
+function DAOFormaPag.AcheiReg: boolean;
+begin
+
+end;
+
+function DAOFormaPag.Carregar(pObj: TObject): string;
+begin
+
+end;
+
+constructor DAOFormaPag.CrieObj;
+begin
+
+end;
+
+destructor DAOFormaPag.Destrua_se;
+begin
+
+end;
+
+function DAOFormaPag.Excluir(pObj: TObject): string;
+begin
+
+end;
+
+function DAOFormaPag.GetDS: TDataSource;
+begin
+
+end;
+
+function DAOFormaPag.Pesquisar(pChave: string): string;
+begin
+
+end;
+
+function DAOFormaPag.Salvar(pObj: TObject): string;
+begin
+
+end;
+
+end.

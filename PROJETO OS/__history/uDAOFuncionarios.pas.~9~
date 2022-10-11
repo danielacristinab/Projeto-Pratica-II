@@ -1,0 +1,141 @@
+unit uDAOFuncionarios;
+
+interface
+uses uDAO, uFuncionarios, Data.DB, System.SysUtils;
+  type DAOFuncionarios = class   (DAO)
+    private
+    protected
+      oFuncionario : Funcionarios;
+    public
+      constructor CrieObj;
+      function GetDS: TDataSource;                override;
+      function Salvar(pObj: TObject): string;     override;
+      function Carregar(pObj: TObject): string;   override;
+      function Pesquisar(pChave: string): string; override;
+      function Excluir(pObj: TObject): string;    override;
+      function AcheiReg() : boolean;
+      destructor Destrua_se;
+  end;
+
+implementation
+
+{ DAOFuncionarios }
+
+constructor DAOFuncionarios.CrieObj;
+begin
+  inherited;
+end;
+
+function DAOFuncionarios.GetDS: TDataSource;
+begin
+  result := umDm.DSFuncionarios;
+end;
+
+function DAOFuncionarios.AcheiReg: boolean;
+begin
+  result := not (umDM.qFuncionarios.Eof);
+end;
+
+function DAOFuncionarios.Carregar(pObj: TObject): string;
+var mFuncionarios : Funcionarios;
+begin
+  try
+   try
+      mFuncionarios := Funcionarios(pObj);
+      with umDM.qFuncionarios DO
+      begin
+        mFuncionarios := Funcionarios(pObj);
+        mFuncionarios.SetCodigo(umDM.qFuncionarios.FieldByName('CODFUNCIONARIO').value);
+        mFuncionarios.SetNome(umDM.qFuncionarios.FieldByName('NOME').Value);
+        mFuncionarios.SetDataNasc(umDM.qFuncionarios.FieldByName('DATANASC').Value);
+        mFuncionarios.SetRG(umDM.qFuncionarios.FieldByName('RG').Value);
+        mFuncionarios.SetCPF(umDM.qFuncionarios.FieldByName('CPF').Value);
+        mFuncionarios.SetEmail(umDM.qFuncionarios.FieldByName('EMAIL').Value);
+        mFuncionarios.SetTelefone(umDM.qFuncionarios.FieldByName('TELEFONE').Value);
+        mFuncionarios.SetCelular(umDM.qFuncionarios.FieldByName('CELULAR').Value);
+        mFuncionarios.SetEndereco(umDM.qFuncionarios.FieldByName('ENDERECO').Value);
+        mFuncionarios.setComplemento(umDM.qFuncionarios.FieldByName('COMPLEMENTO').AsString);
+        mFuncionarios.GetoCargo.SetCodigo(umDM.qFuncionarios.FieldByName('oCARGO').Value);
+        mFuncionarios.GetaCidade.setCodigo(umDM.qFuncionarios.FieldByName('aCIDADE').Value);
+        result := '';
+      end;
+   except on e:exception do
+      result:= 'Erro ao carregar: '+ e.Message;
+   end;
+ finally
+ end;
+
+end;
+
+function DAOFuncionarios.Pesquisar(pChave: string): string;
+var mSql: string;
+begin
+  if pChave <> '' then
+    if ehNumero(pChave) then
+      mSql := 'select * from Funcionarios where codfuncionario = '+quotedstr(pChave)
+    else
+      mSql := 'select * from Funcionarios where nome = '+quotedstr(pChave)+' order by nome'
+  else
+    mSql := 'select * from Funcionarios order by nome';
+  umDM.qFuncionarios.Active := false;
+  umDM.qFuncionarios.SQL.Text := mSql;
+  umDM.qFuncionarios.Open();
+end;
+
+function DAOFuncionarios.Salvar(pObj: TObject): string;
+var mSql  : string;
+    mFuncionarios : Funcionarios;
+begin
+    try
+      umDM.FDTrans.StartTransaction;
+      mFuncionarios := Funcionarios(pObj);
+      with umDM.qFuncionarios do
+      begin
+        if mFuncionarios.getCodigo = 0 then
+        mSql := 'insert into Funcionarios (cidade, ddd, codestado) values ( :cidade, :ddd, :codestado)'
+        else
+        begin
+          mSql := 'update Funcionarios set cidade = :cidade , ddd = :ddd, codestado = :codestado';
+          mSql := mSql + 'where codFuncionario = :CodFuncionario;';
+        end;
+        umDM.qFuncionarios.SQL.Clear;
+        umDM.qFuncionarios.SQL.Add(mSql);
+        //ParamByName('CIDADE').Value := mFuncionarios.getCidade;
+        //ParamByName('DDD').Value := mFuncionarios.getDDD;
+        ParamByName('CODCIDADE').Value := mFuncionarios.getaCidade.GetCidade;
+        if mFuncionarios.GetCodigo <> 0 then
+          ParamByName('CODCIDADE').Value := mFuncionarios.GetCodigo;
+        ExecSQL;
+      end;
+      umDM.FDTrans.Commit;
+    except
+      umDM.FDTrans.Rollback;
+end;
+end;
+
+function DAOFuncionarios.Excluir(pObj: TObject): string;
+var mSql  : string;
+    mFuncionarios : Funcionarios;
+begin
+  try
+    mFuncionarios := Funcionarios(pObj);
+    mSql := 'delete from funcionarios where codFunc = '+inttostr(mFuncionarios.getCodigo);
+    umDm.FDTrans.StartTransaction;
+    umDm.qFuncionarios.Active:= false;
+    umDm.qFuncionarios.SQL.Clear;
+    umDM.qFuncionarios.ExecSQL(mSql);
+    umDm.FDTrans.Commit;
+    result := '';
+  except on e: Exception do
+    begin
+      umDm.FDTrans.Rollback;
+      result := 'Erro ao Excluir : '  + e.Message;
+    end;
+  end;
+end;
+
+destructor DAOFuncionarios.Destrua_se;
+begin
+
+end;
+end.

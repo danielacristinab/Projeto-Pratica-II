@@ -12,7 +12,6 @@ type
   TFrmConsultaPaises = class(TFrmConsultaPai)
     procedure btnPesquisarClick(Sender: TObject);
     procedure btnSairClick(Sender: TObject);
-    procedure btnExcluirClick(Sender: TObject);
   private
     { Private declarations }
     umCadastroPaises : TFrmCadastroPaises;
@@ -57,12 +56,8 @@ begin
   umCadastroPaises.LimpaEdit;
   umCadastroPaises.CarregaEdit;
   umCadastroPaises.ShowModal;
-end;
-
-procedure TFrmConsultaPaises.btnExcluirClick(Sender: TObject);
-begin
-  inherited;
-  aCtrlPais.Excluir(oPais);
+  self.DBGrid1.DataSource := TDataSource(aCtrlPais.GetDS);
+  aCtrlPais.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TFrmConsultaPaises.btnPesquisarClick(Sender: TObject);
@@ -91,7 +86,8 @@ begin
   umCadastroPaises.ShowModal;
   umCadastroPaises.DesbloqueiEdit;
   umCadastroPaises.btnSalvar.Caption := btn_nome;
-
+  self.DBGrid1.DataSource := TDataSource(aCtrlPais.GetDS);
+  aCtrlPais.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TFrmConsultaPaises.Incluir;
@@ -100,6 +96,8 @@ begin
   umCadastroPaises.ConhecaObj(oPais, aCtrlPais);
   umCadastroPaises.LimpaEdit;
   umCadastroPaises.ShowModal;
+  self.DBGrid1.DataSource := TDataSource(aCtrlPais.GetDS);
+  aCtrlPais.Pesquisar(EdtPesquisar.Text);
 end;
 
 procedure TFrmConsultaPaises.Pesquisar;

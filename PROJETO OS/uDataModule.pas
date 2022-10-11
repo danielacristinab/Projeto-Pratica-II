@@ -28,6 +28,18 @@ type
     DSFuncionarios: TDataSource;
     qCargos: TFDQuery;
     DSCargos: TDataSource;
+    qMarcas: TFDQuery;
+    DSMarcas: TDataSource;
+    qModelos: TFDQuery;
+    DSModelos: TDataSource;
+    qProdutos: TFDQuery;
+    DSProdutos: TDataSource;
+    qGrupos: TFDQuery;
+    DSGrupos: TDataSource;
+    qCondPag: TFDQuery;
+    DSCondPag: TDataSource;
+    qFormaPag: TFDQuery;
+    DSFormaPag: TDataSource;
   private
     { Private declarations }
   public

@@ -54,6 +54,7 @@ end;
 
 constructor Funcionarios.CrieObj;
 begin
+  inherited;
   nome := ' ';
 	DataNasc := ' ';
   RG := ' ';
@@ -66,7 +67,7 @@ end;
 
 destructor Funcionarios.Destrua_se;
 begin
-
+  inherited;
 end;
 
 function Funcionarios.GetCelular: string;

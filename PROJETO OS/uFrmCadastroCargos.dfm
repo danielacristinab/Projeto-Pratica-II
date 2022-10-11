@@ -1,5 +1,6 @@
 inherited FrmCadastroCargos: TFrmCadastroCargos
   Caption = 'Cadastro Cargos'
+  WindowState = wsMaximized
   PixelsPerInch = 96
   TextHeight = 13
   object lblCargo: TLabel [3]

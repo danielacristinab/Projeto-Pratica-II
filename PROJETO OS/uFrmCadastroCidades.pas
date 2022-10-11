@@ -110,7 +110,7 @@ end;
 
 procedure TfrmCadastroCidades.Salvar;
 begin
-  if btnSalvar.Caption = '&Salvar' then
+  if (btnSalvar.Caption = '&Salvar') or (btnSalvar.Caption = '&Alterar') then
   begin
     if length(self.edtCidade.text) = 0 then
       self.edtCidade.Color := clYellow;
@@ -133,18 +133,25 @@ begin
       showmessage('Campo Estado obrigatorio!');
       self.edtEstado.SetFocus;
     end
-  else
-    aCidade.SetCodigo(strtoint(edtCodigo.Text));
-    aCidade.setCidade(edtCidade.Text);
-    aCidade.SetDDD(edtDDD.Text);
-    aCidade.GetoEstado.SetCodigo(strtoint(edtCodEstado.Text));
-    aCidade.GetoEstado.SetEstado(edtEstado.Text);
-    aCidade.SetDataCad(edtDataCad.Text);
-    aCidade.SetUltAlt(edtUltAlt.Text);
+    else
+    begin
+      aCidade.SetCodigo(strtoint(edtCodigo.Text));
+      aCidade.setCidade(edtCidade.Text);
+      aCidade.SetDDD(edtDDD.Text);
+      aCidade.GetoEstado.SetCodigo(strtoint(edtCodEstado.Text));
+      aCidade.GetoEstado.SetEstado(edtEstado.Text);
+      aCidade.SetDataCad(edtDataCad.Text);
+      aCidade.SetUltAlt(edtUltAlt.Text);
 
-    aCtrlCidades.salvar(aCidade.Clone);
+      aCtrlCidades.salvar(aCidade.Clone);
+    end;
+    showmessage('Cidade salvo com sucesso!');
+  end
+  else if (btnSalvar.Caption = '&Excluir') then
+  begin
+    aCtrlCidades.Excluir(aCidade);
+    showmessage('Cidade excluido com sucesso!');
   end;
-    showmessage('Cidade cadastrado com sucesso!');
     close;
 end;
 

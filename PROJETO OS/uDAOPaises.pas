@@ -105,12 +105,11 @@ var mSql  : string;
 begin
   try
       mPais := Paises(pObj);
-      mSql := 'delete * from paises where codPais = '+quotedstr(inttostr(mPais.getCodigo));
+      mSql := 'delete from paises where codPais = '+inttostr(mPais.getCodigo);
       umDm.FDTrans.StartTransaction;
       umDm.QPaises.Active:= false;
       umDm.QPaises.SQL.Clear;
-      umDm.QPaises.SQL.Add(mSql);
-      umDm.QPaises.Open;
+      umDM.qPaises.ExecSQL(mSql);
       umDm.FDTrans.Commit;
       result := '';
    except on e: Exception do

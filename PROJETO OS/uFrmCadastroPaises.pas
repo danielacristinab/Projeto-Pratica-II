@@ -50,22 +50,20 @@ end;
 
 procedure TfrmCadastroPaises.BloqueiaEdit;
 begin
+  inherited;
   edtPais.Enabled := false;
   edtSigla.Enabled := false;
   edtDDI.Enabled := false;
   edtMoeda.Enabled := false;
-  edtDataCad.Enabled := false;
-  edtUltAlt.Enabled := false;
 end;
 
 procedure TfrmCadastroPaises.DesbloqueiEdit;
 begin
+  inherited;
   edtPais.Enabled := true;
   edtSigla.Enabled := true;
   edtDDI.Enabled := true;
   edtMoeda.Enabled := true;
-  edtDataCad.Enabled := true;
-  edtUltAlt.Enabled := true;
 end;
 
 procedure TFrmCadastroPaises.edtPaisExit(Sender: TObject);
@@ -108,39 +106,45 @@ procedure TfrmCadastroPaises.Salvar;
 begin
   if (btnSalvar.Caption = '&Salvar') or (btnSalvar.Caption = '&Alterar') then
   begin
-  if length(self.edtPais.text) = 0 then
-    self.edtPais.Color := clYellow;
-  if length(self.edtSigla.text) = 0 then
-    self.edtSigla.Color := clYellow;
-  if length(self.edtDDI.text) = 0 then
-    self.edtDDI.Color := clYellow;
-  if length(self.edtMoeda.text) = 0 then
-    self.edtMoeda.Color := clYellow;
-  if self.edtPais.Text = '' then
-  begin
-    showmessage('Campo Pais obrigatorio!');
-    self.edtPais.SetFocus;
-  end
-  else if self.edtSigla.Text = '' then
-  begin
-    showmessage('Campo Sigla obrigatorio!');
-    self.edtSigla.SetFocus;
-  end
-  else
-  begin
-    oPais.SetCodigo(strtoint(self.edtCodigo.Text));
-    oPais.SetPais(edtPais.Text);
-    oPais.SetSigla(edtSigla.Text);
-    oPais.SetDDI(edtDDI.Text);
-    oPais.SetMoeda(edtMoeda.Text);
-    oPais.SetDataCad(self.edtDataCad.Text);
-    oPais.SetUltAlt(self.edtUltAlt.Text);
+    if length(self.edtPais.text) = 0 then
+      self.edtPais.Color := clYellow;
+    if length(self.edtSigla.text) = 0 then
+      self.edtSigla.Color := clYellow;
+    if length(self.edtDDI.text) = 0 then
+      self.edtDDI.Color := clYellow;
+    if length(self.edtMoeda.text) = 0 then
+      self.edtMoeda.Color := clYellow;
+    if self.edtPais.Text = '' then
+    begin
+      showmessage('Campo Pais obrigatorio!');
+      self.edtPais.SetFocus;
+    end
+    else if self.edtSigla.Text = '' then
+    begin
+      showmessage('Campo Sigla obrigatorio!');
+      self.edtSigla.SetFocus;
+    end
+    else
+    begin
+      oPais.SetCodigo(strtoint(self.edtCodigo.Text));
+      oPais.SetPais(edtPais.Text);
+      oPais.SetSigla(edtSigla.Text);
+      oPais.SetDDI(edtDDI.Text);
+      oPais.SetMoeda(edtMoeda.Text);
+      oPais.SetDataCad(self.edtDataCad.Text);
+      oPais.SetUltAlt(self.edtUltAlt.Text);
 
-    self.aCtrlPais.Salvar(oPais.clone);
+      self.aCtrlPais.Salvar(oPais.clone);
+    end;
+    showmessage('Pais salvo com sucesso!');
+
+  end
+  else if (btnSalvar.Caption = '&Excluir') then
+  begin
+    aCtrlPais.Excluir(oPais);
+    showmessage('Pais excluido com sucesso!');
   end;
-   showmessage('Pais cadastrado com sucesso!');
-   close;
-  end;
+  close;
 end;
 
 procedure TfrmCadastroPaises.Sair;

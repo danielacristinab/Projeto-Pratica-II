@@ -1,0 +1,280 @@
+unit uFrmCadastroClientes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmCadastroPessoa, uFrmConsultaCidades,
+ uClientes, uCtrlClientes, uDAOClientes, Vcl.StdCtrls, uCidades;
+
+type
+  TFrmCadastroClientes = class(TFrmCadastroPessoa)
+    edtNome: TEdit;
+    edtDataNasc: TEdit;
+    edtRG: TEdit;
+    edtCPF_CNPJ: TEdit;
+    edtTelefone: TEdit;
+    edtCelular: TEdit;
+    lblNome: TLabel;
+    lblDataNasc: TLabel;
+    lblRG: TLabel;
+    lblCPF_CNPJ: TLabel;
+    lblTelefone: TLabel;
+    lblCelular: TLabel;
+    lblEmail: TLabel;
+    edtEmail: TEdit;
+    procedure btnPesquisarClick(Sender: TObject);
+    procedure edtNomeExit(Sender: TObject);
+  private
+    { Private declarations }
+    umFrmConsultaCidades : TFrmConsultaCidades;
+    oCliente : Clientes;
+    aCtrlClientes : CtrlClientes;
+  public
+    { Public declarations }
+    procedure ConhecaObj(pObj: TObject;  pCtrl: TObject);  override;
+    procedure LimpaEdit;                                   override;
+    procedure CarregaEdit;                                 override;
+    procedure BloqueiaEdit;                                override;
+    procedure DesbloqueiEdit;                              override;
+    procedure Salvar;                                      override;
+    procedure Sair;                                        override;
+    procedure SetConsulta(pObj: TObject);                  override;
+  end;
+
+var
+  FrmCadastroClientes: TFrmCadastroClientes;
+
+implementation
+
+{$R *.dfm}
+
+{ TFrmCadastroClientes }
+
+procedure TFrmCadastroClientes.BloqueiaEdit;
+begin
+  inherited;
+  edtCodigo.Enabled := false;
+  edtNome.Enabled := false;
+  edtDataNasc.Enabled := false;
+  edtRg.Enabled := false;
+  edtCPF_CNPJ.Enabled := false;
+  edtTelefone.Enabled := false;
+  edtCelular.Enabled := false;
+  edtEndereco.Enabled := false;
+  edtNumero.Enabled := false;
+  edtCep.Enabled := false;
+  edtBairro.Enabled := false;
+  edtComplemento.Enabled := false;
+  edtCodCidade.Enabled := false;
+  edtCidade.Enabled := false;
+  edtDataCad.Enabled := false;
+  edtUltAlt.Enabled := false;
+end;
+
+procedure TFrmCadastroClientes.btnPesquisarClick(Sender: TObject);
+var btn_nome : string;
+    aCidade  : Cidades;
+begin
+  inherited;
+  aCidade := Cidades.CrieObj;
+  btn_nome := umFrmConsultaCidades.btnSair.Caption;
+  umFrmConsultaCidades.btnSair.Caption := 'Selecionar';
+  umFrmConsultaCidades.ConhecaObj(aCidade,aCtrlClientes.GetaCtrlCidade);
+  umFrmConsultaCidades.ShowModal;
+  umFrmConsultaCidades.btnSair.Caption := btn_nome;
+  self.edtCodCidade.Text := inttostr(aCidade.GetCodigo);
+  self.edtCidade.Text := aCidade.GetCidade;
+  oCliente.setaCidade(aCidade);
+end;
+
+procedure TFrmCadastroClientes.CarregaEdit;
+begin
+  inherited;
+  if oCliente.GetCodigo <> 0 then
+    self.edtCodigo.Text := inttostr(oCliente.GetCodigo);
+  edtCodigo.Text := inttostr(oCliente.GetCodigo);
+  edtNome.Text := oCliente.GetNome;
+  edtDataNasc.Text := oCliente.GetDataNasc;
+  edtRg.Text := oCliente.GetRG;
+  edtCPF_CNPJ.Text := oCliente.GetCPF_CNPJ;
+  edtTelefone.Text := oCliente.GetTelefone;
+  edtCelular.Text := oCliente.GetCelular;
+  edtEndereco.Text := oCliente.GetEndereco;
+  edtNumero.Text := inttostr(oCliente.GetNumero);
+  edtCep.Text := inttostr(oCliente.GetCep);
+  edtBairro.Text := oCliente.GetBairro;
+  edtComplemento.Text := oCliente.GetComplemento;
+  edtCodCidade.Text := inttostr(oCliente.GetaCidade.GetCodigo);
+  edtCidade.Text := oCliente.getaCidade.GetCidade;
+  edtDataCad.Text := oCliente.GetDataCad;
+  edtUltAlt.Text := oCliente.GetUltAlt;
+end;
+
+procedure TFrmCadastroClientes.ConhecaObj(pObj, pCtrl: TObject);
+begin
+  inherited;
+  oCliente := Clientes(pObj);
+  aCtrlClientes := CtrlClientes(pCtrl);
+  self.LimpaEdit;
+  self.CarregaEdit;
+end;
+
+procedure TFrmCadastroClientes.DesbloqueiEdit;
+begin
+  inherited;
+  edtCodigo.Enabled      := true;
+  edtNome.Enabled        := true;
+  edtDataNasc.Enabled    := true;
+  edtRg.Enabled          := true;
+  edtCPF_CNPJ.Enabled    := true;
+  edtTelefone.Enabled    := true;
+  edtCelular.Enabled     := true;
+  edtEndereco.Enabled    := true;
+  edtNumero.Enabled      := true;
+  edtCep.Enabled         := true;
+  edtBairro.Enabled      := true;
+  edtComplemento.Enabled := true;
+  edtCodCidade.Enabled   := true;
+  edtCidade.Enabled      := true;
+  edtDataCad.Enabled     := true;
+  edtUltAlt.Enabled      := true;
+end;
+
+procedure TFrmCadastroClientes.edtNomeExit(Sender: TObject);
+//var mX : string;
+begin
+  inherited;
+//  mX := aCtrlClientes.Pesquisar(edtNome.Text);
+{  if aCtrlClientes.AcheiReg then
+  begin
+    showmessage(self.edtNome.Text + ', Ja cadastrado !!');
+    self.edtNome.SetFocus;
+  end;  }
+end;
+
+procedure TFrmCadastroClientes.LimpaEdit;
+begin
+  inherited;
+  edtCodigo.Text := '0';
+  edtNome.Clear;
+  edtDataNasc.Clear;
+  edtRg.Clear;
+  edtCPF_CNPJ.Clear;
+  edtTelefone.Clear;
+  edtCelular.Clear;
+  edtEndereco.Clear;
+  edtNumero.Clear;
+  edtCep.Clear;
+  edtBairro.Clear;
+  edtComplemento.Clear;
+  edtCodCidade.Clear;
+  edtCidade.Clear;
+end;
+
+procedure TFrmCadastroClientes.Sair;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroClientes.Salvar;
+begin
+  if btnSalvar.Caption = '&Salvar' then
+  begin
+    if length(self.edtNome.text) = 0 then
+      self.edtNome.Color := clYellow;
+    if length(self.edtDataNasc.text) = 0 then
+      self.edtDataNasc.Color := clYellow;
+    if length(self.edtCPF_CNPJ.text) = 0 then
+      self.edtCPF_CNPJ.Color := clYellow;
+    if length(self.edtCelular.text) = 0 then
+      self.edtCelular.Color := clYellow;
+    if length(self.edtEndereco.text) = 0 then
+      self.edtEndereco.Color := clYellow;
+    if length(self.edtNumero.text) = 0 then
+      self.edtNumero.Color := clYellow;
+    if length(self.edtBairro.text) = 0 then
+      self.edtBairro.Color := clYellow;
+    if length(self.edtCEP.text) = 0 then
+      self.edtCEP.Color := clYellow;
+    if length(self.edtCidade.text) = 0 then
+      self.edtCidade.Color := clYellow;
+    if self.edtNome.Text = '' then
+    begin
+      showmessage('Campo Nome obrigatorio!');
+      self.edtNome.SetFocus;
+    end
+    else if self.edtDataNasc.Text = '' then
+    begin
+      showmessage('Campo Data Nascimento obrigatorio!');
+      self.edtDataNasc.SetFocus;
+    end
+    else if self.edtCPF_CNPJ.Text = '' then
+    begin
+      showmessage('Campo CPF/CNPJ obrigatorio!');
+      self.edtCPF_CNPJ.SetFocus;
+    end
+    else if self.edtCelular.Text = '' then
+    begin
+      showmessage('Campo Celular obrigatorio!');
+      self.edtCelular.SetFocus;
+    end
+     else if self.edtEndereco.Text = '' then
+    begin
+      showmessage('Campo Endereço obrigatorio!');
+      self.edtEndereco.SetFocus;
+    end
+     else if self.edtNumero.Text = '' then
+    begin
+      showmessage('Campo Numero obrigatorio!');
+      self.edtNumero.SetFocus;
+    end
+     else if self.edtBairro.Text = '' then
+    begin
+      showmessage('Campo Bairro obrigatorio!');
+      self.edtBairro.SetFocus;
+    end
+     else if self.edtCEP.Text = '' then
+    begin
+      showmessage('Campo CEP obrigatorio!');
+      self.edtCEP.SetFocus;
+    end
+     else if self.edtCidade.Text = '' then
+    begin
+      showmessage('Campo Cidade obrigatorio!');
+      self.edtCidade.SetFocus;
+    end
+
+  else
+    oCliente.SetCodigo(strtoint(edtCodigo.Text));
+    oCliente.SetNome(edtNome.Text);
+    oCliente.SetDataNasc(edtDataNasc.Text);
+    oCliente.SetRG(edtRG.Text);
+    oCliente.SetCPF_CNPJ(edtCPF_CNPJ.Text);
+    oCliente.SetEmail(edtEmail.Text);
+    oCliente.SetTelefone(edtTelefone.Text);
+    oCliente.SetCelular(edtCelular.Text);
+    oCliente.SetEndereco(edtEndereco.Text);
+    oCliente.SetNumero(strtoint(edtNumero.Text));
+    oCliente.SetCep(strtoint(edtCEP.Text));
+    oCliente.SetBairro(edtBairro.Text);
+    oCliente.SetComplemento(edtComplemento.Text);
+    oCliente.GetaCidade.SetCodigo(strtoint(edtCodCidade.Text));
+    oCliente.GetaCidade.SetCidade(edtCidade.Text);
+    oCliente.SetDataCad(edtDataCad.Text);
+    oCliente.SetUltAlt(edtUltAlt.Text);
+
+    aCtrlClientes.salvar(oCliente.Clone);
+  end;
+    showmessage('Cliente cadastrado com sucesso!');
+    close;
+end;
+
+procedure TFrmCadastroClientes.SetConsulta(pObj: TObject);
+begin
+  inherited;
+  umFrmConsultaCidades := TFrmConsultaCidades(pObj);
+end;
+
+end.

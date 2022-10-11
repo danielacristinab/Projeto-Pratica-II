@@ -51,25 +51,34 @@ implementation
 
 { TFrmCadastroClientes }
 
+procedure TFrmCadastroClientes.ConhecaObj(pObj, pCtrl: TObject);
+begin
+  inherited;
+  oCliente := Clientes(pObj);
+  aCtrlClientes := CtrlClientes(pCtrl);
+  self.LimpaEdit;
+  self.CarregaEdit;
+end;
+
 procedure TFrmCadastroClientes.BloqueiaEdit;
 begin
   inherited;
-  edtCodigo.Enabled := false;
-  edtNome.Enabled := false;
+  edtCodigo.Enabled   := false;
+  edtNome.Enabled     := false;
   edtDataNasc.Enabled := false;
-  edtRg.Enabled := false;
+  edtRg.Enabled       := false;
   edtCPF_CNPJ.Enabled := false;
   edtTelefone.Enabled := false;
-  edtCelular.Enabled := false;
+  edtCelular.Enabled  := false;
   edtEndereco.Enabled := false;
-  edtNumero.Enabled := false;
-  edtCep.Enabled := false;
-  edtBairro.Enabled := false;
+  edtNumero.Enabled   := false;
+  edtCep.Enabled      := false;
+  edtBairro.Enabled   := false;
   edtComplemento.Enabled := false;
   edtCodCidade.Enabled := false;
-  edtCidade.Enabled := false;
-  edtDataCad.Enabled := false;
-  edtUltAlt.Enabled := false;
+  edtCidade.Enabled    := false;
+  edtDataCad.Enabled   := false;
+  edtUltAlt.Enabled    := false;
 end;
 
 procedure TFrmCadastroClientes.btnPesquisarClick(Sender: TObject);
@@ -93,31 +102,22 @@ begin
   inherited;
   if oCliente.GetCodigo <> 0 then
     self.edtCodigo.Text := inttostr(oCliente.GetCodigo);
-  edtCodigo.Text := inttostr(oCliente.GetCodigo);
-  edtNome.Text := oCliente.GetNome;
-  edtDataNasc.Text := oCliente.GetDataNasc;
-  edtRg.Text := oCliente.GetRG;
-  edtCPF_CNPJ.Text := oCliente.GetCPF_CNPJ;
-  edtTelefone.Text := oCliente.GetTelefone;
-  edtCelular.Text := oCliente.GetCelular;
-  edtEndereco.Text := oCliente.GetEndereco;
-  edtNumero.Text := inttostr(oCliente.GetNumero);
-  edtCep.Text := inttostr(oCliente.GetCep);
-  edtBairro.Text := oCliente.GetBairro;
+  edtCodigo.Text    := inttostr(oCliente.GetCodigo);
+  edtNome.Text      := oCliente.GetNome;
+  edtDataNasc.Text  := oCliente.GetDataNasc;
+  edtRg.Text        := oCliente.GetRG;
+  edtCPF_CNPJ.Text  := oCliente.GetCPF_CNPJ;
+  edtTelefone.Text  := oCliente.GetTelefone;
+  edtCelular.Text   := oCliente.GetCelular;
+  edtEndereco.Text  := oCliente.GetEndereco;
+  edtNumero.Text    := inttostr(oCliente.GetNumero);
+  edtCep.Text       := inttostr(oCliente.GetCep);
+  edtBairro.Text    := oCliente.GetBairro;
   edtComplemento.Text := oCliente.GetComplemento;
   edtCodCidade.Text := inttostr(oCliente.GetaCidade.GetCodigo);
-  edtCidade.Text := oCliente.getaCidade.GetCidade;
-  edtDataCad.Text := oCliente.GetDataCad;
-  edtUltAlt.Text := oCliente.GetUltAlt;
-end;
-
-procedure TFrmCadastroClientes.ConhecaObj(pObj, pCtrl: TObject);
-begin
-  inherited;
-  oCliente := Clientes(pObj);
-  aCtrlClientes := CtrlClientes(pCtrl);
-  self.LimpaEdit;
-  self.CarregaEdit;
+  edtCidade.Text    := oCliente.getaCidade.GetCidade;
+  edtDataCad.Text   := oCliente.GetDataCad;
+  edtUltAlt.Text    := oCliente.GetUltAlt;
 end;
 
 procedure TFrmCadastroClientes.DesbloqueiEdit;
@@ -180,7 +180,7 @@ end;
 
 procedure TFrmCadastroClientes.Salvar;
 begin
-  if btnSalvar.Caption = '&Salvar' then
+  if (btnSalvar.Caption = '&Salvar') or (btnSalvar.Caption = '&Alterar') then
   begin
     if length(self.edtNome.text) = 0 then
       self.edtNome.Color := clYellow;
@@ -245,29 +245,35 @@ begin
       showmessage('Campo Cidade obrigatorio!');
       self.edtCidade.SetFocus;
     end
+    else
+    begin
+      oCliente.SetCodigo(strtoint(edtCodigo.Text));
+      oCliente.SetNome(edtNome.Text);
+      oCliente.SetDataNasc(edtDataNasc.Text);
+      oCliente.SetRG(edtRG.Text);
+      oCliente.SetCPF_CNPJ(edtCPF_CNPJ.Text);
+      oCliente.SetEmail(edtEmail.Text);
+      oCliente.SetTelefone(edtTelefone.Text);
+      oCliente.SetCelular(edtCelular.Text);
+      oCliente.SetEndereco(edtEndereco.Text);
+      oCliente.SetNumero(strtoint(edtNumero.Text));
+      oCliente.SetCep(strtoint(edtCEP.Text));
+      oCliente.SetBairro(edtBairro.Text);
+      oCliente.SetComplemento(edtComplemento.Text);
+      oCliente.GetaCidade.SetCodigo(strtoint(edtCodCidade.Text));
+      oCliente.GetaCidade.SetCidade(edtCidade.Text);
+      oCliente.SetDataCad(edtDataCad.Text);
+      oCliente.SetUltAlt(edtUltAlt.Text);
 
-  else
-    oCliente.SetCodigo(strtoint(edtCodigo.Text));
-    oCliente.SetNome(edtNome.Text);
-    oCliente.SetDataNasc(edtDataNasc.Text);
-    oCliente.SetRG(edtRG.Text);
-    oCliente.SetCPF_CNPJ(edtCPF_CNPJ.Text);
-    oCliente.SetEmail(edtEmail.Text);
-    oCliente.SetTelefone(edtTelefone.Text);
-    oCliente.SetCelular(edtCelular.Text);
-    oCliente.SetEndereco(edtEndereco.Text);
-    oCliente.SetNumero(strtoint(edtNumero.Text));
-    oCliente.SetCep(strtoint(edtCEP.Text));
-    oCliente.SetBairro(edtBairro.Text);
-    oCliente.SetComplemento(edtComplemento.Text);
-    oCliente.GetaCidade.SetCodigo(strtoint(edtCodCidade.Text));
-    oCliente.GetaCidade.SetCidade(edtCidade.Text);
-    oCliente.SetDataCad(edtDataCad.Text);
-    oCliente.SetUltAlt(edtUltAlt.Text);
-
-    aCtrlClientes.salvar(oCliente.Clone);
+      aCtrlClientes.salvar(oCliente.Clone);
+    end;
+    showmessage('Cliente salvo com sucesso!');
+  end
+  else if (btnSalvar.Caption = '&Excluir') then
+  begin
+    aCtrlClientes.Excluir(oCliente);
+    showmessage('Cliente excluido com sucesso!');
   end;
-    showmessage('Cliente cadastrado com sucesso!');
     close;
 end;
 

@@ -1,0 +1,38 @@
+unit uFrmCadastroFuncionarios;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmCadastroPessoa, Vcl.StdCtrls;
+
+type
+  TFrmCadastroFuncionario = class(TFrmCadastroPessoa)
+    lblNome: TLabel;
+    lblDataNasc: TLabel;
+    lblRG: TLabel;
+    lblCPF: TLabel;
+    lblTelefone: TLabel;
+    lblCelular: TLabel;
+    edtNome: TEdit;
+    edtDataNasc: TEdit;
+    edtRG: TEdit;
+    edtCPF: TEdit;
+    edtTelefone: TEdit;
+    edtCelular: TEdit;
+    edtNumMatricula: TEdit;
+    lblNumMatricula: TLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmCadastroFuncionario: TFrmCadastroFuncionario;
+
+implementation
+
+{$R *.dfm}
+
+end.

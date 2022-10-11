@@ -1,0 +1,81 @@
+object DM: TDM
+  OldCreateOrder = False
+  Height = 438
+  Width = 739
+  object FDTrans: TFDTransaction
+    Connection = FDBanco
+    Left = 144
+    Top = 64
+  end
+  object FDBanco: TFDConnection
+    Params.Strings = (
+      'Database=C:\BD-PRATICA\PROJETO_OS.FDB'
+      'User_Name=SYSDBA'
+      'Password=masterkey'
+      'CharacterSet=WIN1251'
+      'DriverID=FB')
+    Connected = True
+    Left = 64
+    Top = 64
+  end
+  object qFornecedor: TFDQuery
+    Connection = FDBanco
+    Left = 280
+    Top = 304
+  end
+  object DSFornecedor: TDataSource
+    Left = 360
+    Top = 304
+  end
+  object qPaises: TFDQuery
+    Active = True
+    Connection = FDBanco
+    Transaction = FDTrans
+    SQL.Strings = (
+      'select * from paises')
+    Left = 280
+    Top = 64
+  end
+  object DSPaises: TDataSource
+    DataSet = qPaises
+    Left = 360
+    Top = 64
+  end
+  object qEstados: TFDQuery
+    Connection = FDBanco
+    Transaction = FDTrans
+    SQL.Strings = (
+      'select * from estados')
+    Left = 280
+    Top = 120
+  end
+  object DSEstados: TDataSource
+    DataSet = qEstados
+    Left = 360
+    Top = 120
+  end
+  object qCidades: TFDQuery
+    Active = True
+    Connection = FDBanco
+    Transaction = FDTrans
+    SQL.Strings = (
+      'select * from cidades')
+    Left = 280
+    Top = 184
+  end
+  object DSCidades: TDataSource
+    DataSet = qCidades
+    Left = 360
+    Top = 184
+  end
+  object qClientes: TFDQuery
+    Connection = FDBanco
+    Left = 280
+    Top = 248
+  end
+  object DSClientes: TDataSource
+    DataSet = qClientes
+    Left = 360
+    Top = 248
+  end
+end

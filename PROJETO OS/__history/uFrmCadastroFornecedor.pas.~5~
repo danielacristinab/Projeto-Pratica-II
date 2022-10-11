@@ -1,0 +1,40 @@
+unit uFrmCadastroFornecedor;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmCadastroPessoa, Vcl.StdCtrls;
+
+type
+  TFrmCadastroFornecedores = class(TFrmCadastroPessoa)
+    lblRazaoSocial: TLabel;
+    edtRazaoSocial: TEdit;
+    edtNomeFantasia: TEdit;
+    lblNomeFantasia: TLabel;
+    edtSite: TEdit;
+    lblSite: TLabel;
+    lblRG_IE: TLabel;
+    lblCNPJ: TLabel;
+    lblTelefone: TLabel;
+    lblCelular: TLabel;
+    lblEmail: TLabel;
+    edtRG_IE: TEdit;
+    edtCNPJ: TEdit;
+    edtTelefone: TEdit;
+    edtCelular: TEdit;
+    edtEmail: TEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmCadastroFornecedores: TFrmCadastroFornecedores;
+
+implementation
+
+{$R *.dfm}
+
+end.

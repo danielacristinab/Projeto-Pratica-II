@@ -1,0 +1,24 @@
+unit uFrmCadastroFornecedor;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmCadastroPessoa, Vcl.StdCtrls;
+
+type
+  TFrmCadastroPessoa1 = class(TFrmCadastroPessoa)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmCadastroPessoa1: TFrmCadastroPessoa1;
+
+implementation
+
+{$R *.dfm}
+
+end.

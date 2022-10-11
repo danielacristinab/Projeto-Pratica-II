@@ -1,0 +1,33 @@
+unit uFrmCadastroCidades;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmCadastroPai, Vcl.StdCtrls;
+
+type
+  TFrmCadastroCidades = class(TCadastroPai)
+    lblCidade: TLabel;
+    lblDDD: TLabel;
+    edtCidade: TEdit;
+    edtDDD: TEdit;
+    lblEstado: TLabel;
+    lblCodEstado: TLabel;
+    edtEstado: TEdit;
+    btnPesquisarEstado: TButton;
+    edtCodEstado: TEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmCadastroCidades: TFrmCadastroCidades;
+
+implementation
+
+{$R *.dfm}
+
+end.

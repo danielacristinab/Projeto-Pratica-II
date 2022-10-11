@@ -1,0 +1,137 @@
+unit uPessoa;
+
+interface
+uses uPai;
+type Pessoa = class (Pai)
+  private
+  protected
+    nome : string[50];
+    Endereco : String[50];
+    Numero : string[10];
+    bairro : string[50];
+    cep : string[10];
+    RG : string[10];
+    CPF : string[11];
+    acidade : integer;
+  public
+   constructor CrieObj;
+   procedure SetNome(pNome: string);
+   procedure SetEndereco(pEndereco: string);
+   procedure SetNumero(pNumero: string);
+   procedure SetBairro(pBairro: string);
+   procedure SetCEP(pCEP: string);
+   procedure SetRG(pRG: string);
+   procedure SetCPF(pCPF: string);
+   procedure SetaCidade(paCidade: integer);
+   function GetNome : string;
+   function GetEndereco : string;
+   function GetNumero : string;
+   function GetBairro : string;
+   function GetCep : string;
+   function GetRG : string;
+   function GetCPF : string;
+   function GetaCidade : integer;
+   destructor Destrua_se;
+end;
+implementation
+
+{ Pessoa }
+
+constructor Pessoa.CrieObj;
+begin
+    nome := ' ';
+    Endereco := ' ';
+    Numero := ' ';
+    bairro := ' ';
+    cep := ' ';
+    RG := ' ';
+    CPF := ' ';
+    aCidade := 0;
+end;
+
+function Pessoa.GetaCidade: integer;
+begin
+  result := aCidade;
+end;
+
+function Pessoa.GetBairro: string;
+begin
+  result := bairro;
+end;
+
+function Pessoa.GetCep: string;
+begin
+  result := cep;
+end;
+
+function Pessoa.GetCPF: string;
+begin
+  result := CPF;
+end;
+
+function Pessoa.GetEndereco: string;
+begin
+   result := endereco;
+end;
+
+function Pessoa.GetNome: string;
+begin
+  result := nome;
+end;
+
+function Pessoa.GetNumero: string;
+begin
+  result := numero;
+end;
+
+function Pessoa.GetRG: string;
+begin
+  result := RG;
+end;
+
+procedure Pessoa.SetaCidade(paCidade: integer);
+begin
+  aCidade := paCidade;
+end;
+
+procedure Pessoa.SetBairro(pBairro: string);
+begin
+  bairro := pBairro;
+end;
+
+procedure Pessoa.SetCEP(pCEP: string);
+begin
+  cep := pCEP;
+end;
+
+procedure Pessoa.SetCPF(pCPF: string);
+begin
+  CPF := pCPF;
+end;
+
+procedure Pessoa.SetEndereco(pEndereco: string);
+begin
+  endereco := pEndereco;
+end;
+
+procedure Pessoa.SetNome(pNome: string);
+begin
+  nome := pNome;
+end;
+
+procedure Pessoa.SetNumero(pNumero: string);
+begin
+  numero := pNumero;
+end;
+
+procedure Pessoa.SetRG(pRG: string);
+begin
+  RG := pRG;
+end;
+
+destructor Pessoa.Destrua_se;
+begin
+
+end;
+end.
+

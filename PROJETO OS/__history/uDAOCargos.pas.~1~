@@ -1,0 +1,133 @@
+unit uDAOCargos;
+
+interface
+uses uDAO, uClientes, Data.DB, System.SysUtils;
+  type DAOCargos = class   (DAO)
+    private
+    protected
+    public
+      constructor CrieObj;
+      function GetDS: TDataSource;                override;
+      function Salvar(pObj: TObject): string;     override;
+      function Carregar(pObj: TObject): string;   override;
+      function Pesquisar(pChave: string): string; override;
+      function Excluir(pObj: TObject): string;    override;
+      function AcheiReg() : boolean;
+      destructor Destrua_se;
+  end;
+
+implementation
+
+{ DAOCargos }
+
+constructor DAOCargos.CrieObj;
+begin
+  inherited;
+end;
+
+function DAOCargos.GetDS: TDataSource;
+begin
+  result := umDm.DSClientes;
+end;
+
+function DAOCargos.AcheiReg: boolean;
+begin
+  result := not (umDM.qClientes.Eof);
+end;
+
+function DAOCargos.Carregar(pObj: TObject): string;
+var mClientes : Clientes;
+begin
+  try
+   try
+      mClientes := Clientes(pObj);
+      with umDM.qClientes DO
+      begin
+        mClientes := Clientes(pObj);
+        mClientes.SetCodigo(umDM.qCidades.FieldByName('CODCIDADE').value);
+        //mClientes.SetCidade(umDM.qCidades.FieldByName('CIDADE').AsString);
+        //mClientes.SetDDD(umDM.qCidades.FieldByName('DDD').AsString);
+        mClientes.getaCidade.setCodigo(umDM.qClientes.FieldByName('oESTADO').Value);
+        result := '';
+      end;
+   except on e:exception do
+      result:= 'Erro ao carregar: '+ e.Message;
+   end;
+ finally
+ end;
+
+end;
+
+function DAOCargos.Pesquisar(pChave: string): string;
+var mSql: string;
+begin
+  if pChave <> '' then
+    if ehNumero(pChave) then
+      mSql := 'select * from Clientes where codcliente = '+quotedstr(pChave)
+    else
+      mSql := 'select * from Clientes where nome = '+quotedstr(pChave)+' order by nome'
+  else
+    mSql := 'select * from Clientes order by nome';
+  umDM.qClientes.Active := false;
+  umDM.qClientes.SQL.Text := mSql;
+  umDM.qClientes.Open();
+end;
+
+function DAOCargos.Salvar(pObj: TObject): string;
+var mSql  : string;
+    mClientes : Clientes;
+begin
+    try
+      umDM.FDTrans.StartTransaction;
+      mClientes := Clientes(pObj);
+      with umDM.qClientes do
+      begin
+        if mClientes.getCodigo = 0 then
+        mSql := 'insert into Cidades (cidade, ddd, codestado) values ( :cidade, :ddd, :codestado)'
+        else
+        begin
+          mSql := 'update Cidades set cidade = :cidade , ddd = :ddd, codestado = :codestado';
+          mSql := mSql + 'where codCidade = :CodCidade;';
+        end;
+        umDM.qClientes.SQL.Clear;
+        umDM.qClientes.SQL.Add(mSql);
+        //ParamByName('CIDADE').Value := mClientes.getCidade;
+        //ParamByName('DDD').Value := mClientes.getDDD;
+        ParamByName('CODCIDADE').Value := mClientes.getaCidade.GetCidade;
+        if mClientes.GetCodigo <> 0 then
+          ParamByName('CODCIDADE').Value := mClientes.GetCodigo;
+        ExecSQL;
+      end;
+      umDM.FDTrans.Commit;
+    except
+      umDM.FDTrans.Rollback;
+end;
+end;
+
+function DAOCargos.Excluir(pObj: TObject): string;
+var mSql  : string;
+    mClientes : Clientes;
+begin
+  try
+      mClientes := Clientes(pObj);
+      mSql := 'delete * from Clientes where codCliente = '+quotedstr(inttostr(mClientes.getCodigo));
+      umDm.FDTrans.StartTransaction;
+      umDm.qClientes.Active:= false;
+      umDm.qClientes.SQL.Clear;
+      umDm.qClientes.SQL.Add(mSql);
+      umDm.qClientes.Open;
+      umDm.FDTrans.Commit;
+      result := '';
+   except on e: Exception do
+   begin
+      umDm.FDTrans.Rollback;
+      result := 'Erro ao Excluir : '  + e.Message;
+   end;
+  end;
+end;
+
+destructor DAOCargos.Destrua_se;
+begin
+
+end;
+end.

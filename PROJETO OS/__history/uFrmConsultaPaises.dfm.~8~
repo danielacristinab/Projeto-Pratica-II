@@ -1,0 +1,13 @@
+inherited FrmConsultaPaises: TFrmConsultaPaises
+  Caption = 'Consulta Paises'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited btnPesquisar: TButton
+    Left = 474
+    OnClick = btnPesquisarClick
+    ExplicitLeft = 474
+  end
+  inherited DBGrid1: TDBGrid
+    Top = 80
+  end
+end

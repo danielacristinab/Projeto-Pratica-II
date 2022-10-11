@@ -1,0 +1,41 @@
+CREATE GENERATOR PAIS_GEN;
+SET GENERATOR PAIS_GEN TO 10;
+
+set term ^;
+CREATE TRIGGER PAISES_BI FOR PAISES
+ACTIVE BEFORE INSERT POSITION 0
+AS
+BEGIN
+	IF (NEW.CODPAIS IS NULL) THEN
+		NEW.CODPAIS = GEN_ID(PAIS_GEN,1);
+END^
+set term ;^
+
+___________________________
+
+CREATE GENERATOR ESTADO_GEN;
+SET GENERATOR ESTADO_GEN TO 100;
+
+SET TERM ^ ; 
+ create trigger estado_bi for Estados
+ active before insert position 0
+as
+begin
+if new.codestado is null then
+    new.codestado = gen_id(estado_gen, 1)
+end ^
+SET TERM ; ^
+
+____________________________
+
+CREATE GENERATOR CIDADE_GEN;
+SET GENERATOR CIDADE_GEN TO 1000;
+SET TERM ^ ; 
+ create trigger cidade_bi for Cidades
+ active before insert position 0
+as
+begin
+if new.codcidade is null then
+    new.codcidade = gen_id(cidade_gen, 1)
+end ^
+SET TERM ; ^

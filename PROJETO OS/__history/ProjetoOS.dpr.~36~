@@ -1,0 +1,48 @@
+program ProjetoOS;
+
+uses
+  Vcl.Forms,
+  uPrincipal in 'uPrincipal.pas' {FrmPrincipal},
+  uFrmCadastroPai in 'uFrmCadastroPai.pas' {FrmCadastroPai},
+  uFrmCadastroPaises in 'uFrmCadastroPaises.pas' {FrmCadastroPaises},
+  uFrmCadastroCidades in 'uFrmCadastroCidades.pas' {FrmCadastroCidades},
+  uFrmCadastroEstados in 'uFrmCadastroEstados.pas' {FrmCadastroEstados},
+  uFrmConsultaPai in 'uFrmConsultaPai.pas' {FrmConsultaPai},
+  uFrmConsultaPaises in 'uFrmConsultaPaises.pas' {FrmConsultaPaises},
+  uFrmConsultaEstados in 'uFrmConsultaEstados.pas' {FrmConsultaEstados},
+  uFrmConsultaCidades in 'uFrmConsultaCidades.pas' {FrmConsultaCidades},
+  uPai in 'uPai.pas',
+  uPessoa in 'uPessoa.pas',
+  uFrmCondicaoPagamento in 'uFrmCondicaoPagamento.pas' {FrmCondicaoPagamento},
+  uFornecedor in 'uFornecedor.pas',
+  uDAO in 'uDAO.pas',
+  uDAOCidades in 'uDAOCidades.pas',
+  uDAOEstados in 'uDAOEstados.pas',
+  uDAOPaises in 'uDAOPaises.pas',
+  uController in 'uController.pas',
+  uCtrlEstados in 'uCtrlEstados.pas',
+  uCtrlPaises in 'uCtrlPaises.pas',
+  uCtrlCidades in 'uCtrlCidades.pas',
+  uDataModule in 'uDataModule.pas' {DM: TDataModule},
+  uOS in 'uOS.pas',
+  uEstados in 'uEstados.pas',
+  uPaises in 'uPaises.pas',
+  uCidades in 'uCidades.pas',
+  uInterfaces in 'uInterfaces.pas',
+  uFuncionarios in 'uFuncionarios.pas',
+  uClientes in 'uClientes.pas',
+  uCargos in 'uCargos.pas',
+  uFrmCadastroPessoa in 'uFrmCadastroPessoa.pas' {FrmCadastroPessoa},
+  uFrmCadastroClientes in 'uFrmCadastroClientes.pas' {FrmCadastroClientes},
+  uFrmCadastroFuncionarios in 'uFrmCadastroFuncionarios.pas' {FrmCadastroFuncionarios},
+  uFrmCadastroFornecedor in 'uFrmCadastroFornecedor.pas' {FrmCadastroFornecedores};
+
+{$R *.res}
+var
+  FrmPrincipal: TFrmPrincipal;
+begin
+   FrmPrincipal := TFrmPrincipal.Create(nil);
+   FrmPrincipal.ShowModal;
+   FrmPrincipal.FreeInstance;
+
+end.

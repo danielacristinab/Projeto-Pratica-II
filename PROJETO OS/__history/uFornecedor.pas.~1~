@@ -1,0 +1,30 @@
+unit uFornecedor;
+
+interface
+uses uPai;
+type Fonecedor = class (Pai)
+  private
+  protected
+    RazaoSocial : string[50];
+	ApelidoNomeFantasia : string[50];
+	cnpj : string[15];
+	rg/ie : string[];
+	site : string;
+
+
+    logradouro : String[50];
+    Numero : string[10];
+    bairro : string[50];
+    cep : string[10];
+
+
+  public
+   constructor CrieObj;
+
+   destructor Destrua_se;
+end;
+implementation
+
+
+end.
+

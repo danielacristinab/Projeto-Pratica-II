@@ -1,0 +1,56 @@
+unit uCtrlCidades;
+
+interface
+uses uController, uDAOCidades, Data.DB, uCidades;
+  type CtrlCidades = class (controller)
+    private
+    protected
+      aDaoCidades : DAOCidades;
+    public
+      constructor CrieObj;
+      procedure SetDM(pDM : TObject);           override;
+      function GetDS: TDataSource;              override;
+      function salvar(pObj: TObject): string;   override;
+      function Pesquisar(pChave: string; pObj: TObject): integer; override;
+      destructor Destrua_se;
+  end;
+implementation
+
+{ CtrlCidades }
+
+constructor CtrlCidades.CrieObj;
+begin
+  aDaoCidades := DAOCidades.CrieObj;
+end;
+
+
+
+destructor CtrlCidades.Destrua_se;
+begin
+  aDAOCidades.Destrua_se;
+end;
+
+function CtrlCidades.GetDS: TDataSource;
+begin
+  result := aDAOCidades.GetDS;
+end;
+
+function CtrlCidades.Pesquisar(pChave: string; pObj: TObject): integer;
+var mQuero : boolean;
+    mCidades : Cidades;
+begin
+  aDaoCidades.Pesquisar(pChave);
+end;
+
+function CtrlCidades.salvar(pObj: TObject): string;
+begin
+
+end;
+
+procedure CtrlCidades.SetDM(pDM: TObject);
+begin
+  inherited;
+
+end;
+
+end.

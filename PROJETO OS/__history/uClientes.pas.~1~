@@ -1,0 +1,178 @@
+unit uClientes;
+
+interface
+uses uPai, uPessoa, uCidades;
+type Clientes = class (Pessoa)
+  private
+  protected
+    nome : string[50];
+	DataNasc : string[8];
+    RG : string[10];
+    CPF : string[11];
+    Telefone : string[13]; {(45)3523-3523}
+    Celular : string [20]; {+000 (45) 9 99323306}
+    Endereco : String[50];
+    Numero : string[10];
+    bairro : string[50];
+    aCidade : integer;
+  public
+   constructor CrieObj;
+   procedure SetNome(pNome: string);
+   procedure SetDataNasc(pDataNasc: string);
+   procedure SetRG(pRG: string);
+   procedure SetCPF(pCPF: string);
+   procedure SetTelefone(pTelefone: string);
+   procedure SetCelular(pCelular: string);
+   procedure SetEndereco(pEndereco: string);
+   procedure SetNumero(pNumero: string);
+   procedure SetBairro(pBairro: string);
+   procedure SetaCidade(paCidade: integer);
+   function Clone : Clientes;
+   function GetNome : string;
+   function GetDataNasc : string;
+   function GetRG : string;
+   function GetCPF : string;
+   function GetTelefone : string;
+   function GetCelular : string;
+   function GetEndereco : string;
+   function GetNumero : string;
+   function GetBairro : string;
+   function GetaCidade : integer;
+   destructor Destrua_se;
+end;
+implementation
+
+{ Pessoa }
+
+function Clientes.Clone: Clientes;
+begin
+  result := Funcionarios.crieObj;
+  result.setCodigo(codigo);
+
+
+
+  result.setDataCad(dataCad);
+  result.setDataCad(DataUltAlt);
+end;
+
+constructor Clientes.CrieObj;
+begin
+    nome := ' ';
+	DataNasc := ' ';
+    RG := ' ';
+    CPF := ' ';
+    Telefone := ' ';
+    Celular := ' ';
+    Endereco := ' ';
+    Numero := ' ';
+    Bairro := ' ';
+    aCidade := Cidades.CrieObj;
+end;
+
+destructor Clientes.Destrua_se;
+begin
+
+end;
+
+function Clientes.GetaCidade: integer;
+begin
+  result := aCidade;
+end;
+
+function Clientes.GetBairro: string;
+begin
+  result := Bairro;
+end;
+
+function Clientes.GetCelular: string;
+begin
+  result := Celular;
+end;
+
+function Clientes.GetCPF: string;
+begin
+  result := CPF;
+end;
+
+function Clientes.GetDataNasc: string;
+begin
+  result := DataNasc;
+end;
+
+function Clientes.GetEndereco: string;
+begin
+  result := Endereco;
+end;
+
+function Clientes.GetNome: string;
+begin
+  result := Nome;
+end;
+
+function Clientes.GetNumero: string;
+begin
+  result := Numero;
+end;
+
+function Clientes.GetRG: string;
+begin
+  result := RG;
+end;
+
+function Clientes.GetTelefone: string;
+begin
+  result := Telefone;
+end;
+
+procedure Clientes.SetaCidade(paCidade: integer);
+begin
+  aCidade := paCidade;
+end;
+
+procedure Clientes.SetBairro(pBairro: string);
+begin
+  Bairro := pBairro;
+end;
+
+procedure Clientes.SetCelular(pCelular: string);
+begin
+  Celular := pCelular;
+end;
+
+procedure Clientes.SetCPF(pCPF: string);
+begin
+  CPF := pCPF;
+end;
+
+procedure Clientes.SetDataNasc(pDataNasc: string);
+begin
+  Nome := pDataNasc;
+end;
+
+procedure Clientes.SetEndereco(pEndereco: string);
+begin
+  Endereco := pEndereco;
+end;
+
+procedure Clientes.SetNome(pNome: string);
+begin
+  Nome := pNome;
+end;
+
+procedure Clientes.SetNumero(pNumero: string);
+begin
+  Numero := pNumero;
+end;
+
+procedure Clientes.SetRG(pRG: string);
+begin
+  RG := pRG;
+end;
+
+procedure Clientes.SetTelefone(pTelefone: string);
+begin
+  Telefone := pTelefone;
+end;
+
+end.
+

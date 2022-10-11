@@ -1,0 +1,19 @@
+insert into cidades (codcidade, cidade, ddd, codestado) values (1000, 'Foz do Iguacu', 45, 100);
+
+insert into estados (codestado, estado, uf, codpais) values (100, 'Parana', 'PR', 10);
+insert into estados (codestado, estado, uf, codpais) values (200, 'Sao Paulo', 'SP', 10);
+insert into estados (codestado, estado, uf, codpais) values (300, 'Rio de Janeiro', 'RJ', 10);
+
+insert into paises (codpais, pais, sigla, ddi, moeda) values (10, 'Brasil', 'BR', '+55', 'R$');
+insert into paises (codpais, pais, sigla, ddi, moeda) values (20, 'Paraguai', 'PY', '+595', 'G$');
+insert into paises (codpais, pais, sigla, ddi, moeda) values (30, 'Argentina', 'AR', '+54', 'P$');
+
+insert into clientes(nome, datanasc, cpf_cnpj, rg, email, telefone, celular, endereco, numero, bairro, cep, complemento, codcidade) 
+			 values ('Sandra', '22051974', '12312312345', '107460365', 'danielacrsitina', '45999330951', '45999323306', 'rua jose castagnario', 618, 'panorama', 85856655, 'casa', 10);
+
+
+insert into cargos(codcargo, cargo) values (150, 'auxADM');
+
+insert into funcionarios(nome, datanasc, cpf, rg, email, telefone, celular, endereco, numero, bairro, cep, complemento, codcargo, codcidade) values ('Daniela', '29051997', '09978797939', '107460365', 'danielahotmailcom', '32208052', '45999323306', 'Jose Castagnaro', 618, 'panorama', 85856655, 'casa', 150, 1000);
+
+insert into fornecedores(cnpj, razaosocial, nomefantasia, telefone, email, site, rg_ie, endereco, numero, bairro, cep, complemento, codcidade) values ('123654000152', 'danielacia', 'quazla', '30256352', 'danielahotmailcom', 'quazla.com', '45999323306', 'Jose Castagnaro', 618, 'panorama', 85856655, 'casa',1000);

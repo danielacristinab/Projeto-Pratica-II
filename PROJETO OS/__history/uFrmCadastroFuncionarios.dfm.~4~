@@ -1,0 +1,128 @@
+inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
+  Caption = 'Cadastro de Funcionarios'
+  PixelsPerInch = 96
+  TextHeight = 13
+  object lblNome: TLabel [10]
+    Left = 224
+    Top = 8
+    Width = 75
+    Height = 13
+    Caption = 'Nome Completo'
+  end
+  object lblDataNasc: TLabel [11]
+    Left = 520
+    Top = 304
+    Width = 81
+    Height = 13
+    Caption = 'Data Nascimento'
+  end
+  object lblRG: TLabel [12]
+    Left = 24
+    Top = 304
+    Width = 14
+    Height = 13
+    Caption = 'RG'
+  end
+  object lblCPF: TLabel [13]
+    Left = 265
+    Top = 304
+    Width = 19
+    Height = 13
+    Caption = 'CPF'
+  end
+  object lblTelefone: TLabel [14]
+    Left = 27
+    Top = 251
+    Width = 42
+    Height = 13
+    Caption = 'Telefone'
+  end
+  object lblCelular: TLabel [15]
+    Left = 176
+    Top = 251
+    Width = 33
+    Height = 13
+    Caption = 'Celular'
+  end
+  object lblNumMatricula: TLabel [16]
+    Left = 72
+    Top = 8
+    Width = 83
+    Height = 13
+    Caption = 'Numero Matricula'
+  end
+  object lblEmail: TLabel [18]
+    Left = 417
+    Top = 251
+    Width = 28
+    Height = 13
+    Caption = 'E-mail'
+  end
+  inherited edtComplemento: TEdit
+    Top = 160
+    ExplicitTop = 160
+  end
+  inherited edtCodCidade: TEdit
+    Top = 224
+    ExplicitTop = 224
+  end
+  object edtNome: TEdit [32]
+    Left = 224
+    Top = 40
+    Width = 475
+    Height = 21
+    TabOrder = 13
+  end
+  object edtDataNasc: TEdit [33]
+    Left = 515
+    Top = 323
+    Width = 103
+    Height = 21
+    TabOrder = 14
+  end
+  object edtRG: TEdit [34]
+    Left = 24
+    Top = 323
+    Width = 223
+    Height = 21
+    TabOrder = 15
+  end
+  object edtCPF: TEdit [35]
+    Left = 265
+    Top = 323
+    Width = 218
+    Height = 21
+    TabOrder = 16
+  end
+  object edtTelefone: TEdit [36]
+    Left = 24
+    Top = 270
+    Width = 129
+    Height = 21
+    TabOrder = 17
+  end
+  object edtCelular: TEdit [37]
+    Left = 176
+    Top = 270
+    Width = 223
+    Height = 21
+    TabOrder = 18
+  end
+  object edtNumMatricula: TEdit [38]
+    Left = 72
+    Top = 40
+    Width = 135
+    Height = 21
+    TabOrder = 19
+  end
+  inherited edtUF: TEdit
+    TabOrder = 20
+  end
+  object edtEmail: TEdit
+    Left = 417
+    Top = 270
+    Width = 282
+    Height = 21
+    TabOrder = 21
+  end
+end

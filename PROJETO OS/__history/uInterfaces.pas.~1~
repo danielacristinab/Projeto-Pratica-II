@@ -1,0 +1,77 @@
+unit uInterfaces;
+
+interface
+uses
+  ufrmConsultaPaises, ufrmConsultaEstados, ufrmConsultaCidades,
+  ufrmCadastroPaises, ufrmCadastroEstados, ufrmCadastroCidades;
+type Interfaces = class
+  private
+
+  protected
+    umFrmConsultaPaises  : TFrmConsultaPaises;
+    umFrmConsultaEstados : TFrmConsultaEstados;
+    umFrmConsultaCidades : TfrmConsultaCidades;
+
+    umFrmCadastroPaises  : TFrmCadastroPaises;
+    umFrmCadastroEstados : TFrmCadastroEstados;
+    umFrmCadastroCidades : TFrmCadastroCidades;
+  public
+    constructor CrieObj;
+    destructor Destrua_se;
+    procedure PDPaises(pObj, pCtrl : TObject);
+    procedure PDEstados(pObj, pCtrl : TObject);
+    procedure PDCidades(pObj, pCtrl : TObject);
+end;
+
+implementation
+
+{ Interfaces }
+
+constructor Interfaces.CrieObj;
+begin
+  umFrmConsultaPaises  := TFrmConsultaPaises.Create(nil);
+  umFrmConsultaEstados := TFrmConsultaEstados.Create(nil);
+  umFrmConsultaCidades := TFrmConsultaCidades.Create(nil);
+
+  umFrmCadastroPaises := TFrmCadastroPaises.Create(nil);
+  umFrmCadastroEstados := TFrmCadastroEstados.Create(nil);
+  umFrmCadastroCidades := TFrmCadastroCidades.Create(nil);
+
+  umFrmConsultaPaises.SetCadastro( umFrmCadastroPaises);
+  umFrmConsultaEstados.SetCadastro( umFrmCadastroEstados );
+  umFrmConsultaCidades.SetCadastro( umFrmCadastroCidades );
+
+  umFrmCadastroEstados.SetConsulta( umFrmConsultaPaises );
+  umFrmCadastroCidades.SetConsulta( umFrmConsultaEstados );
+end;
+
+destructor Interfaces.Destrua_se;
+begin
+  umFrmConsultaPaises.FreeInstance;
+  umFrmConsultaEstados.FreeInstance;
+  umFrmConsultaCidades.FreeInstance;
+
+  umFrmCadastroPaises.FreeInstance;
+  umFrmCadastroEstados.FreeInstance;
+  umFrmCadastroCidades.FreeInstance;
+end;
+
+procedure Interfaces.PDCidades(pObj, pCtrl : TObject);
+begin
+  umFrmConsultacidades.ConhecaObj(pObj, pCtrl);
+  umFrmConsultaCidades.ShowModal;
+end;
+
+procedure Interfaces.PDEstados(pObj, pCtrl : TObject);
+begin
+  umFrmConsultaEstados.ConhecaObj(pObj,pCtrl);
+  umFrmConsultaEstados.ShowModal;
+end;
+
+procedure Interfaces.PDPaises(pObj, pCtrl : TObject);
+begin
+  umFrmConsultaPaises.ConhecaObj(pObj,pCtrl);
+  umFrmConsultaPaises.ShowModal;
+end;
+
+end.

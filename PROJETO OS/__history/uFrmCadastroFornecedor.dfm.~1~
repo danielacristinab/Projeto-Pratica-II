@@ -1,0 +1,5 @@
+inherited FrmCadastroPessoa1: TFrmCadastroPessoa1
+  Caption = 'FrmCadastroPessoa1'
+  PixelsPerInch = 96
+  TextHeight = 13
+end

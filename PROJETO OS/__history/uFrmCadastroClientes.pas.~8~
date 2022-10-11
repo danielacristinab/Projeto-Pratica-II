@@ -1,0 +1,160 @@
+unit uFrmCadastroClientes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmCadastroPessoa, uFrmConsultaCidades,
+  uFrmConsultaClientes, uClientes, uCtrlClientes, uDAOClientes, Vcl.StdCtrls;
+
+type
+  TFrmCadastroClientes = class(TFrmCadastroPessoa)
+    edtNome: TEdit;
+    edtDataNasc: TEdit;
+    edtRG: TEdit;
+    edtCPF: TEdit;
+    edtTelefone: TEdit;
+    edtCelular: TEdit;
+    lblNome: TLabel;
+    lblDataNasc: TLabel;
+    lblRG: TLabel;
+    lblCPF: TLabel;
+    lblTelefone: TLabel;
+    lblCelular: TLabel;
+    lblEmail: TLabel;
+    edtEmail: TEdit;
+  private
+    { Private declarations }
+    umFrmConsultaCidades : TFrmConsultaCidades;
+    oCliente : Clientes;
+    aCtrlClientes : CtrlClientes;
+  public
+    { Public declarations }
+    procedure ConhecaObj(pObj: TObject;  pCtrl: TObject);  override;
+    procedure LimpaEdit;                                   override;
+    procedure CarregaEdit;                                 override;
+    procedure BloqueiaEdit;                                override;
+    procedure DesbloqueiEdit;                              override;
+    procedure Salvar;                                      override;
+    procedure Sair;                                        override;
+    procedure SetConsulta(pObj: TObject);                  override;
+  end;
+
+var
+  FrmCadastroClientes: TFrmCadastroClientes;
+
+implementation
+
+{$R *.dfm}
+
+{ TFrmCadastroClientes }
+
+procedure TFrmCadastroClientes.BloqueiaEdit;
+begin
+  inherited;
+  edtCodigo.Enabled := false;
+  edtNome.Enabled := false;
+  edtDataNasc.Enabled := false;
+  edtRg.Enabled := false;
+  edtCPF.Enabled := false;
+  edtTelefone.Enabled := false;
+  edtCelular.Enabled := false;
+  edtEndereco.Enabled := false;
+  edtNumero.Enabled := false;
+  edtCep.Enabled := false;
+  edtBairro.Enabled := false;
+  edtComplemento.Enabled := false;
+  edtCodCidade.Enabled := false;
+  edtCidade.Enabled := false;
+  edtDataCad.Enabled := false;
+  edtUltAlt.Enabled := false;
+end;
+
+procedure TFrmCadastroClientes.CarregaEdit;
+begin
+  inherited;
+  if oCliente.GetCodigo <> 0 then
+    self.edtCodigo.Text := inttostr(oCliente.GetCodigo);
+   edtCodigo.Text := inttostr (oCliente.GetCodigo);
+   edtNome.Text := oCliente.GetNome;
+   edtDataNasc.Text := oCliente.GetDataNasc;
+   edtRg.Text := oCliente.GetRG;
+   edtCPF.Text := oCliente.GetCPF;
+   edtTelefone.Text := oCliente.GetTelefone;
+   edtCelular.Text := oCliente.GetCelular;
+   edtCodCidade.Text := inttostr(oCliente.getaCidade.GetCodigo);
+   edtCidade.Text := oCliente.getaCidade.GetCidade;
+   edtDataCad.Text := oCliente.GetDataCad;
+   edtUltAlt.Text := oCliente.GetUltAlt;
+end;
+
+procedure TFrmCadastroClientes.ConhecaObj(pObj, pCtrl: TObject);
+begin
+  inherited;
+  oCliente := Clientes(pObj);
+  aCtrlClientes := CtrlClientes(pCtrl);
+  self.LimpaEdit;
+  self.CarregaEdit;
+end;
+
+procedure TFrmCadastroClientes.DesbloqueiEdit;
+begin
+  inherited;
+  edtCodigo.Enabled := true;
+  edtNome.Enabled := true;
+  edtDataNasc.Enabled := true;
+  edtRg.Enabled := true;
+  edtCPF.Enabled := true;
+  edtTelefone.Enabled := true;
+  edtCelular.Enabled := true;
+  edtEndereco.Enabled := true;
+  edtNumero.Enabled := true;
+  edtCep.Enabled := true;
+  edtBairro.Enabled := true;
+  edtComplemento.Enabled := true;
+  edtCodCidade.Enabled := true;
+  edtCidade.Enabled := true;
+  edtDataCad.Enabled := true;
+  edtUltAlt.Enabled := true;
+end;
+
+procedure TFrmCadastroClientes.LimpaEdit;
+begin
+  inherited;
+  edtCodigo.Text := '0';
+  edtNome.Clear;
+  edtDataNasc.Clear;
+  edtRg.Clear;
+  edtCPF.Clear;
+  edtTelefone.Clear;
+  edtCelular.Clear;
+  edtEndereco.Clear;
+  edtNumero.Clear;
+  edtCep.Clear;
+  edtBairro.Clear;
+  edtComplemento.Clear;
+  edtCodCidade.Clear;
+  edtCidade.Clear;
+  edtDataCad.Clear;
+  edtUltAlt.Clear;
+end;
+
+procedure TFrmCadastroClientes.Sair;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroClientes.Salvar;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroClientes.SetConsulta(pObj: TObject);
+begin
+  inherited;
+  umFrmConsultaCidades := TFrmConsultaCidades(pObj);
+end;
+
+end.

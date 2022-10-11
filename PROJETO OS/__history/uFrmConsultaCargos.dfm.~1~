@@ -1,0 +1,5 @@
+inherited FrmConsultaPai1: TFrmConsultaPai1
+  Caption = 'FrmConsultaPai1'
+  PixelsPerInch = 96
+  TextHeight = 13
+end

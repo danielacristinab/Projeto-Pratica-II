@@ -1,0 +1,98 @@
+unit uFrmConsultaPaises;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmConsultaPai, Vcl.StdCtrls,
+  Vcl.ComCtrls, ufrmCadastroPaises, uPaises, uCtrlPaises,
+  uColPaises, Data.DB, Vcl.Grids, Vcl.DBGrids, uDataModule;
+
+type
+  TFrmConsultaPaises = class(TFrmConsultaPai)
+    procedure btnPesquisarClick(Sender: TObject);
+  private
+    { Private declarations }
+    umCadastroPaises : TFrmCadastroPaises;
+    oPais : Paises;
+    aCtrlPais : CtrlPaises;
+  public
+    { Public declarations }
+    procedure ConhecaObj(pObj: TObject;  pCtrl: TObject); override;
+    procedure Incluir;                                    override;
+    procedure Alterar;                                    override;
+    procedure Excluir;                                    override;
+    procedure Pesquisar;                                  override;
+    procedure Sair;                                       override;
+    procedure SetCadastro(pObj: TObject);                 override;
+  end;
+
+var
+  FrmConsultaPaises: TFrmConsultaPaises;
+
+implementation
+
+{$R *.dfm}
+
+{ TFrmConsultaPaises }
+
+
+procedure TFrmConsultaPaises.ConhecaObj(pObj, pCtrl: TObject);
+begin
+  inherited;
+  oPais := Paises(pObj);
+  aCtrlPais := CtrlPaises(pCtrl);
+  self.DBGrid1.DataSource := TDataSource(aCtrlPais.GetDS);
+  aCtrlPais.Pesquisar(EdtPesquisar.Text);
+end;
+
+procedure TFrmConsultaPaises.Alterar;
+begin
+  inherited;
+  //showmessage(inttostr(ItemSelecionado));
+  //oPais := Paises(aCtrlPais.Carregar(ItemSelecionado + 1));
+  aCtrlPais.Carregar(oPais);
+  umCadastroPaises.ConhecaObj(oPais, aCtrlPais);
+  umCadastroPaises.LimpaEdit;
+  umCadastroPaises.CarregaEdit;
+  umCadastroPaises.ShowModal;
+  self.CarregaLV;
+end;
+
+procedure TFrmConsultaPaises.btnPesquisarClick(Sender: TObject);
+begin
+  aCtrlPais.Pesquisar(self.EdtPesquisar.Text);
+end;
+
+procedure TFrmConsultaPaises.Excluir;
+begin
+  inherited;
+  umCadastroPaises.ConhecaObj(oPais, aCtrlPais);
+  umCadastroPaises.ShowModal;
+end;
+
+procedure TFrmConsultaPaises.Incluir;
+begin
+  inherited;
+  umCadastroPaises.ConhecaObj(oPais, aCtrlPais);
+  umCadastroPaises.LimpaEdit;
+  umCadastroPaises.ShowModal;
+end;
+
+procedure TFrmConsultaPaises.Pesquisar;
+begin
+  aCtrlPais.Pesquisar(self.EdtPesquisar.Text);
+end;
+
+procedure TFrmConsultaPaises.Sair;
+begin
+  inherited;
+end;
+
+procedure TFrmConsultaPaises.SetCadastro(pObj: TObject);
+begin
+  inherited;
+  umCadastroPaises := TFrmCadastroPaises(pObj);
+end;
+
+end.

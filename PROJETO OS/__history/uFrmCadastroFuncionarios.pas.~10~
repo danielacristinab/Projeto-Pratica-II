@@ -1,0 +1,107 @@
+unit uFrmCadastroFuncionarios;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmCadastroPessoa, Vcl.StdCtrls,
+  uFrmConsultaFuncionarios, uFrmConsultaCidades, uFuncionarios, uCtrlFuncionarios;
+
+type
+  TFrmCadastroFuncionarios = class(TFrmCadastroPessoa)
+    lblNome: TLabel;
+    lblDataNasc: TLabel;
+    lblRG: TLabel;
+    lblCPF: TLabel;
+    lblTelefone: TLabel;
+    lblCelular: TLabel;
+    edtNome: TEdit;
+    edtDataNasc: TEdit;
+    edtRG: TEdit;
+    edtCPF: TEdit;
+    edtTelefone: TEdit;
+    edtCelular: TEdit;
+    edtEmail: TEdit;
+    lblEmail: TLabel;
+  private
+    { Private declarations }
+    umFrmConsultaCidades : TFrmConsultaCidades;
+    oFuncionario : Funcionarios;
+    aCtrlFuncionarios : CtrlFuncionarios;
+  public
+    { Public declarations }
+    procedure ConhecaObj(pObj: TObject;  pCtrl: TObject);  override;
+    procedure LimpaEdit;                                   override;
+    procedure CarregaEdit;                                 override;
+    procedure BloqueiaEdit;                                override;
+    procedure DesbloqueiEdit;                              override;
+    procedure Salvar;                                      override;
+    procedure Sair;                                        override;
+    procedure SetConsulta(pObj: TObject);                  override;
+  end;
+
+var
+  FrmCadastroFuncionarios: TFrmCadastroFuncionarios;
+
+implementation
+
+{$R *.dfm}
+
+{ TFrmCadastroFuncionarios }
+
+procedure TFrmCadastroFuncionarios.BloqueiaEdit;
+begin
+  inherited;
+  edtDataCad.Enabled := false;
+  edtUltAlt.Enabled := false;
+end;
+
+procedure TFrmCadastroFuncionarios.CarregaEdit;
+begin
+  inherited;
+  edtDataCad.Text := oFuncionario.GetDataCad;
+  edtUltAlt.Text := oFuncionario.GetUltAlt;
+end;
+
+procedure TFrmCadastroFuncionarios.ConhecaObj(pObj, pCtrl: TObject);
+begin
+  inherited;
+  oFuncionario := Funcionarios(pObj);
+  aCtrlFuncionarios := CtrlFuncionarios(pCtrl);
+  self.LimpaEdit;
+  self.CarregaEdit;
+end;
+
+procedure TFrmCadastroFuncionarios.DesbloqueiEdit;
+begin
+  inherited;
+  edtDataCad.Enabled := true;
+  edtUltAlt.Enabled := true;
+end;
+
+procedure TFrmCadastroFuncionarios.LimpaEdit;
+begin
+  inherited;
+  edtDataCad.Clear;
+  edtUltAlt.Clear;
+end;
+
+procedure TFrmCadastroFuncionarios.Sair;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroFuncionarios.Salvar;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroFuncionarios.SetConsulta(pObj: TObject);
+begin
+  inherited;
+  umFrmConsultaCidades := TFrmConsultaCidades(pObj);
+end;
+
+end.

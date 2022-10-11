@@ -1,0 +1,93 @@
+unit uDAOCidades;
+
+interface
+uses uDAO, uColCidades, uCidades, Data.DB, System.SysUtils;
+  type DAOCidades = class   (DAO)
+    private
+    protected
+    public
+      constructor CrieObj;
+      function GetDS: TDataSource;                override;
+      function Salvar(pObj: TObject): string;     override;
+      function Carregar(pObj: TObject): string;   override;
+      function Pesquisar(pChave: string): string; override;
+      function Excluir(pObj: TObject): string;    override;
+      destructor Destrua_se;
+  end;
+
+implementation
+
+{ DAOCidades }
+
+constructor DAOCidades.CrieObj;
+begin
+  inherited;
+end;
+
+function DAOCidades.GetDS: TDataSource;
+begin
+  result := umDm.DSCidades;
+end;
+
+function DAOCidades.Carregar(pObj: TObject): string;
+begin
+
+end;
+
+function DAOCidades.Pesquisar(pChave: string): string;
+var mSql: string;
+begin
+  if pChave <> '' then
+    if ehNumero(pChave) then
+      mSql := 'select * from Cidades where codcidade = '+quotedstr(pChave)
+    else
+      mSql := 'select * from Cidades where cidade = '+quotedstr(pChave)+' order by cidade'
+  else
+    mSql := 'select * from Cidades order by cidade';
+  umDM.qPaises.Active := false;
+  umDM.qPaises.SQL.Text := mSql;
+  umDM.qPaises.Open();
+end;
+
+function DAOCidades.Salvar(pObj: TObject): string;
+var mSql  : string;
+    mCidades : Cidades;
+begin
+    try
+      umDM.FDTrans.StartTransaction;
+      mCidades := Cidades(pObj);
+      with umDM.qCidades do
+      begin
+        if mCidades.getCodigo = 0 then
+        mSql := 'insert into Cidades (cidade, ddd, codestado) values ( :cidade, :ddd, :codestado)'
+        else
+        begin
+          mSql := 'update Cidades set cidade = :cidade , ddd = :ddd, codestado = :codestado';
+          mSql := mSql + 'where codCidade = : CodCidade;';
+        end;
+        umDM.qCidades.SQL.Clear;
+        umDM.qCidades.SQL.Add(mSql);
+        ParamByName('CIDADE').Value := mCidades.getCidade;
+        ParamByName('DDD').Value := mCidades.getDDD;
+        ParamByName('CODESTADO').Value := mCidades.getoEstado.GetEstado;
+        if mCidades.GetCodigo <> 0 then
+          ParamByName('CODESTADO').Value := mCidades.GetCodigo;
+        ExecSQL;
+      end;
+      umDM.FDTrans.Commit;
+    except
+      umDM.FDTrans.Rollback;
+end;
+end;
+
+destructor DAOCidades.Destrua_se;
+begin
+
+end;
+
+function DAOCidades.Excluir(pObj: TObject): string;
+begin
+
+end;
+
+end.

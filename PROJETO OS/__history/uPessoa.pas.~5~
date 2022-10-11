@@ -1,0 +1,116 @@
+unit uPessoa;
+
+interface
+uses uPai, uCidades;
+type Pessoa = class (Pai)
+  private
+  protected
+    Endereco : String[50];
+    Numero : string[10];
+    bairro : string[50];
+    aCidade : Cidades;
+  public
+   constructor CrieObj;
+   procedure SetNome(pNome: string);
+   procedure SetRG(pRG: string);
+   procedure SetCPF(pCPF: string);
+   procedure SetEndereco(pEndereco: string);
+   procedure SetNumero(pNumero: string);
+   procedure SetBairro(pBairro: string);
+   procedure SetaCidade(paCidade: Cidades);
+   function GetNome : string;
+   function GetRG : string;
+   function GetCPF : string;
+   function GetEndereco : string;
+   function GetNumero : string;
+   function GetBairro : string;
+   function GetaCidade : Cidades;
+   destructor Destrua_se;
+end;
+implementation
+
+{ Pessoa }
+
+constructor Pessoa.CrieObj;
+begin
+    nome := ' ';
+    RG := ' ';
+    CPF := ' ';
+end;
+
+function Pessoa.GetaCidade: Cidades;
+begin
+
+end;
+
+function Pessoa.GetBairro: string;
+begin
+
+end;
+
+function Pessoa.GetCPF: string;
+begin
+  result := CPF;
+end;
+
+function Pessoa.GetEndereco: string;
+begin
+
+end;
+
+function Pessoa.GetNome: string;
+begin
+  result := nome;
+end;
+
+function Pessoa.GetNumero: string;
+begin
+
+end;
+
+function Pessoa.GetRG: string;
+begin
+  result := RG;
+end;
+
+procedure Pessoa.SetaCidade(paCidade: Cidades);
+begin
+
+end;
+
+procedure Pessoa.SetBairro(pBairro: string);
+begin
+
+end;
+
+procedure Pessoa.SetCPF(pCPF: string);
+begin
+  CPF := pCPF;
+end;
+
+procedure Pessoa.SetEndereco(pEndereco: string);
+begin
+
+end;
+
+procedure Pessoa.SetNome(pNome: string);
+begin
+  nome := pNome;
+end;
+
+procedure Pessoa.SetNumero(pNumero: string);
+begin
+
+end;
+
+procedure Pessoa.SetRG(pRG: string);
+begin
+  RG := pRG;
+end;
+
+destructor Pessoa.Destrua_se;
+begin
+
+end;
+end.
+

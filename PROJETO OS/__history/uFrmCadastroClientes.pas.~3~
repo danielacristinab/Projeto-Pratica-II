@@ -1,0 +1,38 @@
+unit uFrmCadastroClientes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmCadastroPessoa, Vcl.StdCtrls;
+
+type
+  TFrmCadastroCliente = class(TFrmCadastroPessoa)
+    edtNome: TEdit;
+    edtDataNasc: TEdit;
+    edtRG: TEdit;
+    edtCPF: TEdit;
+    edtTelefone: TEdit;
+    edtCelular: TEdit;
+    lblNome: TLabel;
+    lblDataNasc: TLabel;
+    lblRG: TLabel;
+    lblCPF: TLabel;
+    lblTelefone: TLabel;
+    lblCelular: TLabel;
+    lblEmail: TLabel;
+    edtEmail: TEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmCadastroCliente: TFrmCadastroCliente;
+
+implementation
+
+{$R *.dfm}
+
+end.

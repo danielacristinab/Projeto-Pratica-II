@@ -1,0 +1,49 @@
+CREATE DATABASE 'localhost:C:\BD-PRATICA\projeto_os.fdb' USER 'SYSDBA' PASSWORD 'masterkey';
+CONNECT 'localhost:C:\BD-PRATICA\projeto_os.fdb' USER 'SYSDBA' PASSWORD 'masterkey';
+
+CREATE TABLE Paises(
+  CodPais INTEGER PRIMARY KEY,
+  Pais VARCHAR(50) NOT NULL,
+  Sigla VARCHAR(3) NOT NULL,
+  ddi VARCHAR(4) NOT NULL,
+  Moeda VARCHAR(3) NOT NULL,
+  DatCad  DATE,
+  DatUltAlt DATE
+);
+
+CREATE TABLE Estados(
+  CodEstado INTEGER PRIMARY KEY,
+  Estado VARCHAR(50) NOT NULL,
+  UF VARCHAR(3) NOT NULL,
+  CodPais INTEGER NOT NULL,
+  DatCad  DATE,
+  DatUltAlt DATE
+);
+
+alter table estados add constraint fk_codPais foreign key (codPais) references Paises(codPais);
+
+CREATE TABLE Cidades(
+  CodCidade INTEGER PRIMARY KEY,
+  Cidade VARCHAR(50) NOT NULL,
+  ddd VARCHAR(3) NOT NULL,
+  CodEstado INTEGER NOT NULL, 
+  DatCad  DATE,
+  DatUltAlt DATE
+);
+
+alter table cidades add constraint fk_codEstados foreign key (codEstado) references Estados(codEstado);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

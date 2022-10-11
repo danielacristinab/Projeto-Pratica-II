@@ -1,0 +1,113 @@
+unit uFrmCadastroFornecedor;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  uFrmCadastroPessoa, Vcl.StdCtrls, uFornecedores, uCtrlFornecedores,
+  uFrmConsultaCidades;
+
+type
+  TFrmCadastroFornecedores = class(TFrmCadastroPessoa)
+    lblRazaoSocial: TLabel;
+    edtRazaoSocial: TEdit;
+    edtNomeFantasia: TEdit;
+    lblNomeFantasia: TLabel;
+    edtSite: TEdit;
+    lblSite: TLabel;
+    lblRG_IE: TLabel;
+    lblCNPJ: TLabel;
+    lblTelefone: TLabel;
+    lblEmail: TLabel;
+    edtRG_IE: TEdit;
+    edtCNPJ: TEdit;
+    edtTelefone: TEdit;
+    edtEmail: TEdit;
+  private
+    { Private declarations }
+    umFrmConsultaCidades : TFrmConsultaCidades;
+    oFornecedor : Fornecedores;
+    aCtrlFornecedores : CtrlFornecedores;
+  public
+    { Public declarations }
+    procedure ConhecaObj(pObj: TObject;  pCtrl: TObject);  override;
+    procedure LimpaEdit;                                   override;
+    procedure CarregaEdit;                                 override;
+    procedure BloqueiaEdit;                                override;
+    procedure DesbloqueiEdit;                              override;
+    procedure Salvar;                                      override;
+    procedure Sair;                                        override;
+    procedure SetConsulta(pObj: TObject);                  override;
+  end;
+
+var
+  FrmCadastroFornecedores: TFrmCadastroFornecedores;
+
+implementation
+
+{$R *.dfm}
+
+{ TFrmCadastroFornecedores }
+
+procedure TFrmCadastroFornecedores.BloqueiaEdit;
+begin
+  inherited;
+  edtCodigo.Enabled := false;
+  //edt
+  edtTelefone.Enabled := false;
+
+  edtEndereco.Enabled := false;
+  edtNumero.Enabled := false;
+  edtCep.Enabled := false;
+  edtBairro.Enabled := false;
+  edtComplemento.Enabled := false;
+  edtCodCidade.Enabled := false;
+  edtCidade.Enabled := false;
+  edtDataCad.Enabled := false;
+  edtUltAlt.Enabled := false;
+end;
+
+procedure TFrmCadastroFornecedores.CarregaEdit;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroFornecedores.ConhecaObj(pObj, pCtrl: TObject);
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroFornecedores.DesbloqueiEdit;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroFornecedores.LimpaEdit;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroFornecedores.Sair;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroFornecedores.Salvar;
+begin
+  inherited;
+
+end;
+
+procedure TFrmCadastroFornecedores.SetConsulta(pObj: TObject);
+begin
+  inherited;
+
+end;
+
+end.

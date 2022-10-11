@@ -1,0 +1,35 @@
+unit uFornecedor;
+
+interface
+uses uPai;
+type Fonecedor = class (Pai)
+  private
+  protected
+    RazaoSocial : string[50];
+	  ApelidoNomeFantasia : string[50];
+	  cnpj : string[15];
+	  RG_IE : string[15];
+	  site : string;
+
+ public
+   constructor CrieObj;
+
+   destructor Destrua_se;
+end;
+implementation
+
+
+{ Fonecedor }
+
+constructor Fonecedor.CrieObj;
+begin
+
+end;
+
+destructor Fonecedor.Destrua_se;
+begin
+
+end;
+
+end.
+

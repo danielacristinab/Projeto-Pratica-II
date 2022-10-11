@@ -1,0 +1,10 @@
+unit uCargos;
+
+interface
+uses uPai, uPessoa, uCidades;
+type Cargos = class (Pessoa)
+
+end;
+implementation
+
+end.

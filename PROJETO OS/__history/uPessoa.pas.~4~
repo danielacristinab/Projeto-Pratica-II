@@ -1,0 +1,71 @@
+unit uPessoa;
+
+interface
+uses uPai, uCidades;
+type Pessoa = class (Pai)
+  private
+  protected
+    nome : string[50];
+    RG : string[10];
+    CPF : string[11];
+    Endereco : String[50];
+    Numero : string[10];
+    bairro : string[50];
+    aCidade : Cidades;
+  public
+   constructor CrieObj;
+   procedure SetNome(pNome: string);
+   procedure SetRG(pRG: string);
+   procedure SetCPF(pCPF: string);
+   function GetNome : string;
+   function GetRG : string;
+   function GetCPF : string;
+   destructor Destrua_se;
+end;
+implementation
+
+{ Pessoa }
+
+constructor Pessoa.CrieObj;
+begin
+    nome := ' ';
+    RG := ' ';
+    CPF := ' ';
+end;
+
+function Pessoa.GetCPF: string;
+begin
+  result := CPF;
+end;
+
+function Pessoa.GetNome: string;
+begin
+  result := nome;
+end;
+
+function Pessoa.GetRG: string;
+begin
+  result := RG;
+end;
+
+procedure Pessoa.SetCPF(pCPF: string);
+begin
+  CPF := pCPF;
+end;
+
+procedure Pessoa.SetNome(pNome: string);
+begin
+  nome := pNome;
+end;
+
+procedure Pessoa.SetRG(pRG: string);
+begin
+  RG := pRG;
+end;
+
+destructor Pessoa.Destrua_se;
+begin
+
+end;
+end.
+

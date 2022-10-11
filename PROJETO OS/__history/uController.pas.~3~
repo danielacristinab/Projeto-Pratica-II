@@ -1,0 +1,58 @@
+unit uController;
+
+interface
+uses uDataModule, Data.DB;
+type Controller = class
+  private
+  protected
+  public
+    constructor CrieObj;
+    procedure SetDM(pDM : TObject);             virtual;
+    function GetDS: TDataSource;                virtual;
+    function salvar(pObj: TObject): string;     virtual;
+    function Pesquisar(pChave: string; pObj: TObject): integer; virtual;
+    function Carregar(pPos: integer): TObject;  virtual;
+    destructor Destrua_se;
+end;
+
+implementation
+
+{ Controller }
+
+function Controller.Carregar(pPos: integer): TObject;
+begin
+
+end;
+
+constructor Controller.CrieObj;
+begin
+
+end;
+
+destructor Controller.Destrua_se;
+begin
+
+end;
+
+function Controller.GetDS: TDataSource;
+begin
+
+end;
+
+function Controller.Pesquisar(pChave: string; pObj: TObject): integer;
+begin
+
+end;
+
+function Controller.salvar(pObj: TObject): string;
+begin
+
+end;
+
+procedure Controller.SetDM(pDM: TObject);
+begin
+
+end;
+
+end.
+

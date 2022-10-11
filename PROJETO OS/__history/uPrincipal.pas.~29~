@@ -1,0 +1,109 @@
+unit uPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus,
+  uInterfaces, uPai, uPaises, uEstados, uCidades,
+  uController, uCtrlPaises, uCtrlEstados, uCtrlCidades,
+  uColecoes, uColPaises, uColEstados, uColCidades,
+  uDAO, uDAOPaises, uDAOEstados, uDAOCidades,
+  uFornecedor, uClientes, uFuncionarios,
+  Data.DB, uDataModule;
+
+type
+  TFrmPrincipal = class(TForm)
+    Menu: TMainMenu;
+    CADASTRO: TMenuItem;
+    CLIENTE: TMenuItem;
+    EQUIPAMENTOS: TMenuItem;
+    OS: TMenuItem;
+    RELATORIOS: TMenuItem;
+    HOME: TMenuItem;
+    FINANCEIRO: TMenuItem;
+    ESTOQUE: TMenuItem;
+    PAIS: TMenuItem;
+    ESTADO: TMenuItem;
+    CIDADE: TMenuItem;
+    FUNCIONARIO: TMenuItem;
+    FORNECEDOR: TMenuItem;
+    SAIR: TMenuItem;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    procedure SAIRClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure PAISClick(Sender: TObject);
+    procedure ESTADOClick(Sender: TObject);
+    procedure CIDADEClick(Sender: TObject);
+  private
+    { Private declarations }
+    aInter : Interfaces;
+    oPais  : Paises;
+    oEstado : Estados;
+    aCidade : Cidades;
+    oCliente : Clientes;
+    oFuncionario : Funcionarios;
+    oFornecedor : Fornecedores;
+
+    aCtrlPais : CtrlPaises;
+    aCtrlEstados : CtrlEstados;
+    aCtrlCidades : CtrlCidades;
+
+    uDM : TDM;
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmPrincipal: TFrmPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+
+procedure TFrmPrincipal.CIDADEClick(Sender: TObject);
+begin
+  aInter.PDCidades(aCidade, aCtrlCidades);
+end;
+
+procedure TFrmPrincipal.ESTADOClick(Sender: TObject);
+begin
+  aInter.PDEstados(oEstado, aCtrlEstados);
+end;
+
+procedure TFrmPrincipal.FormCreate(Sender: TObject);
+begin
+   aInter := Interfaces.CrieObj;
+   oPais := Paises.CrieObj;
+   oEstado := Estados.CrieObj;
+   aCidade := Cidades.CrieObj;
+   oCliente := Clientes.CrieObj;
+   oFuncionario := Funcionarios.CrieObj;
+   oFornecedor := Fornecedores.CrieObj;
+
+   aCtrlPais := CtrlPaises.CrieObj;
+   aCtrlEstados := CtrlEstados.CrieObj;
+   aCtrlCidades := CtrlCidades.CrieObj;
+
+   uDM := TDM.Create(nil);
+   aCtrlPais.SetDM(uDM);
+   aCtrlEstados.SetDM(uDM);
+   aCtrlCidades.SetDM(uDM);
+
+  aCtrlEstados.setaCtrlPais(aCtrlPais);
+  aCtrlCidades.SetaCtrlEstado(aCtrlEstados);
+end;
+
+procedure TFrmPrincipal.PAISClick(Sender: TObject);
+begin
+  aInter.PDPaises(oPais, aCtrlPais);
+end;
+
+procedure TFrmPrincipal.SAIRClick(Sender: TObject);
+begin
+  Close;
+end;
+
+end.

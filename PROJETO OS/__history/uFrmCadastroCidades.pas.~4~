@@ -1,0 +1,160 @@
+unit uFrmCadastroCidades;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmCadastroPai, Vcl.StdCtrls, ufrmConsultaEstados,
+  uCidades, uCtrlCidades;
+
+type
+  TFrmCadastroCidades = class(TFrmCadastroPai)
+    lblCidade: TLabel;
+    lblDDD: TLabel;
+    edtCidade: TEdit;
+    edtDDD: TEdit;
+    lblEstado: TLabel;
+    lblCodEstado: TLabel;
+    edtEstado: TEdit;
+    btnPesquisarEstado: TButton;
+    edtCodEstado: TEdit;
+    procedure btnPesquisarEstadoClick(Sender: TObject);
+  private
+    { Private declarations }
+    umFrmConsultaEstados : TFrmConsultaEstados;
+    aCidade : Cidades;
+    aCtrlCidades : CtrlCidades;
+  public
+    { Public declarations }
+    procedure ConhecaObj(pObj: TObject;  pCtrl: TObject);  override;
+    procedure LimpaEdit;                                   override;
+    procedure CarregaEdit;                                 override;
+    procedure BloqueiaEdit;                                override;
+    procedure DesbloqueiEdit;                              override;
+    procedure Salvar;                                      override;
+    procedure Sair;                                        override;
+    procedure SetConsulta(pObj: TObject);                  override;
+  end;
+
+var
+  FrmCadastroCidades: TFrmCadastroCidades;
+
+implementation
+
+{$R *.dfm}
+
+
+procedure TfrmCadastroCidades.ConhecaObj(pObj, pCtrl: TObject);
+begin
+  inherited;
+  aCidade := Cidades(pObj);
+  aCtrlCidades := CtrlCidades(pCtrl);
+end;
+
+procedure TfrmCadastroCidades.BloqueiaEdit;
+begin
+  edtCodigo.Enabled := false;
+  edtCidade.Enabled := false;
+  edtDDD.Enabled := false;
+  edtCodEstado.Enabled := false;
+  edtEstado.Enabled := false;
+  edtDataCad.Enabled := false;
+  edtUltAlt.Enabled := false;
+end;
+
+procedure TfrmCadastroCidades.btnPesquisarEstadoClick(Sender: TObject);
+begin
+  umFrmConsultaEstados.ConhecaObj(aCidade.getoEstado, aCtrlCidades);
+  umFrmConsultaEstados.ShowModal;
+  self.edtCodEstado.Text := inttostr(aCidade.getoEstado.GetCodigo);
+  self.edtEstado.Text := aCidade.getoEstado.GetEstado;
+end;
+
+procedure TfrmCadastroCidades.CarregaEdit;
+begin
+  inherited;
+   edtCodigo.Text := inttostr (aCidade.GetCodigo);
+   edtCidade.Text := aCidade.GetCidade;
+   edtDDD.Text := aCidade.GetDDD;
+   edtCodEstado.Text := inttostr(aCidade.getoEstado.GetCodigo);
+   edtEstado.Text := aCidade.getoEstado.GetEstado;
+   edtDataCad.Text := aCidade.GetDataCad;
+   edtUltAlt.Text := aCidade.GetUltAlt;
+end;
+
+procedure TfrmCadastroCidades.DesbloqueiEdit;
+begin
+  edtCodigo.Enabled := true;
+  edtCidade.Enabled := true;
+  edtDDD.Enabled := true;
+  edtCodEstado.Enabled := true;
+  edtEstado.Enabled := true;
+  edtDataCad.Enabled := true;
+  edtUltAlt.Enabled := true;
+end;
+
+procedure TfrmCadastroCidades.LimpaEdit;
+begin
+  edtCodigo.Text := '0';
+  edtCidade.Clear;
+  edtDDD.Clear;
+  edtCodEstado.Clear;
+  edtEstado.Clear;
+  edtDataCad.Clear;
+  edtUltAlt.Clear;
+end;
+
+procedure TfrmCadastroCidades.Salvar;
+begin
+  inherited;
+  if btnSalvar.Caption = '&Salvar' then
+  begin
+    if length(self.edtCidade.text) = 0 then
+      self.edtCidade.Color := clYellow;
+    if length(self.edtDDD.text) = 0 then
+      self.edtDDD.Color := clYellow;
+    if length(self.edtEstado.text) = 0 then
+      self.edtEstado.Color := clYellow;
+    if self.edtCidade.Text = '' then
+    begin
+      showmessage('Campo Cidade obrigatorio!');
+      self.edtCidade.SetFocus;
+    end
+    else if self.edtDDD.Text = '' then
+    begin
+      showmessage('Campo DDD obrigatorio!');
+      self.edtDDD.SetFocus;
+    end
+    else if self.edtEstado.Text = '' then
+    begin
+      showmessage('Campo Estado obrigatorio!');
+      self.edtEstado.SetFocus;
+    end
+  else
+  aCidade.SetCodigo(strtoint(self.edtCodigo.Text));
+  aCidade.setCidade(self.edtCidade.Text);
+  aCidade.setDDD(self.edtDDD.text);
+  aCidade.getoEstado.SetCodigo(strtoint(self.edtCodEstado.Text));
+  aCidade.getoEstado.SetEstado(self.edtEstado.text);
+  aCidade.SetDataCad(self.edtDataCad.Text);
+  aCidade.SetUltAlt(self.edtUltAlt.text);
+
+  aCtrlCidades.salvar(aCidade.Clone);
+
+  close;
+  end;
+end;
+
+procedure TfrmCadastroCidades.SetConsulta(pObj: TObject);
+begin
+  inherited;
+  umFrmConsultaEstados := TFrmConsultaEstados(pObj);
+end;
+
+procedure TfrmCadastroCidades.Sair;
+begin
+  inherited;
+
+end;
+
+end.

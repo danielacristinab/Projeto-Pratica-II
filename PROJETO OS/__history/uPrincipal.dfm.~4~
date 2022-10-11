@@ -1,0 +1,46 @@
+object Principal: TPrincipal
+  Left = 0
+  Top = 0
+  Caption = 'Principal'
+  ClientHeight = 447
+  ClientWidth = 707
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Menu = Menu
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Menu: TMainMenu
+    Left = 72
+    Top = 24
+    object HOME1: TMenuItem
+      Caption = 'HOME'
+    end
+    object CADASTRO1: TMenuItem
+      Caption = 'CADASTRO'
+      object CLIENTE1: TMenuItem
+        Caption = 'CLIENTES'
+        OnClick = CLIENTE1Click
+      end
+      object EQUIPAMENTOS1: TMenuItem
+        Caption = 'EQUIPAMENTOS'
+      end
+    end
+    object OS1: TMenuItem
+      Caption = 'OS'
+    end
+    object FINANCEIRO1: TMenuItem
+      Caption = 'FINANCEIRO'
+    end
+    object ESTOQUE1: TMenuItem
+      Caption = 'ESTOQUE'
+    end
+    object RELATORIOS1: TMenuItem
+      Caption = 'RELATORIOS'
+    end
+  end
+end

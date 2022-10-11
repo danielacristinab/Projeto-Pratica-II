@@ -1,0 +1,192 @@
+unit uFrmCadastroEstados;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmCadastroPai, Vcl.StdCtrls,
+  ufrmConsultaPaises, uEstados, uPaises, uPai, uCtrlEstados;
+
+type
+  TFrmCadastroEstados = class(TFrmCadastroPai)
+    lblEstado: TLabel;
+    lblUF: TLabel;
+    edtEstados: TEdit;
+    edtUF: TEdit;
+    lblPais: TLabel;
+    lblCodPais: TLabel;
+    edtPais: TEdit;
+    btnPesquisarPais: TButton;
+    edtCodPais: TEdit;
+    procedure btnPesquisarPaisClick(Sender: TObject);
+  private
+    { Private declarations }
+    umFrmConsultaPaises : TFrmConsultaPaises;
+    oEstado : Estados;
+    aCtrlEstados : CtrlEstados;
+  public
+    { Public declarations }
+
+
+    procedure ConhecaObj(pObj: TObject;  pCtrl: TObject);  override;
+    procedure LimpaEdit;                                   override;
+    procedure CarregaEdit;                                 override;
+    procedure BloqueiaEdit;                                override;
+    procedure DesbloqueiEdit;                              override;
+    procedure Salvar;                                      override;
+    procedure Sair;                                        override;
+    procedure SetConsulta(pObj: TObject);                  override;
+  end;
+
+var
+  FrmCadastroEstados: TFrmCadastroEstados;
+
+implementation
+
+{$R *.dfm}
+
+
+procedure TfrmCadastroEstados.ConhecaObj(pObj, pCtrl: TObject);
+begin
+  oEstado := Estados(pObj);
+  aCtrlEstados :=  CtrlEstados(pCtrl);
+end;
+
+procedure TfrmCadastroEstados.BloqueiaEdit;
+begin
+  inherited;
+  edtEstados.Enabled := false;
+  edtUF.Enabled := false;
+  edtDataCad.Enabled := false;
+  edtUltAlt.Enabled := false;
+  edtCodPais.Enabled := false;
+  edtPais.Enabled := false;
+end;
+
+procedure TfrmCadastroEstados.btnPesquisarPaisClick(Sender: TObject);
+var btn_nome : string;
+    oPais : Paises;
+begin
+  inherited;
+  {umFrmConsultaPaises.ConhecaObj(oEstado.GetoPais, aCtrlEstados);
+  btn_nome := umFrmConsultaPaises.GetNomeBotao;
+  umFrmConsultaPaises.SetNomeBotao('Selecionar');
+  umFrmConsultaPaises.ShowModal;
+  umFrmConsultaPaises.SetNomeBotao(btn_nome);
+  self.edtCodPais.Text := inttostr(oEstado.GetoPais.GetCodigo);
+  self.edtPais.Text := oEstado.GetoPais.GetPais; }
+
+  {oPais:= Paises.crieObj;
+  naux := oConsultaPaises.btn_Sair.Caption;
+  oConsultaPaises.btn_Sair.Caption := 'Selecionar';
+  oConsultaPaises.conhecaObj(oPais,aCtrlEstado.getaCtrlPais);
+  oConsultaPaises.ShowModal;
+  //aCtrlEstado.getaCtrlPais.carregar(oEstado.getOPais);
+  oConsultaPaises.btn_Sair.Caption:= naux;
+  self.edt_CodPais.Text := inttostr(oPais.getCodigo);
+  self.edt_Pais.Text := oPais.getPais;
+  oEstado.setoPais(oPais);
+  }
+  oPais := paises.CrieObj;
+  btn_nome := umFrmConsultaPaises.btnSair.Caption;
+  umFrmConsultaPaises.btnSair.Caption := 'Selecionar';
+  umFrmConsultaPaises.ConhecaObj(oPais,aCtrlEstados.GetaCtrlPais);
+  umFrmConsultaPaises.ShowModal;
+  umFrmConsultaPaises.btnSair.Caption := btn_nome;
+  self.edtCodPais.Text := inttostr(oPais.GetCodigo);
+  self.edtPais.Text := oPais.GetPais;
+  oEstado.setoPais(oPais);
+end;
+
+procedure TfrmCadastroEstados.CarregaEdit;
+var oPais : Paises;
+begin
+  if oEstado.GetCodigo <> 0 then
+    self.edtCodigo.Text := inttostr(oEstado.GetCodigo);
+  edtEstados.Text :=  oEstado.GetEstado;
+  edtUF.Text := oEstado.GetUF;
+  edtDataCad.Text := oEstado.GetDataCad;
+  edtUltAlt.Text := oEstado.GetUltAlt;
+  edtCodPais.Text := inttostr(oPais.GetCodigo);
+  edtPais.Text := oPais.GetPais;
+end;
+
+procedure TfrmCadastroEstados.DesbloqueiEdit;
+begin
+  edtEstados.Enabled := true;
+  edtUF.Enabled := true;
+  edtCodPais.Enabled := true;
+  edtPais.Enabled := true;
+end;
+
+procedure TfrmCadastroEstados.LimpaEdit;
+begin
+  inherited;
+  edtCodPais.Clear;
+  edtPais.clear;
+  edtEstados.Clear;
+  edtUF.Clear;
+end;
+
+procedure TfrmCadastroEstados.Sair;
+begin
+  inherited;
+
+end;
+
+procedure TfrmCadastroEstados.Salvar;
+begin
+  if btnSalvar.Caption = '&Salvar' then
+  begin
+    if length(self.edtEstados.text) = 0 then
+      self.edtEstados.Color := clYellow;
+    if length(self.edtUF.text) = 0 then
+      self.edtUF.Color := clYellow;
+    if length(self.edtPais.text) = 0 then
+      self.edtPais.Color := clYellow;
+    if self.edtEstados.Text = '' then
+    begin
+      showmessage('Campo Estado obrigatorio!');
+      self.edtEstados.SetFocus;
+    end
+    else if self.edtUF.Text = '' then
+    begin
+      showmessage('Campo UF obrigatorio!');
+      self.edtUF.SetFocus;
+    end
+    else if self.edtPais.Text = '' then
+    begin
+      showmessage('Campo Pais obrigatorio!');
+      self.edtPais.SetFocus;
+    end
+  else
+
+  {   oEstado.setCodigo          (strtoint(edt_codigo.Text));
+   oEstado.setEstado          ( edt_Estado.Text);
+   oEstado.setUF              ( edt_UF.Text);
+   oEstado.getoPais.setCodigo (strtoint(edt_codPais.Text));
+   oEstado.getoPais.setPais   ( edt_Pais.Text);
+   aCtrlEstado.Salvar(oEstado.clone);}
+    oEstado.SetCodigo(strtoint(edtCodigo.Text));
+    oEstado.SetEstado(edtEstados.Text);
+    oEstado.SetUF(edtUF.Text);
+    oEstado.GetoPais.SetCodigo(strtoint(edtCodPais.Text));
+    oEstado.GetoPais.SetPais(edtPais.Text);
+
+    //  oEstado.SetDataCad(edtDataCad.Text);
+    //  oEstado.SetUltAlt(edtUltAlt.Text);
+
+    aCtrlEstados.salvar(oEstado.Clone);
+  end;
+    showmessage('Estado cadastrado com sucesso!');
+    close;
+end;
+
+procedure TfrmCadastroEstados.SetConsulta(pObj: TObject);
+begin
+  inherited;
+  umFrmConsultaPaises := TFrmConsultaPaises(pObj);
+end;
+
+
+end.
